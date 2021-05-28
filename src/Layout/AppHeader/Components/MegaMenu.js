@@ -47,7 +47,7 @@ class MegaMenu extends React.Component {
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav>
                             <i className="nav-link-icon pe-7s-gift"> </i>
-                            About Us
+                            <Link to="/about" style={{textDecoration:"none"}}>About Us</Link>
                             {/*<FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>*/}
                         </DropdownToggle>
                     </UncontrolledDropdown>

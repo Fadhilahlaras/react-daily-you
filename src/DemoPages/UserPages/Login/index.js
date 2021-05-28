@@ -7,6 +7,7 @@ import bg2 from '../../../assets/utils/images/originals/citydark.jpg';
 import bg3 from '../../../assets/utils/images/originals/citynights.jpg';
 
 import {Col, Row, Button, Form, FormGroup, Label, Input} from 'reactstrap';
+import {Link} from "react-router-dom";
 
 export default class Login extends Component {
     render() {
@@ -112,14 +113,22 @@ export default class Login extends Component {
                                         <Row className="divider"/>
                                         <h6 className="mt-3">
                                             No account?{' '}
-                                            <a href="/login" onClick={(e)=>e.preventDefault()} className="text-primary">Sign up now</a>
+
+                                            {/*<a href="/login" onClick={(e)=>e.preventDefault()} className="text-primary">Sign up now</a>*/}
                                             {/*<Link to={"/login"} />*/}
+
+                                            <Link to="/register" style={{textDecoration:"none"}}>Sign Up Here</Link>
+
                                         </h6>
                                         <div className="d-flex align-items-center">
                                             <div className="ml-auto">
-                                                <a href="https://colorlib.com/" onClick={(e)=>e.preventDefault()} className="btn-lg btn btn-link">Recover
-                                                    Password</a>{' '}{' '}
-                                                <Button color="primary" size="lg">Login to Dashboard</Button>
+                                                {/*<a href="https://colorlib.com/" onClick={(e)=>e.preventDefault()} className="btn-lg btn btn-link">Recover*/}
+                                                {/*    Password</a>{' '}{' '}*/}
+                                                {/*<Button color="primary" size="lg">Login</Button>*/}
+
+                                                <Link to="/home" style={{textDecoration: "none"}}>
+                                                    <Button className="mb-2 mr-2 btn-icon btn-pill" color="primary" size="lg">Login</Button>
+                                                </Link>
                                             </div>
                                         </div>
                                     </Form>
