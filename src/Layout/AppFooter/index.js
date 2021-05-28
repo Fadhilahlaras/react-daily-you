@@ -10,15 +10,15 @@ class AppFooter extends React.Component {
             <Fragment>
                 <div className="app-footer">
                     <div className="app-footer__inner">
-                        {/*<div className="app-footer-left">*/}
-                        {/*    <FooterDots/>*/}
-                        {/*</div>*/}
-                        {/*<div className="app-footer-right">*/}
-                        {/*    <MegaMenuFooter/>*/}
-                        {/*</div>*/}
-                        <div className="app-wrapper-footer">
-                            <p> Copyright &copy; Daily You 2021 </p>
+
+                        <div className="app-footer-left">
+                            <h6>Products</h6>
+                            {/*<FooterDots/>*/}
                         </div>
+                        <div className="app-footer-right">
+
+                        </div>
+
                     </div>
                 </div>
             </Fragment>

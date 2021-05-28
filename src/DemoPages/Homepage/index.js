@@ -3,6 +3,8 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 
 import AppHeader from "../../Layout/AppHeader/";
 import AppSidebar from "../../Layout/AppSidebar/";
+import AppFooter from "../../Layout/AppFooter";
+
 import {Row, Container, Col} from "reactstrap";
 
 import CardNya from "./CardIsi";
@@ -22,8 +24,6 @@ const Homepage = () => {
                 <AppHeader/>
 
                 <div className="app-main">
-
-
                         <div className="app-main__inner">
                             <Row>
                                 <CardSlide />
@@ -36,8 +36,14 @@ const Homepage = () => {
                             </Row>
                         </div>
 
+                    <AppFooter/>
                 </div>
+
+
+
+
             </CSSTransitionGroup>
+
         </Fragment>
     )
 }

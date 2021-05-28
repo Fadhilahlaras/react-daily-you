@@ -8,6 +8,8 @@ import {
 
 const Home = lazy(()=> import('../../DemoPages/Homepage'));
 
+const Form = lazy(()=> import('../../DemoPages/FormInput'));
+
 const AppMain = () => {
 
     return (
@@ -29,6 +31,24 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/home" component={Home}/>
+            </Suspense>
+
+            {/* Form */}
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="ball-spin-fade-loader"/>
+                        </div>
+                        <h6 className="mt-5">
+                            Please wait while we load all the Components examples
+                            <small>Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a real live app!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/form" component={Form}/>
             </Suspense>
 
 
