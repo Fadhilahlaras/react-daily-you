@@ -1,6 +1,8 @@
 import React, {Fragment} from 'react';
 import {Route} from 'react-router-dom';
 
+import Homepage from"../Homepage";
+
 
 import FormElementsLayouts from "./Elements/Layouts/";
 import FormElementsControls from "./Elements/Controls/";
@@ -45,6 +47,9 @@ const Forms = ({match}) => (
             <AppSidebar/>
             <div className="app-main__outer">
                 <div className="app-main__inner">
+
+                    <Route path={`${match.url}/homepage`} component={Homepage}/>
+
 
                     {/* Form Elements */}
 

@@ -8,10 +8,11 @@ import bg3 from '../../../assets/utils/images/originals/citynights.jpg';
 
 import {Col, Row, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 
-export default class Login extends Component {
+export default class CardSlide extends Component {
     render() {
         let settings = {
             dots: true,
+
             infinite: true,
             speed: 500,
             arrows: true,
@@ -26,9 +27,9 @@ export default class Login extends Component {
         return (
 
             <Fragment>
-                <div className="h-100">
-                    <Row className="h-100 no-gutters">
-                        <Col lg="4" className="d-none d-lg-block">
+                <div className="h-100 grid-width-20">
+                    <Row md="6" className="h-100 no-gutters">
+
                             <div className="slider-light">
                                 <Slider  {...settings}>
                                     <div
@@ -40,7 +41,8 @@ export default class Login extends Component {
                                         <div className="slider-content">
                                             <h3>Perfect Balance</h3>
                                             <p>
-                                                ArchitectUI is like a dream. Some think it's too good to be true! Extensive collection of unified React Boostrap Components and Elements.
+                                                ArchitectUI is like a dream. Some think it's too good to be true!
+                                                Extensive collection of unified React Boostrap Components and Elements.
                                             </p>
                                         </div>
                                     </div>
@@ -74,58 +76,7 @@ export default class Login extends Component {
                                     </div>
                                 </Slider>
                             </div>
-                        </Col>
-                        <Col lg="8" md="12" className="h-100 d-flex bg-white justify-content-center align-items-center">
-                            <Col lg="9" md="10" sm="12" className="mx-auto app-login-box">
-                                <div className="app-logo"/>
-                                <h4 className="mb-0">
-                                    <div>Welcome back,</div>
-                                    <span>Please sign in to your account.</span>
-                                </h4>
 
-                                <Row className="divider"/>
-                                <div>
-                                    <Form>
-                                        <Row form>
-                                            <Col md={6}>
-
-                                                <FormGroup>
-                                                    <Label for="name">Username</Label>
-                                                    <Input type="text" name="name" id="name"
-                                                           placeholder="Username here..."/>
-                                                </FormGroup>
-
-                                                <FormGroup>
-                                                    <Label for="examplePassword">Password</Label>
-                                                    <Input type="password" name="password" id="examplePassword"
-                                                           placeholder="Password here..."/>
-                                                </FormGroup>
-
-
-                                            </Col>
-                                        </Row>
-                                        <FormGroup check>
-                                            <Input type="checkbox" name="check" id="exampleCheck"/>
-                                            <Label for="exampleCheck" check>Keep me logged in</Label>
-                                        </FormGroup>
-
-                                        <Row className="divider"/>
-                                        <h6 className="mt-3">
-                                            No account?{' '}
-                                            <a href="/login" onClick={(e)=>e.preventDefault()} className="text-primary">Sign up now</a>
-                                            {/*<Link to={"/login"} />*/}
-                                        </h6>
-                                        <div className="d-flex align-items-center">
-                                            <div className="ml-auto">
-                                                <a href="https://colorlib.com/" onClick={(e)=>e.preventDefault()} className="btn-lg btn btn-link">Recover
-                                                    Password</a>{' '}{' '}
-                                                <Button color="primary" size="lg">Login to Dashboard</Button>
-                                            </div>
-                                        </div>
-                                    </Form>
-                                </div>
-                            </Col>
-                        </Col>
                     </Row>
                 </div>
             </Fragment>
