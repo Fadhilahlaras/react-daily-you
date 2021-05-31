@@ -32,17 +32,30 @@ class Register extends React.Component {
         this.setState({[e.target.name]: e.target.value})
     }
 
+    handleFileChange = (e) => {
+        this.setState({[e.target.name]: e.target.files[0]})
+    }
+
     onSubmit = (e) => {
-        const dataInput = {
-            id: this.state.id,
-            firstname: this.state.firstname,
-            lastname: this.state.lastname,
-            date: this.state.date,
-            email: this.state.email,
-            note:this.state.note,
-            file: this.state.file
+        const formData = new FormData();
+        const json = JSON.stringify({
+            "firstname": this.state.firstname,
+            "lastname": this.state.lastname,
+            "date": this.state.date,
+            "email": this.state.email,
+            "note": this.state.note
+        });
+        const blobDoc = new Blob([json], {
+            type: 'application/json'
+        });
+        formData.append('file', this.state.file)
+        formData.append('data', blobDoc)
+        const config = {
+            headers: {
+                'content-type': 'multipart/mixed'
+            }
         }
-        axios.post("http://localhost:1221/input", dataInput)
+        axios.post("http://localhost:1221/input", formData, config)
             .then(res => console.log(res.data))
     }
 
@@ -103,8 +116,9 @@ class Register extends React.Component {
                                                         <Input type="textarea" name="note" id="note" onChange={this.handleChange}/>
                                                     </FormGroup>
                                                     <FormGroup>
-                                                        <Label>Address Image</Label>
-                                                        <Input type="text" name="file" id="file" onChange={this.handleChange}/>
+                                                        <Label>Image</Label>
+                                                        <Input type="file" name="file" id="file"
+                                                               onChange={this.handleFileChange}/>
                                                     </FormGroup>
                                                     <Button type="button" className="mt-1" onClick={this.onSubmit}>Submit</Button>
                                                 </Form>

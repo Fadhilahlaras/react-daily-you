@@ -26,8 +26,8 @@ const Homepage = () => {
                 <div className="app-main">
                         <div className="app-main__inner">
                             <Row>
-                                <CardSlide />
-                                <p> </p>
+                                {/*<CardSlide />*/}
+
                             </Row>
                             <Row>
                                 {Index.map((x, index) => (
@@ -38,12 +38,7 @@ const Homepage = () => {
 
                     <AppFooter/>
                 </div>
-
-
-
-
             </CSSTransitionGroup>
-
         </Fragment>
     )
 }

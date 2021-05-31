@@ -50,7 +50,7 @@ class FormInput extends React.Component {
     onSubmit = (e) => {
         const dataInput = {
             id: this.state.id,
-            title: this.state.title,
+            title : this.state.title,
             location: this.state.location,
             date: this.state.date,
             participant: this.state.participant,
