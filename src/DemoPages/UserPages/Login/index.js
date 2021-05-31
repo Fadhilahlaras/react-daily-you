@@ -1,5 +1,7 @@
 import React, {Fragment, Component} from "react";
 
+import axios from "axios";
+
 import Slider from "react-slick";
 
 import bg1 from '../../../assets/utils/images/originals/city.jpg';
@@ -9,7 +11,47 @@ import bg3 from '../../../assets/utils/images/originals/citynights.jpg';
 import {Col, Row, Button, Form, FormGroup, Label, Input} from 'reactstrap';
 import {Link} from "react-router-dom";
 
-export default class Login extends Component {
+class Login extends Component {
+    constructor() {
+        super();
+        this.state = {}
+    }
+
+    handleChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
+
+    handleFileChange = (e) => {
+        this.setState({[e.target.name]: e.target.files[0]})
+    }
+
+    onSubmit = (e) => {
+        const formData = new FormData();
+        const json = JSON.stringify({
+            "firstname": this.state.firstname,
+            "lastname": this.state.lastname,
+            "date": this.state.date,
+            "email": this.state.email,
+            "note": this.state.note
+        });
+        const blobDoc = new Blob([json], {
+            type: 'application/json'
+        });
+
+        formData.append('file', this.state.file)
+        formData.append('data', blobDoc)
+
+        const config = {
+            headers: {
+                'content-type': 'multipart/mixed'
+            }
+        }
+        axios.post("http://localhost:1234/input/save", formData, config)
+            .then(res => console.log(res.data))
+
+
+    }
+
     render() {
         let settings = {
             dots: true,
@@ -141,3 +183,5 @@ export default class Login extends Component {
         );
     }
 }
+
+export default Login;
