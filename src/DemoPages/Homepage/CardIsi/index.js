@@ -1,4 +1,4 @@
-import React,{Fragment} from "react";
+import React, {Fragment, useState, useEffect} from "react";
 import {
     Card,
     CardBody,
@@ -8,29 +8,37 @@ import {
     Col,
     CardFooter
 } from "reactstrap";
+import axios from "axios";
 
-const CardNya =(props) => (
-    <Fragment>
-        <Col md="4">
-            <Card className="main-card mb-3">
-                <CardImg top width="25%"
-                         src={props.image}
-                         alt="Card image cap"/>
-                <CardBody>
-                    <CardTitle>{props.title}</CardTitle>
-                    <CardSubtitle>{props.subtitle}</CardSubtitle>
-                </CardBody>
-                <CardFooter>
-                    <div className="align-content-center">
-                        <p>Note : Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            Accusamus aliquam autem, dolores eius eligendi est eum iusto laudantium
-                            molestiae nam nesciunt nostrum quasi repellat reprehenderit sint sit velit
-                            voluptatem voluptatibus?</p>
-                    </div>
-                </CardFooter>
-            </Card>
-        </Col>
-    </Fragment>
-);
+const CardNya = (props) => {
+
+    const [image, setImage] = useState("")
+
+    useEffect(() => {
+            axios.get("http://localhost:1221/input/getImage/" + props.id).then(res => {
+                setImage(res.data)
+                //console.log(imageArrayPath[index])
+            })
+        }
+    )
+
+    return (
+        <Fragment>
+            <Col md="4">
+                <Card className="main-card mb-3">
+                    <CardImg top width="25%"
+                             src={"data:image/*;base64," + image}
+                             alt="Card image cap"/>
+                    <CardBody>
+                        <CardTitle>{props.firstname}</CardTitle>
+                        <CardSubtitle>{props.lastname}</CardSubtitle>
+                        <CardSubtitle>{props.date}</CardSubtitle>
+                    </CardBody>
+
+                </Card>
+            </Col>
+        </Fragment>
+    )
+}
 
 export default CardNya;

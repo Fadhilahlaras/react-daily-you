@@ -38,11 +38,11 @@ class Register extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:1221/input/save`)
-            .then(res => {
-                const inputList = res.data;
-                this.setState({ inputList });
-            })
+        // axios.get(`http://localhost:1221/input/save`)
+        //     .then(res => {
+        //         const inputList = res.data;
+        //         this.setState({ inputList });
+        //     })
     }
 
     onSubmit = (e) => {
@@ -52,7 +52,7 @@ class Register extends React.Component {
             "lastname": this.state.lastname,
             "date": this.state.date,
             "email": this.state.email,
-            "note": this.state.note
+            "address": this.state.address
         });
         const blobDoc = new Blob([json], {
             type: 'application/json'
@@ -123,16 +123,19 @@ class Register extends React.Component {
                                                     </Row>
 
                                                     <FormGroup>
-                                                        <Label>Note</Label>
-                                                        <Input type="textarea" name="note" id="note" onChange={this.handleChange}/>
+                                                        <Label>Address</Label>
+                                                        <Input type="textarea" name="address" id="address" onChange={this.handleChange}/>
                                                     </FormGroup>
                                                     <FormGroup>
                                                         <Label>Image</Label>
                                                         <Input type="file" name="file" id="file"
                                                                onChange={this.handleFileChange}/>
                                                     </FormGroup>
-                                                    <Button type="button" className="mt-1"
-                                                            onClick={this.onSubmit}>Submit</Button>
+
+                                                    <Button className="mb-2 mr-2 btn-icon" color="info" onClick={this.onSubmit}>
+                                                        <i className="pe-7s-science btn-icon-wrapper"> </i>
+                                                        Save
+                                                    </Button>
                                                 </Form>
                                             </CardBody>
                                         </Card>
