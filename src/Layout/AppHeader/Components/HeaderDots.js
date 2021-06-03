@@ -5,7 +5,7 @@ import {IoIosGrid, IoIosNotificationsOutline, IoIosAnalytics, IoIosCart} from "r
 
 import {
     UncontrolledDropdown, DropdownToggle, DropdownMenu,
-    Nav, Col, Row, Button, NavItem, DropdownItem
+    Nav, Col, Row, Button, NavItem, DropdownItem, CardBody, UncontrolledButtonDropdown, Card
 } from 'reactstrap';
 
 import {
@@ -34,6 +34,9 @@ import Tabs from 'react-responsive-tabs';
 import ChatExample from './TabsContent/ChatExample';
 import TimelineEx from './TabsContent/TimelineExample';
 import SysErrEx from './TabsContent/SystemExample';
+import ReactTable from "react-table";
+import avatar2 from "../../../assets/utils/images/avatars/4.jpg";
+import {Link} from "react-router-dom";
 
 const data = [
     {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
@@ -123,85 +126,42 @@ class HeaderDots extends React.Component {
                     </UncontrolledDropdown>
 
                     <UncontrolledDropdown>
+                        <Link to="/cart" style={{textDecoration:"none"}}>
                         <DropdownToggle className="p-0" color="link">
                             <div className="icon-wrapper icon-wrapper-alt rounded-circle">
                                 <div className="icon-wrapper-bg bg-success"/>
                                 <IoIosCart color="#3ac47d" fontSize="23px" />
                             </div>
                         </DropdownToggle>
-                        <DropdownMenu right className="dropdown-menu-xl rm-pointers">
-                            <div className="dropdown-menu-header">
-                                <div className="dropdown-menu-header-inner bg-premium-dark">
-                                    <div className="menu-header-image"
-                                         style={{
-                                             backgroundImage: 'url(' + bg4 + ')'
-                                         }}
-                                    />
-                                    {/*<div className="menu-header-content text-white">*/}
-                                    {/*    <h5 className="menu-header-title">Users Online</h5>*/}
-                                    {/*    <h6 className="menu-header-subtitle">Recent Account Activity Overview</h6>*/}
-                                    {/*</div>*/}
-                                </div>
-                            </div>
-                            <div className="widget-chart">
-                                <div className="widget-chart-content">
-                                    <div className="icon-wrapper rounded-circle">
-                                        <div className="icon-wrapper-bg opacity-9 bg-focus"/>
-                                        <i className="lnr-users text-white"/>
-                                    </div>
-                                    {/*<div className="widget-numbers">*/}
-                                    {/*    <CountUp start={0}*/}
-                                    {/*             end={344}*/}
-                                    {/*             separator=""*/}
-                                    {/*             decimals={0}*/}
-                                    {/*             decimal=","*/}
-                                    {/*             prefix=""*/}
-                                    {/*             useEasing={false}*/}
-                                    {/*             suffix="k"*/}
-                                    {/*             duration="15"/>*/}
-                                    {/*</div>*/}
-                                    {/*<div className="widget-subheading pt-2">*/}
-                                    {/*    Profile views since last login*/}
-                                    {/*</div>*/}
-                                    {/*<div className="widget-description text-danger">*/}
-                                    {/*    <span className="pr-1">*/}
-                                    {/*        <CountUp start={0}*/}
-                                    {/*                 end={176}*/}
-                                    {/*                 separator=","*/}
-                                    {/*                 delay={2}*/}
-                                    {/*                 decimals={0}*/}
-                                    {/*                 decimal=","*/}
-                                    {/*                 useEasing={false}*/}
-                                    {/*                 prefix=""*/}
-                                    {/*                 suffix="%"*/}
-                                    {/*                 duration="10"/>*/}
-                                    {/*    </span>*/}
-                                    {/*    <FontAwesomeIcon icon={faArrowLeft}/>*/}
-                                    {/*</div>*/}
-                                </div>
-                                <div className="widget-chart-wrapper">
-                                    <ResponsiveContainer width='100%' aspect={3.0 / 1.0}>
-                                        <AreaChart data={data}
-                                                   margin={{top: 0, right: 0, left: 0, bottom: 0}}>
-                                            <Area type='monotoneX' dataKey='uv' stroke='var(--warning)' fill='var(--warning)' fillOpacity='.5'/>
-                                        </AreaChart>
-                                    </ResponsiveContainer>
-                                </div>
-                            </div>
-                            {/*<Nav vertical>*/}
-                            {/*    <NavItem className="nav-item-divider mt-0"> </NavItem>*/}
-                            {/*    <NavItem className="nav-item-btn text-center">*/}
-                            {/*        <Button size="sm" className="btn-shine btn-wide btn-pill" color="warning">*/}
-                            {/*            <FontAwesomeIcon className="mr-2"*/}
-                            {/*                             icon={faCog}*/}
-                            {/*                             spin*/}
-                            {/*                             fixedWidth={false}*/}
-                            {/*            />*/}
-                            {/*            Refresh List*/}
-                            {/*        </Button>*/}
-                            {/*    </NavItem>*/}
-                            {/*</Nav>*/}
-                        </DropdownMenu>
+                        </Link>
+                        {/*<DropdownMenu right className="dropdown-mega-menu rm-pointers">*/}
+                        {/*    <div className="dropdown-menu-header">*/}
+                        {/*        <div className="dropdown-menu-header-inner bg-premium-dark">*/}
+                        {/*            <div className="menu-header-image"*/}
+                        {/*                 style={{*/}
+                        {/*                     backgroundImage: 'url(' + bg4 + ')'*/}
+                        {/*                 }}*/}
+                        {/*            />*/}
+                        {/*            My Cart*/}
+                        {/*        </div>*/}
+                        {/*    </div>*/}
+                        {/*    <div className="widget-chart">*/}
+                        {/*        /!*<div className="widget-chart-content">*!/*/}
+                        {/*        /!*    <div className="icon-wrapper rounded-circle">*!/*/}
+                        {/*        /!*        <div className="icon-wrapper-bg opacity-9 bg-focus"/>*!/*/}
+                        {/*        /!*        <i className="lnr-users text-white"/>*!/*/}
+                        {/*        /!*    </div>*!/*/}
+                        {/*        /!*</div>*!/*/}
+                        {/*        /!*<div className="widget-chart-wrapper">*!/*/}
+                        {/*        /!*    <ResponsiveContainer width='100%' aspect={3.0 / 1.0}>*!/*/}
+                        {/*        /!*        <AreaChart data={data}*!/*/}
+                        {/*        /!*                   margin={{top: 0, right: 0, left: 0, bottom: 0}}>*!/*/}
+                        {/*        /!*            <Area type='monotoneX' dataKey='uv' stroke='var(--warning)' fill='var(--warning)' fillOpacity='.5'/>*!/*/}
+                        {/*        /!*        </AreaChart>*!/*/}
+                        {/*        /!*    </ResponsiveContainer>*!/*/}
+                        {/*        /!*</div>*!/*/}
+                        {/*    </div>*/}
+                        {/*</DropdownMenu>*/}
                     </UncontrolledDropdown>
                 </div>
             </Fragment>

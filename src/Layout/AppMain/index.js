@@ -12,6 +12,8 @@ const About = lazy(()=> import('../../DemoPages/AboutUs'));
 const Login = lazy(()=> import('../../DemoPages/UserPages/Login'));
 const Register = lazy(()=> import('../../DemoPages/UserPages/Register'));
 const Tabel = lazy(()=> import('../../DemoPages/TableData'));
+const Cart = lazy(()=> import('../../DemoPages/Cart'));
+const Checkout = lazy(()=> import('../../DemoPages/Checkout'));
 
 const AppMain = () => {
 
@@ -107,6 +109,42 @@ const AppMain = () => {
                 </div>
             }>
                 <Route path="/tabel" component={Tabel}/>
+            </Suspense>
+
+            {/* Cart */}
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="ball-spin-fade-loader"/>
+                        </div>
+                        <h6 className="mt-5">
+                            Please wait while we load all the Components examples
+                            <small>Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a real live app!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/cart" component={Cart}/>
+            </Suspense>
+
+            {/* Checkout */}
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="ball-spin-fade-loader"/>
+                        </div>
+                        <h6 className="mt-5">
+                            Please wait while we load all the Components examples
+                            <small>Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a real live app!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/checkout" component={Checkout}/>
             </Suspense>
 
 
