@@ -2,6 +2,8 @@ import React, {Fragment} from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import axios from "axios";
 
+import AppHeader from "../../../Layout/AppHeader";
+
 // Examples
 
 import {
@@ -24,7 +26,6 @@ class Register extends React.Component {
     constructor() {
         super();
         this.state = {
-
         }
     }
 
@@ -34,6 +35,14 @@ class Register extends React.Component {
 
     handleFileChange = (e) => {
         this.setState({[e.target.name]: e.target.files[0]})
+    }
+
+    componentDidMount() {
+        axios.get(`http://localhost:1221/input/save`)
+            .then(res => {
+                const inputList = res.data;
+                this.setState({ inputList });
+            })
     }
 
     onSubmit = (e) => {
@@ -55,9 +64,10 @@ class Register extends React.Component {
                 'content-type': 'multipart/mixed'
             }
         }
-        axios.post("http://localhost:1221/input", formData, config)
+        axios.post("http://localhost:1221/input/save", formData, config)
             .then(res => console.log(res.data))
     }
+
 
     render() {
         return (
@@ -70,6 +80,8 @@ class Register extends React.Component {
                     transitionEnter={false}
                     transitionLeave={false}>
 
+                    <AppHeader/>
+
                     <div className="app-main">
                         <div className="app-main__inner">
                             <Container fluid>
@@ -77,7 +89,6 @@ class Register extends React.Component {
                                     <Col md="12">
                                         <Card className="main-card mb-3">
                                             <CardBody>
-
                                                 <Form>
                                                     <Row>
                                                         <Col>
@@ -120,7 +131,8 @@ class Register extends React.Component {
                                                         <Input type="file" name="file" id="file"
                                                                onChange={this.handleFileChange}/>
                                                     </FormGroup>
-                                                    <Button type="button" className="mt-1" onClick={this.onSubmit}>Submit</Button>
+                                                    <Button type="button" className="mt-1"
+                                                            onClick={this.onSubmit}>Submit</Button>
                                                 </Form>
                                             </CardBody>
                                         </Card>

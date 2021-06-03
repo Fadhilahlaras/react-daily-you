@@ -34,6 +34,7 @@ import Tabs from 'react-responsive-tabs';
 import ChatExample from './TabsContent/ChatExample';
 import TimelineEx from './TabsContent/TimelineExample';
 import SysErrEx from './TabsContent/SystemExample';
+import {Link} from "react-router-dom";
 
 const data = [
     {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},

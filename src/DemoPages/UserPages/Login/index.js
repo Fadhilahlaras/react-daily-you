@@ -46,7 +46,7 @@ class Login extends Component {
                 'content-type': 'multipart/mixed'
             }
         }
-        axios.post("http://localhost:1234/input/save", formData, config)
+        axios.post("http://localhost:1234/input", formData, config)
             .then(res => console.log(res.data))
 
 
