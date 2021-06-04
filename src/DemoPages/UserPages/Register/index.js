@@ -20,6 +20,7 @@ import {
     Label,
     Row
 } from "reactstrap";
+import {Link} from "react-router-dom";
 
 
 class Register extends React.Component {
@@ -132,10 +133,14 @@ class Register extends React.Component {
                                                                onChange={this.handleFileChange}/>
                                                     </FormGroup>
 
-                                                    <Button className="mb-2 mr-2 btn-icon" color="info" onClick={this.onSubmit}>
-                                                        <i className="pe-7s-science btn-icon-wrapper"> </i>
-                                                        Save
-                                                    </Button>
+
+                                                    <Link to="/profile" style={{textDecoration: "none"}}>
+                                                        <Button className="mb-2 mr-2 btn-icon" color="info" onClick={this.onSubmit}>
+                                                            <i className="pe-7s-science btn-icon-wrapper"> </i>
+                                                            Submit
+                                                        </Button>
+                                                    </Link>
+
                                                 </Form>
                                             </CardBody>
                                         </Card>

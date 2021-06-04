@@ -11,6 +11,7 @@ const Home = lazy(()=> import('../../DemoPages/Homepage'));
 const About = lazy(()=> import('../../DemoPages/AboutUs'));
 const Login = lazy(()=> import('../../DemoPages/UserPages/Login'));
 const Register = lazy(()=> import('../../DemoPages/UserPages/Register'));
+const Profile = lazy(()=> import('../../DemoPages/UserPages/Profile'));
 const Tabel = lazy(()=> import('../../DemoPages/TableData'));
 const Cart = lazy(()=> import('../../DemoPages/Cart'));
 const Checkout = lazy(()=> import('../../DemoPages/Checkout'));
@@ -91,6 +92,25 @@ const AppMain = () => {
             }>
                 <Route path="/register" component={Register}/>
             </Suspense>
+
+            {/* User Profile */}
+
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="ball-spin-fade-loader"/>
+                        </div>
+                        <h6 className="mt-5">
+                            Please wait while we load all the Components examples
+                            <small>Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a real live app!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/profile" component={Profile}/>
+            </Suspense>
+
 
 
             {/* Tabel */}
