@@ -36,7 +36,6 @@ export default class AboutUs extends Component {
     constructor() {
         super();
         this.state = {
-            dataTabel: [],
             modal: false,
             ini: []
         };
@@ -82,12 +81,73 @@ export default class AboutUs extends Component {
                     <AppHeader/>
 
                     <div className="app-main">
-
-
                         <Row className="h-100">
                             <Row className="h-100 no-gutters">
-                                <Col lg="7" md="12"
-                                     className="h-100 d-md-flex d-sm-block bg-white justify-content-center align-items-center">
+                                <Col lg="4" className="d-none d-lg-block">
+                                    <div className="slider-light">
+                                        <Slider  {...settings}>
+                                            {/*<div*/}
+                                            {/*    className="h-100 d-flex justify-content-center align-items-center bg-premium-dark">*/}
+                                            {/*    <div className="slide-img-bg"*/}
+                                            {/*         style={{*/}
+                                            {/*             backgroundImage: 'url(' + bg3 + ')'*/}
+                                            {/*         }}/>*/}
+                                            {/*    <div className="slider-content">*/}
+                                            {/*        <h3>Scalable, Modular, Consistent</h3>*/}
+                                            {/*        <p>*/}
+                                            {/*            Easily exclude the components you don't require. Lightweight,*/}
+                                            {/*            consistent*/}
+                                            {/*            Bootstrap based styles across all elements and components*/}
+                                            {/*        </p>*/}
+                                            {/*    </div>*/}
+                                            {/*</div>*/}
+                                            <div className="h-100 d-flex justify-content-center align-items-center bg-plum-plate">
+                                                <div className="slide-img-bg"
+                                                     style={{
+                                                         backgroundImage: 'url(' + bg1 + ')'
+                                                     }}/>
+                                                <div className="slider-content">
+                                                    <h3>Perfect Balance</h3>
+                                                    <p>
+                                                        ArchitectUI is like a dream. Some think it's too good to be true! Extensive collection of unified React Boostrap Components and Elements.
+                                                    </p>
+                                                </div>
+                                            </div>
+
+                                            <div
+                                                className="h-100 d-flex justify-content-center align-items-center bg-premium-dark">
+                                                <div className="slide-img-bg"
+                                                     style={{
+                                                         backgroundImage: 'url(' + bg3 + ')'
+                                                     }}/>
+                                                <div className="slider-content">
+                                                    <h3>Scalable, Modular, Consistent</h3>
+                                                    <p>
+                                                        Easily exclude the components you don't require. Lightweight, consistent
+                                                        Bootstrap based styles across all elements and components
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div
+                                                className="h-100 d-flex justify-content-center align-items-center bg-sunny-morning">
+                                                <div className="slide-img-bg opacity-6"
+                                                     style={{
+                                                         backgroundImage: 'url(' + bg2 + ')'
+                                                     }}/>
+                                                <div className="slider-content">
+                                                    <h3>Complex, but lightweight</h3>
+                                                    <p>
+                                                        We've included a lot of components that cover almost all use cases for
+                                                        any type of application.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </Slider>
+                                    </div>
+
+                                </Col>
+                                <Col lg="8" md="12"
+                                     className="h-100 d-flex bg-white justify-content-center align-items-center">
                                     <Col lg="9" md="10" sm="12" className="mx-auto app-login-box">
 
                                         <h4>
@@ -160,28 +220,6 @@ export default class AboutUs extends Component {
                                         </div>
 
                                     </Col>
-                                </Col>
-                                <Col lg="5" className="d-lg-flex d-xs-none">
-                                    <div className="slider-light">
-                                        <Slider  {...settings}>
-                                            <div
-                                                className="h-100 d-flex justify-content-center align-items-center bg-premium-dark">
-                                                <div className="slide-img-bg"
-                                                     style={{
-                                                         backgroundImage: 'url(' + bg3 + ')'
-                                                     }}/>
-                                                <div className="slider-content">
-                                                    <h3>Scalable, Modular, Consistent</h3>
-                                                    <p>
-                                                        Easily exclude the components you don't require. Lightweight,
-                                                        consistent
-                                                        Bootstrap based styles across all elements and components
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </Slider>
-                                    </div>
-
                                 </Col>
                             </Row>
                         </Row>
