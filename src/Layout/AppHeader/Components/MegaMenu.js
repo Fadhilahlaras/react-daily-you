@@ -89,41 +89,9 @@ class MegaMenu extends React.Component {
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav>
                             <i className="nav-link-icon pe-7s-gift"> </i>
-                            Activities
-                            <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
+                            <Link to="/activities" style={{textDecoration:"none"}}>Activities</Link>
+                            {/*<FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>*/}
                         </DropdownToggle>
-                        <DropdownMenu className="dropdown-menu-rounded dropdown-menu-lg rm-pointers">
-                            <div className="dropdown-menu-header">
-                                <div className="dropdown-menu-header-inner bg-success">
-                                    <div className="menu-header-image opacity-1"
-                                         style={{
-                                             backgroundImage: 'url(' + bg2 + ')'
-                                         }}
-                                    ></div>
-                                    <div className="menu-header-content text-left">
-                                        <h5 className="menu-header-title">Activities Daily You</h5>
-
-                                    </div>
-                                </div>
-                            </div>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                Education Pillars
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                Health Pillars
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                Women Empowerment's Pillars
-                            </DropdownItem>
-                            <DropdownItem>
-                                <i className="dropdown-icon pe-7s-check"> </i>
-                                Environment Pillars
-                            </DropdownItem>
-
-                        </DropdownMenu>
                     </UncontrolledDropdown>
 
                     {/*<NavItem>*/}
