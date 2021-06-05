@@ -169,7 +169,7 @@ class UserBox extends React.Component {
                                 {/*</UncontrolledButtonDropdown>*/}
                                 <Link to="/login" style={{textDecoration: "none"}}>
                                     <Button className="mb-2 mr-2 btn-icon btn-pill" outline color="primary">
-                                        <i className="pe-7s-tools btn-icon-wrapper"> </i>
+                                        <i className="pe-7s-add-user btn-icon-wrapper"> </i>
                                         Login
                                     </Button>
                                 </Link>
