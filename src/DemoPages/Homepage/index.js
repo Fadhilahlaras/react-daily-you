@@ -37,6 +37,7 @@ const Homepage = () => {
                                                 className="p-5 bg-plum-plate">
                                                 <div className="slide-img-bg"
                                                      style={{
+                                                         fade: true,
                                                          backgroundImage: 'url(' + bg1 + ')'
                                                      }}/>
                                                 <div className="slider-content" style={{
