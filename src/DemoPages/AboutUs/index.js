@@ -2,7 +2,6 @@ import React, {Fragment, Component} from "react";
 
 import Slider from "react-slick";
 
-import bg3 from '../../assets/utils/images/originals/citynights.jpg';
 
 import {
     Col,
@@ -21,9 +20,13 @@ import AppHeader from "../../Layout/AppHeader";
 import AppFooter from "../../Layout/AppFooter";
 import {Link} from "react-router-dom";
 import {IoIosCart} from "react-icons/io";
-import bg2 from "../../assets/utils/images/dropdown-header/city2.jpg";
+
 import avatar5 from "../../assets/utils/images/avatars/5.jpg";
 import bg1 from "../../assets/utils/images/dropdown-header/abstract1.jpg";
+import bg2 from "../../assets/utils/images/dropdown-header/abstract2.jpg";
+import bg3 from "../../assets/utils/images/dropdown-header/abstract6.jpg";
+import bg4 from "../../assets/utils/images/dropdown-header/abstract5.jpg";
+
 import avatar3 from "../../assets/utils/images/avatars/4.jpg";
 import avatar4 from "../../assets/utils/images/avatars/3.jpg";
 
@@ -37,14 +40,23 @@ export default class AboutUs extends Component {
         super();
         this.state = {
             modal: false,
+            modal1: false,
             ini: []
         };
         this.toggle = this.toggle.bind(this);
+        this.toggle1 = this.toggle1.bind(this);
     }
 
     toggle(dat) {
         this.setState({
             modal: !this.state.modal,
+            ini: dat.id,
+        });
+    }
+
+    toggle1(dat) {
+        this.setState({
+            modal1: !this.state.modal1,
             ini: dat.id,
         });
     }
@@ -175,7 +187,7 @@ export default class AboutUs extends Component {
 
                                         <div>
                                             <Row>
-                                                <Col md="6" lg="4">
+                                                <Col sm="8" md="1" xl="4">
 
                                                         <Card className="mb-3 profile-block" onClick={this.toggle}>
                                                             <div className="dropdown-menu-header">
@@ -190,8 +202,8 @@ export default class AboutUs extends Component {
                                                         </Card>
 
                                                 </Col>
-                                                <Col md="6" lg="4">
-                                                    <Card className="mb-3 profile-block" onClick={this.toggle}>
+                                                <Col sm="8" md="1" xl="4">
+                                                    <Card className="mb-3 profile-block" onClick={this.toggle1}>
                                                         <div className="dropdown-menu-header">
                                                             <img src={bg2} alt="" className="profile-blur opacity-10"/>
                                                             <div className="profile-inner bg-dark opacity-6"/>
@@ -202,7 +214,7 @@ export default class AboutUs extends Component {
                                                         </div>
                                                     </Card>
                                                 </Col>
-                                                <Col md="6" lg="4">
+                                                <Col sm="8" md="1" xl="4">
                                                     <Link to="/team" style={{textDecoration: "none"}}>
                                                         <Card className="mb-3 profile-block">
                                                             <div className="dropdown-menu-header">
@@ -211,6 +223,21 @@ export default class AboutUs extends Component {
                                                                 <div className="profile-inner bg-dark opacity-6"/>
                                                                 <div className="menu-header-content">
                                                                     <h5 className="menu-header-title">Team</h5>
+                                                                </div>
+                                                            </div>
+                                                        </Card>
+                                                    </Link>
+
+                                                </Col>
+                                                <Col sm="8" md="1" xl="4">
+                                                    <Link to="/galeri" style={{textDecoration: "none"}}>
+                                                        <Card className="mb-3 profile-block">
+                                                            <div className="dropdown-menu-header">
+                                                                <img src={bg4} alt=""
+                                                                     className="profile-blur opacity-10"/>
+                                                                <div className="profile-inner bg-dark opacity-6"/>
+                                                                <div className="menu-header-content">
+                                                                    <h5 className="menu-header-title">Galeri</h5>
                                                                 </div>
                                                             </div>
                                                         </Card>
@@ -228,7 +255,7 @@ export default class AboutUs extends Component {
                     </div>
 
                     <ModalAja toggle={this.toggle} modal={this.state.modal} idPro={this.state.ini} />
-                    {/*<ModalAja1 toggle={this.toggle} modal={this.state.modal} idPro={this.state.ini} />*/}
+                    <ModalAja1 toggle={this.toggle1} modal={this.state.modal1} idPro={this.state.ini} />
                     {/*<ModalTeam toggle={this.toggle} modal={this.state.modal} idPro={this.state.ini} />*/}
                 </CSSTransitionGroup>
             </Fragment>
