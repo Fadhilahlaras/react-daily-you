@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import {
-    Col, Row, Card, CardBody, ModalHeader, Modal, ModalFooter, ModalBody,
-    CardTitle, Button, Form, FormGroup, Label, Input, Container, Table
+    Col, Row, ModalHeader, Modal, ModalFooter, ModalBody,
+    Button, Container, Table
 } from 'reactstrap';
 import AppHeader from '../../Layout/AppHeader'
 import Item from './Item'
@@ -41,10 +41,10 @@ class Checkout extends React.Component {
                             <Container fluid>
                                 <Row>
                                     <Col md="6">
-                                        <FormDetails/>
+                                        <Item/>
                                     </Col>
                                     <Col md="6">
-                                        <Item/>
+                                        <FormDetails/>
                                     </Col>
                                 </Row>
                             </Container>

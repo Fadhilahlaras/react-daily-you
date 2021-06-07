@@ -58,21 +58,21 @@ export default class DataTableCustomComps extends React.Component {
                                                             Header: 'Name',
                                                             accessor: 'firstName',
                                                             Cell: row => (
-                                                                <div>
-                                                                    <div className="widget-content p-0">
-                                                                        <div className="widget-content-wrapper">
-                                                                            <div className="widget-content-left mr-3">
-                                                                                <div className="widget-content-left">
-                                                                                    <img width={52}
-                                                                                         className="rounded-circle"
-                                                                                         src={avatar2}
-                                                                                         alt=""/>
-                                                                                </div>
+                                                                <div className="widget-content p-0">
+                                                                    <Input type="checkbox" id="exampleCustomCheckbox12"
+                                                                           label="&nbsp;"/>
+                                                                    <div className="widget-content-wrapper">
+                                                                        <div className="widget-content-left mr-3">
+                                                                            <div className="widget-content-left">
+                                                                                <img width={52}
+                                                                                     className="rounded-circle"
+                                                                                     src={avatar2}
+                                                                                     alt=""/>
                                                                             </div>
-                                                                            <div className="widget-content-left flex2">
-                                                                                <div className="widget-heading">
-                                                                                    {row.value}
-                                                                                </div>
+                                                                        </div>
+                                                                        <div className="widget-content-left flex2">
+                                                                            <div className="widget-heading">
+                                                                                {row.value}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -84,7 +84,8 @@ export default class DataTableCustomComps extends React.Component {
                                                             accessor: 'visits',
                                                             Cell: row => (
                                                                 <div className="d-block w-100 text-center">
-                                                                    <NumericInput className="form-control" min={0} max={100} value={1}/>
+                                                                    <NumericInput className="form-control" min={0}
+                                                                                  max={100} value={1}/>
                                                                 </div>
                                                             )
 
@@ -107,8 +108,9 @@ export default class DataTableCustomComps extends React.Component {
                                                                 accessor: 'actions',
                                                                 Cell: row => (
                                                                     <div className="d-block w-100 text-center">
-                                                                        <FormGroup >
-                                                                            <Input type="checkbox" id="exampleCustomCheckbox"/>
+                                                                        <FormGroup>
+                                                                            <Input type="checkbox"
+                                                                                   id="exampleCustomCheckbox"/>
 
                                                                             <span aria-hidden={"true"}/>
                                                                             <FontAwesomeIcon icon={faTrashAlt}/>
