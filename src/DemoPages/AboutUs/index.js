@@ -203,8 +203,8 @@ export default class AboutUs extends Component {
                                                     </Card>
                                                 </Col>
                                                 <Col md="6" lg="4">
-
-                                                        <Card className="mb-3 profile-block" onClick={this.toggle}>
+                                                    <Link to="/team" style={{textDecoration: "none"}}>
+                                                        <Card className="mb-3 profile-block">
                                                             <div className="dropdown-menu-header">
                                                                 <img src={bg3} alt=""
                                                                      className="profile-blur opacity-10"/>
@@ -214,6 +214,7 @@ export default class AboutUs extends Component {
                                                                 </div>
                                                             </div>
                                                         </Card>
+                                                    </Link>
 
                                                 </Col>
                                             </Row>
