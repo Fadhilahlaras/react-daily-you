@@ -114,23 +114,6 @@ class FormMember extends React.Component {
                                                                onChange={this.handleChange}/>
                                                     </FormGroup>
 
-
-                                                    <FormGroup onChange={this.handleChange} >
-                                                        <label for="gender">Gender</label>
-                                                        <FormGroup check>
-                                                            <Label check>
-                                                                <Input type="radio" name="radio1"/>{' '}
-                                                                Male
-                                                            </Label>
-                                                        </FormGroup>
-                                                        <FormGroup check>
-                                                            <Label check>
-                                                                <Input type="radio" name="radio1"/>{' '}
-                                                                Female
-                                                            </Label>
-                                                        </FormGroup>
-                                                    </FormGroup>
-
                                                     <FormGroup>
                                                         <Label for="religion">Religion</Label>
                                                         <Input type="select" name="religion" id="religion" onChange={this.handleChange}>
