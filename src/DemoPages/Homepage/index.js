@@ -4,15 +4,12 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import AppHeader from "../../Layout/AppHeader/";
 import AppFooter from "../../Layout/AppFooter";
 
-import {Row, Container, Col, Card, CardBody} from "reactstrap";
+import {Row, Col, CardBody} from "reactstrap";
 
-// import CardNya from "./CardIsi";
-import CardSlide from "./CardSlide";
-import axios from "axios";
-import Slider from "react-slick";
+import Carousel from "./Carousel/index";
 import bg1 from "../../assets/utils/images/originals/city.jpg";
-import bg3 from "../../assets/utils/images/originals/citynights.jpg";
-import bg2 from "../../assets/utils/images/originals/citydark.jpg";
+
+import CardTeam from "../AboutUs/Team/CardData";
 
 const Homepage = () => {
 
@@ -49,8 +46,14 @@ const Homepage = () => {
                                                     </p>
                                                 </div>
                                             </div>
-                                            {/*<CardSlide/>*/}
                                         </CardBody>
+                                    <CardBody>
+                                        <Carousel/>
+                                    </CardBody>
+                                    <CardBody>
+                                        <h3 style={{textAlign: "center"}}> What's New </h3>
+
+                                    </CardBody>
                                     {/*</Card>*/}
                                 </Col>
                             </Row>
