@@ -18,7 +18,7 @@ const Carousel = (props) => {
                 transitionEnter={false}
                 transitionLeave={false}>
                 <Row className="slick-slider-md">
-                    <Col lg="12" md="12">
+                    <Col lg="12">
                         <CarouselDefault/>
                     </Col>
                 </Row>
