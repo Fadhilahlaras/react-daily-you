@@ -27,12 +27,13 @@ import bg2 from "../../assets/utils/images/dropdown-header/abstract2.jpg";
 import bg3 from "../../assets/utils/images/dropdown-header/abstract6.jpg";
 import bg4 from "../../assets/utils/images/dropdown-header/abstract5.jpg";
 
-import avatar3 from "../../assets/utils/images/avatars/4.jpg";
-import avatar4 from "../../assets/utils/images/avatars/3.jpg";
+import pro1 from "../../assets/utils/images/prodemy/prodemy4_1.jpg";
+import pro2 from "../../assets/utils/images/prodemy/prodemy4_7.jpg";
+import pro3 from "../../assets/utils/images/prodemy/prodemy4_12.jpg";
+
 
 import ModalAja from "./Visi";
 import ModalAja1 from "./Misi";
-import ModalTeam from "./Team";
 
 export default class AboutUs extends Component {
 
@@ -50,7 +51,7 @@ export default class AboutUs extends Component {
     toggle(dat) {
         this.setState({
             modal: !this.state.modal,
-            ini: dat.id,
+            // ini: dat.id,
         });
     }
 
@@ -116,12 +117,12 @@ export default class AboutUs extends Component {
                                             <div className="h-100 d-flex justify-content-center align-items-center bg-plum-plate">
                                                 <div className="slide-img-bg"
                                                      style={{
-                                                         backgroundImage: 'url(' + bg1 + ')'
+                                                         backgroundImage: 'url(' + pro1 + ')'
                                                      }}/>
                                                 <div className="slider-content">
-                                                    <h3>Perfect Balance</h3>
+                                                    <h3>Perfect Bright</h3>
                                                     <p>
-                                                        ArchitectUI is like a dream. Some think it's too good to be true! Extensive collection of unified React Boostrap Components and Elements.
+                                                        Daily You is like a dream. This product can help you to brighten your face and clean your face optimally from dust, dirt, and remaining makeup.
                                                     </p>
                                                 </div>
                                             </div>
@@ -130,13 +131,12 @@ export default class AboutUs extends Component {
                                                 className="h-100 d-flex justify-content-center align-items-center bg-premium-dark">
                                                 <div className="slide-img-bg"
                                                      style={{
-                                                         backgroundImage: 'url(' + bg3 + ')'
+                                                         backgroundImage: 'url(' + pro2 + ')'
                                                      }}/>
                                                 <div className="slider-content">
-                                                    <h3>Scalable, Modular, Consistent</h3>
+                                                    <h3>Nature Daily</h3>
                                                     <p>
-                                                        Easily exclude the components you don't require. Lightweight, consistent
-                                                        Bootstrap based styles across all elements and components
+                                                        Contains natural Aloe vera which provides extra moisture with a soothing effect and cools dry and reddened skin due to the sun.
                                                     </p>
                                                 </div>
                                             </div>
@@ -144,13 +144,12 @@ export default class AboutUs extends Component {
                                                 className="h-100 d-flex justify-content-center align-items-center bg-sunny-morning">
                                                 <div className="slide-img-bg opacity-6"
                                                      style={{
-                                                         backgroundImage: 'url(' + bg2 + ')'
+                                                         backgroundImage: 'url(' + pro3 + ')'
                                                      }}/>
                                                 <div className="slider-content">
-                                                    <h3>Complex, but lightweight</h3>
+                                                    <h3>C Defense</h3>
                                                     <p>
-                                                        We've included a lot of components that cover almost all use cases for
-                                                        any type of application.
+                                                        Free radicals can damage the skin. Starting from making it dry, dull, accelerate aging to acne. For that you need anti-oxidant skincare that can win free radicals so that your skin is healthy and glowing.
                                                     </p>
                                                 </div>
                                             </div>
@@ -254,7 +253,7 @@ export default class AboutUs extends Component {
                         <AppFooter/>
                     </div>
 
-                    <ModalAja toggle={this.toggle} modal={this.state.modal} idPro={this.state.ini} />
+                    <ModalAja toggle={this.toggle} modal={this.state.modal} />
                     <ModalAja1 toggle={this.toggle1} modal={this.state.modal1} idPro={this.state.ini} />
                     {/*<ModalTeam toggle={this.toggle} modal={this.state.modal} idPro={this.state.ini} />*/}
                 </CSSTransitionGroup>
