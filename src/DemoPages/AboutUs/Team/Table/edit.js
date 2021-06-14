@@ -11,7 +11,6 @@ import {
     ModalHeader,
     Table
 } from "reactstrap";
-import {IoIosCart, IoIosSettings} from "react-icons/io";
 import axios from "axios";
 
 
@@ -48,12 +47,20 @@ const EditMember = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        // axios.post("http://localhost:1221/team/save", formData)
-        //     .then(res => console.log(res.data))
+
+        // axios.post("http://localhost:1221/team/save", formData, config)
+        //     .then(res => {
+        //         this.getDataKurir().then(response => {
+        //             this.setState({ dataTable:response })
+        //         })
+        //     })
 
         props.onChangeToggle(false)
         console.log(' SAVE >>')
         console.log(file == null ? props.data : file)
+
+        axios.post("http://localhost:1221/team/save", formData, config)
+            .then(res => console.log(res.data))
 
     }
 
@@ -124,9 +131,17 @@ const EditMember = (props) => {
                                                             setNote(e.target.value)
                                                         }}/>
                                                     </FormGroup>
+                                
+                                                    <FormGroup>
+                                                        <Label>Upload Your Photo : {props.file}</Label>
+                                                        <Input type="file" name="file" id="file" onChange={(e) => {
+                                                            setFile(e.target.files[0])
+                                                        }}/>
+                                                        <img src={"data:image/*;base64," + props.file}/>
+                                                    </FormGroup>
 
                                         </Form>
-                            <img src={"data:image/*;base64," + props.file} height={250} width={150}/>
+                            {/*<img src={"data:image/*;base64," + props.file} height={250} width={150}/>*/}
                         </ModalBody>
                         <ModalFooter>
         <Button color="warning" onClick={props.toggle}>Cancel</Button>
