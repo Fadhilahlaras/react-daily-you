@@ -1,5 +1,6 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
+import logo from '../../assets/utils/images/daily.jpg';
 
 import { Slider } from 'react-burgers'
 
@@ -39,9 +40,9 @@ class HeaderLogo extends React.Component {
     render() {
         return (
             <Fragment>
-                <div className="app-header__logo">
-                    <div className="logo-src"/>
-                    <div className="header__pane ml-auto">
+                {/*<div className="app-header__logo">*/}
+                {/*    <div className="logo-src"/>*/}
+                {/*    <div className="header__pane ml-auto">*/}
                         {/*<div onClick={this.toggleEnableClosedSidebar}>*/}
                         {/*<Slider */}
                         {/* width={26}*/}
@@ -51,7 +52,10 @@ class HeaderLogo extends React.Component {
                         {/* active={this.state.active}*/}
                         {/* onClick={() => this.setState({ active: !this.state.active })}/>*/}
                         {/*</div>*/}
-                    </div>
+                {/*    </div>*/}
+                {/*</div>*/}
+                <div>
+                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1}/>
                 </div>
                 <AppMobileMenu/>
             </Fragment>
