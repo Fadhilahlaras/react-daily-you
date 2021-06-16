@@ -1,159 +1,111 @@
-import React, {Fragment, useState, useEffect, Component} from 'react';
-import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-import axios from "axios";
-
-import AppHeader from "../../../Layout/AppHeader";
-import AppFooter from "../../../Layout/AppFooter";
-
-
-// Examples
-
+import React, {Component} from 'react';
 import {
-    Card, CardTitle, CardFooter, Button,
-    Col,
-    Container, FormText,
-    Row
-} from "reactstrap";
-import prodemy1 from "../../../assets/utils/images/prodemy/prodemy4_1.jpg";
+    Button,
+    Card, CardBody, CardFooter, CardHeader, Col, CardTitle,
+    Collapse, Fade, Row, Container
+} from 'reactstrap';
+import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
+
 import prodemy2 from "../../../assets/utils/images/prodemy/prodemy4_2.jpg";
-import prodemy3 from "../../../assets/utils/images/prodemy/prodemy4_3.jpg";
-import prodemy4 from "../../../assets/utils/images/prodemy/prodemy4_4.jpg";
-import prodemy5 from "../../../assets/utils/images/prodemy/prodemy4_5.jpg";
-import prodemy6 from "../../../assets/utils/images/prodemy/prodemy4_6.jpg";
-import prodemy7 from "../../../assets/utils/images/prodemy/prodemy4_7.jpg";
-import prodemy8 from "../../../assets/utils/images/prodemy/prodemy4_8.jpg";
-import prodemy9 from "../../../assets/utils/images/prodemy/prodemy4_9.jpg";
-import prodemy10 from "../../../assets/utils/images/prodemy/prodemy4_10.jpg";
-
-
-import {Link} from "react-router-dom";
-
+import prodemy3 from "../../../assets/utils/images/prodemy/prodemy4_12.jpg"
+import AppHeader from "../../../Layout/AppHeader";
 
 class Galeri extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        this.onEntering = this.onEntering.bind(this);
+        this.onEntered = this.onEntered.bind(this);
+        this.onExiting = this.onExiting.bind(this);
+        this.onExited = this.onExited.bind(this);
+        this.toggle = this.toggle.bind(this);
+
         this.state = {
-            clicked: false
+            collapse: false,
+            accordion: [true, false, false],
+            custom: [true, false],
+            status: 'Closed',
+            fadeIn: true,
+            timeout: 300,
         };
-        this.imageClick = this.imageClick.bind(this);
     }
 
-
-    imageClick() {
-        this.setState({
-            clicked: true,
-        });
+    onEntering() {
+        this.setState({status: 'Opening...'});
     }
+
+    onEntered() {
+        this.setState({status: 'Opened'});
+    }
+
+    onExiting() {
+        this.setState({status: 'Closing...'});
+    }
+
+    onExited() {
+        this.setState({status: 'Closed'});
+    }
+
+    toggle() {
+        this.setState({collapse: !this.state.collapse});
+    }
+
 
     render() {
-        const imageClick = () => {
-            console.log('This is Click');
-        }
         return (
-            <Fragment>
-                <CSSTransitionGroup
-                    component="div"
-                    transitionName="TabsAnimation"
-                    transitionAppear={true}
-                    transitionAppearTimeout={0}
-                    transitionEnter={false}
-                    transitionLeave={false}>
+            <CSSTransitionGroup
+                component="div"
+                transitionName="TabsAnimation"
+                transitionAppear={true}
+                transitionAppearTimeout={0}
+                transitionEnter={false}
+                transitionLeave={false}>
 
-                    <AppHeader/>
+                <AppHeader/>
 
-                    <div className="app-main">
-                        <div className="app-main__inner">
-                            <Container fluid>
-                                <h4 style={{paddingBottom: 20}}> Galeri </h4>
-                                <Row>
-                                    <Col sm="12" md="6" xl="4">
-                                        <Card className="card-shadow-primary card-border text-white mb-3"
-                                              color="primary">
-                                            <img src={prodemy1}/>
-                                            <CardFooter className="text-center d-block">
-                                                <h6 color="dark">Send Message</h6>
-                                            </CardFooter>
-                                        </Card>
-                                    </Col>
-                                    <Col sm="12" md="6" xl="4">
-                                        <Card className="card-shadow-primary card-border text-white mb-3" color="focus">
-                                            <img src={prodemy2}/>
-                                            <CardFooter className="text-center d-block">
-                                                <h6 color="dark">Send Message</h6>
-                                            </CardFooter>
-                                        </Card>
-                                    </Col>
-                                    <Col sm="12" md="12" xl="4">
-                                        <Card className="card-shadow-primary card-border text-white mb-3" color="dark">
-                                            <img src={prodemy3}/>
-                                            <CardFooter className="text-center d-block">
-                                                <h6 color="dark">Send Message</h6>
-                                            </CardFooter>
-                                        </Card>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col sm="12" md="6" xl="4">
-                                        <Card className="card-shadow-primary card-border text-white mb-3"
-                                              color="primary">
-                                            <img src={prodemy1}/>
-                                            <CardFooter className="text-center d-block">
-                                                <h6 color="dark">Send Message</h6>
-                                            </CardFooter>
-                                        </Card>
-                                    </Col>
-                                    <Col sm="12" md="6" xl="4">
-                                        <Card className="card-shadow-primary card-border text-white mb-3" color="focus">
-                                            <img src={prodemy2}/>
-                                            <CardFooter className="text-center d-block">
-                                                <h6 color="dark">Send Message</h6>
-                                            </CardFooter>
-                                        </Card>
-                                    </Col>
-                                    <Col sm="12" md="12" xl="4">
-                                        <Card className="card-shadow-primary card-border text-white mb-3" color="dark">
-                                            <img src={prodemy3}/>
-                                            <CardFooter className="text-center d-block">
-                                                <h6 color="dark">Send Message</h6>
-                                            </CardFooter>
-                                        </Card>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col sm="12" md="6" xl="4">
-                                        <Card className="card-shadow-primary card-border text-white mb-3"
-                                              color="primary">
-                                            <img src={prodemy1}/>
-                                            <CardFooter className="text-center d-block">
-                                                <h6 color="dark">Send Message</h6>
-                                            </CardFooter>
-                                        </Card>
-                                    </Col>
-                                    <Col sm="12" md="6" xl="4">
-                                        <Card className="card-shadow-primary card-border text-white mb-3" color="focus">
-                                            <img src={prodemy2}/>
-                                            <CardFooter className="text-center d-block">
-                                                <h6 color="dark">Send Message</h6>
-                                            </CardFooter>
-                                        </Card>
-                                    </Col>
-                                    <Col sm="12" md="12" xl="4">
-                                        <Card className="card-shadow-primary card-border text-white mb-3" color="dark">
-                                            <img src={prodemy3}/>
-                                            <CardFooter className="text-center d-block">
-                                                <h6 color="dark">Send Message</h6>
-                                            </CardFooter>
-                                        </Card>
-                                    </Col>
-                                </Row>
-                            </Container>
-                        </div>
-                        <AppFooter/>
+                <div className="app-main">
+                    <div className="app-main__inner">
+                        <Container fluid>
+                            <Row>
+                                <Col sm="12" md="6" xl="4">
+                                <Card className="main-card mb-3">
+                                    <CardHeader>
+                                        <Button color="primary" onClick={this.toggle}> Image {this.state.status} </Button>
+                                    </CardHeader>
+                                    <CardBody>
+                                        <Collapse isOpen={this.state.collapse} onEntering={this.onEntering}
+                                              onEntered={this.onEntered} onExiting={this.onExiting}
+                                            onExited={this.onExited}>
+
+                                            <img src={prodemy2} style={{width:350, height:"500", alignContent:"center"}}/>
+
+                                        </Collapse>
+                                            {/*<h6 className="text-center">Current state: {this.state.status}</h6>*/}
+                                    </CardBody>
+                                </Card>
+                                </Col>
+                                <Col sm="12" md="6" xl="4">
+                                    <Card className="card-shadow-primary card-border text-white mb-3" color="focus">
+                                        <img src={prodemy2}/>
+                                        <CardFooter className="text-center d-block">
+                                            <h6 color="dark">Send Message</h6>
+                                        </CardFooter>
+                                    </Card>
+                                </Col>
+                                <Col sm="12" md="6" xl="4">
+                                    <Card className="card-shadow-primary card-border text-white mb-3" color="dark">
+                                            <img src={prodemy3} style={{width:405, height:"500", alignContent:"center"}}/>
+                                        <CardFooter className="text-center d-block">
+                                            <h6 color="dark">Send Message</h6>
+                                        </CardFooter>
+                                    </Card>
+                                </Col>
+                </Row>
+                        </Container>
                     </div>
-                </CSSTransitionGroup>
-            </Fragment>
-        )
+                </div>
+            </CSSTransitionGroup>
+        );
     }
 }
 
