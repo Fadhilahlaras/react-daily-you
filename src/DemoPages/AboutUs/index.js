@@ -170,7 +170,6 @@ export default class AboutUs extends Component {
                                             <FormText style={{
                                                 textAlign: 'justify',
                                                 color: '#1B3D6C',
-                                                margin: 10,
                                                 paddingBottom: 20,
                                                 fontSize: 18
                                             }}> Daily You is an original Indonesian halal cosmetic brand that was
@@ -186,7 +185,7 @@ export default class AboutUs extends Component {
 
                                         <div>
                                             <Row>
-                                                <Col sm="8" md="1" xl="4">
+                                                <Col sm="4" md="1" xl="4">
 
                                                         <Card className="mb-3 profile-block" onClick={this.toggle}>
                                                             <div className="dropdown-menu-header">
@@ -201,7 +200,7 @@ export default class AboutUs extends Component {
                                                         </Card>
 
                                                 </Col>
-                                                <Col sm="8" md="1" xl="4">
+                                                <Col sm="4" md="1" xl="4">
                                                     <Card className="mb-3 profile-block" onClick={this.toggle1}>
                                                         <div className="dropdown-menu-header">
                                                             <img src={bg2} alt="" className="profile-blur opacity-10"/>
@@ -213,7 +212,7 @@ export default class AboutUs extends Component {
                                                         </div>
                                                     </Card>
                                                 </Col>
-                                                <Col sm="8" md="1" xl="4">
+                                                <Col sm="4" md="1" xl="4">
                                                     <Link to="/team" style={{textDecoration: "none"}}>
                                                         <Card className="mb-3 profile-block">
                                                             <div className="dropdown-menu-header">
@@ -228,7 +227,9 @@ export default class AboutUs extends Component {
                                                     </Link>
 
                                                 </Col>
-                                                <Col sm="8" md="1" xl="4">
+                                            </Row>
+                                            <Row>
+                                                <Col md="1" xl="12">
                                                     <Link to="/galeri" style={{textDecoration: "none"}}>
                                                         <Card className="mb-3 profile-block">
                                                             <div className="dropdown-menu-header">
@@ -249,13 +250,17 @@ export default class AboutUs extends Component {
                                     </Col>
                                 </Col>
                             </Row>
+
                         </Row>
+
                         <AppFooter/>
+
                     </div>
 
+
+
                     <ModalAja toggle={this.toggle} modal={this.state.modal} />
-                    <ModalAja1 toggle={this.toggle1} modal={this.state.modal1} idPro={this.state.ini} />
-                    {/*<ModalTeam toggle={this.toggle} modal={this.state.modal} idPro={this.state.ini} />*/}
+                    <ModalAja1 toggle={this.toggle1} modal={this.state.modal1} />
                 </CSSTransitionGroup>
             </Fragment>
         );

@@ -21,6 +21,7 @@ import {
     Row
 } from "reactstrap";
 import {Link} from "react-router-dom";
+import bg1 from "../../../../assets/utils/images/originals/city.jpg";
 
 
 class FormMember extends React.Component {
@@ -84,6 +85,27 @@ class FormMember extends React.Component {
                     <div className="app-main">
                         <div className="app-main__inner">
                             <Container fluid>
+                                <Row>
+                                    <Col md="12">
+
+                                        <div
+                                            className="p-5 bg-plum-plate">
+                                            <div className="slide-img-bg"
+                                                 style={{
+                                                     fade: true,
+                                                     backgroundImage: 'url(' + bg1 + ')',
+                                                     color: "white", textAlign: "center"
+                                                 }}/>
+                                            <div className="slider-content" style={{
+                                                color: "white", textAlign: "center"
+                                            }}>
+                                                <h3>Form Member</h3>
+                                            </div>
+                                        </div>
+
+                                    </Col>
+
+                                </Row>
                                 <Row>
                                     <Col md="12">
                                         <Card className="main-card mb-3">

@@ -1,4 +1,5 @@
 import React, {Fragment} from 'react';
+import "../../assets/layout/footer/footer.scss"
 import MegaMenuFooter from './Components/FooterMegaMenu';
 import FooterDots from './Components/FooterDots';
 import {Link} from "react-router-dom";
@@ -12,9 +13,7 @@ class AppFooter extends React.Component {
         return (
             <Fragment>
                 <div className="app-footer">
-                    <div className="app-footer__inner">
-
-                        {/*<FooterContainer />*/}
+                {/*    <div className="app-footer__inner">*/}
 
                         {/*<div className="app-footer-left">*/}
                         {/*    <h6>Products</h6>*/}
@@ -25,7 +24,7 @@ class AppFooter extends React.Component {
                         {/*    <h6>Follows Us</h6>*/}
 
                         {/*        <div className="footer-dots">*/}
-                        {/*            */}
+
                         {/*            <Link to="/about" style={{textDecoration:"none"}}>About</Link>*/}
                         {/*            <Link to="/about" style={{textDecoration:"none"}}>Us</Link>*/}
                         {/*        </div>*/}
@@ -35,13 +34,14 @@ class AppFooter extends React.Component {
 
                         {/*</div>*/}
 
-                        <div className="row">
-                            <p className="col-sm">
-                                &copy;{new Date().getFullYear()} Daily You All rights reserved
-                            </p>
-                        </div>
+                        {/*<div className="row">*/}
+                        {/*    <p className="col-sm" style={{color: "black"}}>*/}
+                        {/*        &copy;{new Date().getFullYear()} Daily You All rights reserved*/}
+                        {/*    </p>*/}
+                        {/*</div>*/}
 
-                    </div>
+
+                    {/*</div>*/}
                 </div>
             </Fragment>
         )}

@@ -19,6 +19,8 @@ const Register = lazy(()=> import('../../DemoPages/UserPages/Register'));
 const Profile = lazy(()=> import('../../DemoPages/UserPages/Profile'));
 const Tabel = lazy(()=> import('../../DemoPages/TableData'));
 
+const Product = lazy(() => import('../../DemoPages/Product/Redirect'));
+
 
 const Cart = lazy(()=> import('../../DemoPages/Cart'));
 const Checkout = lazy(()=> import('../../DemoPages/Checkout'));
@@ -264,6 +266,27 @@ const AppMain = () => {
             }>
                 <Route path="/checkout" component={Checkout}/>
             </Suspense>
+
+
+            {/*Products*/}
+            <Suspense fallback={
+                <div className="loader-container">
+                    <div className="loader-container-inner">
+                        <div className="text-center">
+                            <Loader type="ball-grid-cy"/>
+                        </div>
+                        <h6 className="mt-3">
+                            You are redirecting to Products
+                            <small>Happy Shopping!</small>
+                        </h6>
+                    </div>
+                </div>
+            }>
+                <Route path="/product" component={Product}/>
+            </Suspense>
+
+
+
 
 
             {/*Untuk redirect langsung saat diklik localhost:3000 pertama kali*/}

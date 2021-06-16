@@ -4,6 +4,7 @@ import axios from "axios";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTrash, faEdit, faFilePdf, faFileExcel} from "@fortawesome/free-solid-svg-icons";
+
 import AppHeader from "../../../../Layout/AppHeader";
 import AppFooter from "../../../../Layout/AppFooter";
 
@@ -14,26 +15,19 @@ import {
 
 import ReactTable from "react-table";
 import EditMember from "./edit";
+import AddMember from "./add";
+import Delete from "./delete";
 import bg1 from "../../../../assets/utils/images/originals/city.jpg";
-
-
-// const CreateRow = (props) => {
-//     return (
-//         <tr>
-//             <td>{props.title}</td>
-//             <td>{props.location}</td>
-//         </tr>
-//     )
-// }
+import {IoIosAddCircle} from "react-icons/all";
 
 const TableMember = () => {
     const [dataTable, setDataTable] = useState([])
     const [modalEdit, setModalEdit] = useState(false)
+    const [modalAdd, setModalAdd] = useState(false)
+    const [modalDelete, setModalDelete] = useState(false)
     const [del, setDel] = useState(0)
     const [dataa, setDataa] = useState({})
-    const [file, setFile] = useState("")
-
-
+    const [pictureUrl, setPictureUrl] = useState("")
 
     useEffect(() => {
         axios.get("http://localhost:1221/team")
@@ -42,25 +36,88 @@ const TableMember = () => {
             }).catch();
     }, [del])
 
+
+    const tampil = () =>{
+        axios.get("http://localhost:1221/team")
+            .then(res => {
+                setDataTable(res.data)
+            }).catch();
+    }
+
+
+    const toggleAdd = () => {
+        setModalAdd(!modalAdd)
+    }
+
+
+    const toggleDelete = (id) => {
+        setModalDelete(!modalDelete)
+        setDel(id)
+    }
+
     const toggleEdit = (val) => {
         setModalEdit(!modalEdit)
-        console.log('toggle edit oke', val)
+        console.log('Show modal edit', val)
         axios.get('http://localhost:1221/team/' + val).then(res => {
             setDataa(res.data)
         })
         axios.get("http://localhost:1221/team/getImage/" + val).then(res => {
-            setFile(res.data)
+            setPictureUrl(res.data)
         }).catch()
     }
 
     const deleteData = (id) => {
-        axios.delete('http://localhost:1221/team/' + id).then().catch(err => console.log(err))
+        console.log("hai hapus ya")
+        axios.delete('http://localhost:1221/team/' + id).then(tampil).catch(err => console.log(err))
         setDel(id)
+        onChangeToggleDelete(false)
+    }
+
+    const onChangeToggleAdd = () => {
+        setModalAdd(!modalAdd)
     }
 
     const onChangeToggleEdit = () => {
         setModalEdit(!modalEdit)
     }
+
+    const onChangeToggleDelete = () => {
+        setModalDelete(!modalDelete)
+    }
+
+    const getPDF = async () => {
+
+        await axios({
+            url: 'http://localhost:1221/getReport',
+            method: 'GET',
+            responseType: 'blob', // important
+        }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            console.log(url);
+            console.log(link);
+            link.href = url;
+            link.setAttribute('download', 'Report.pdf');
+            document.body.appendChild(link);
+            link.click();
+        });
+    };
+
+    const getEXCEL = async () => {
+        await axios({
+            url: 'http://localhost:1221/getReportExcel',
+            method: 'GET',
+            responseType: 'blob', // important
+        }).then((response) => {
+            const url = window.URL.createObjectURL(new Blob([response.data]));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', 'Report.xlsx');
+            document.body.appendChild(link);
+            console.log(document.body.appendChild(link))
+            link.click();
+        });
+    };
 
     return (
         <Fragment>
@@ -106,6 +163,9 @@ const TableMember = () => {
                                 <Col md="12">
                                     <Card className="main-card mb-3">
                                         <CardBody>
+                                            <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e) => {
+                                                toggleAdd()
+                                            }}><IoIosAddCircle size={17}/>Add New Member</Button>
                                             <ReactTable
                                                 data={dataTable}
                                                 filterable
@@ -136,10 +196,18 @@ const TableMember = () => {
                                                                 Header: "Email",
                                                                 accessor: "email"
                                                             },
+
                                                             {
                                                                 Header: "Note",
                                                                 accessor: "note"
-                                                            }
+                                                            },
+                                                            {
+                                                                Header: 'Picture',
+                                                                accessor: 'pictureUrl',
+                                                                // Cell: row => (
+                                                                //     <img src={getAllImage(row.original.id)}/>
+                                                                // )
+                                                            },
                                                         ]
                                                     },
                                                         {
@@ -162,7 +230,7 @@ const TableMember = () => {
                                                                                     className="mb-2 mr-2 btn-pill"
                                                                                     color="primary"
                                                                                     onClick={(e) => {
-                                                                                        deleteData(row.original.id)
+                                                                                        toggleDelete(row.original.id)
                                                                                     }}>
                                                                                 <FontAwesomeIcon icon={faTrash}/>
                                                                             </Button></div>
@@ -175,30 +243,34 @@ const TableMember = () => {
                                                 className="-striped -highlight"
                                             />
 
-                                            {/*<CardTitle style={{fontSize: "18px"}}><br/>Download the report of all*/}
-                                            {/*    products uploaded:<br/></CardTitle>*/}
+                                            <CardTitle style={{fontSize: "18px"}}><br/>Download data of all member<br/></CardTitle>
+                                            <Button type="button" className="mt-1" color="danger"
+                                                    onClick={getPDF} style={{fontSize: "20px", margin: "5px"}}>
+                                                <FontAwesomeIcon icon={faFilePdf}/> <span style={{fontSize: "15px"}}>PDF</span>
+                                            </Button>
+                                            <Button type="button" className="mt-1" color="success"
+                                                    onClick={getEXCEL} style={{fontSize: "20px", margin: "5px"}}>
+                                                <FontAwesomeIcon icon={faFileExcel}/> <span style={{fontSize: "15px"}}>EXCEL</span>
+                                            </Button>
 
-                                            {/*<br/>*/}
-                                            {/*<Button type="button" className="mt-1" color="danger"*/}
-                                            {/*        onClick={this.getPDF} style={{fontSize: "20px", margin: "5px"}}>*/}
-                                            {/*    <FontAwesomeIcon icon={faFilePdf}/> <span*/}
-                                            {/*    style={{fontSize: "15px"}}>PDF</span>*/}
-                                            {/*</Button>*/}
-                                            {/*<Button type="button" className="mt-1" color="success"*/}
-                                            {/*        onClick={this.getEXCEL}*/}
-                                            {/*        style={{fontSize: "20px", margin: "5px"}}>*/}
-                                            {/*    <FontAwesomeIcon icon={faFileExcel}/> <span*/}
-                                            {/*    style={{fontSize: "15px"}}>EXCEL</span>*/}
-                                            {/*</Button>*/}
 
                                         </CardBody>
                                     </Card>
+
                                     <EditMember toggle={() => {
                                         toggleEdit()
-                                    }} modal={modalEdit} data={dataa} file={file} onChangeToggle={onChangeToggleEdit}/>
-                                    {/*<AddProduct toggle={() => {*/}
-                                    {/*    toggleAdd()*/}
-                                    {/*}} modal={modalAdd} onChangeToggle={onChangeToggleAdd}/>                                    </Col>*/}
+                                    }} tampil={()=> {
+                                        tampil()
+                                    }} modal={modalEdit} data={dataa} pictureUrl={pictureUrl} onChangeToggle={onChangeToggleEdit} />
+                                    <AddMember toggle={() => {
+                                        toggleAdd()
+                                    }} modal={modalAdd} onChangeToggle={onChangeToggleAdd} tampil = {()=>{tampil()}}/>
+
+                                    <Delete toggle={() => {
+                                        toggleDelete()
+                                    }} modal={modalDelete} data={del} onChangeToggle={onChangeToggleDelete} delete={deleteData} tampil = {() => {tampil()}} />
+
+
                                 </Col>
                             </Row>
                         </Container>
