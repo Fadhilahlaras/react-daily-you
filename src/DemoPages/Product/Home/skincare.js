@@ -14,7 +14,7 @@ const SkinCare = () => {
     // let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2222/api/product/category/1").then(res => {
+        axios.get("http://localhost:2222/api/product/category/2").then(res => {
             setDataCard(res.data)
 
         })
@@ -67,8 +67,6 @@ const SkinCare = () => {
                 transitionAppearTimeout={0}
                 transitionEnter={false}
                 transitionLeave={false}>
-
-                <AppHeader/>
 
                 <Row>
                     {dataCard.map((card, index) => (

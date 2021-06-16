@@ -15,20 +15,23 @@ import axios from "axios";
 import Select from "react-select";
 
 const Edit = (props) => {
-    console.log(props.data)
-    const [idCategory, setIdCategory] = useState(0)
+    // console.log("data:/image/*;base64," + props.pictureUrl)
+    const [idCategory, setIdCategory] = useState(props.data.idCategory)
     const [selectOptions, setSelectOptions] = useState([]);
-    const [productName, setProductName] = useState("");
-    const [stock, setStock] = useState(0);
-    const [price, setPrice] = useState(0);
-    const [pictureUrl, setPictureUrl] = useState();
+    const [productName, setProductName] = useState(props.data.productName);
+    const [stock, setStock] = useState(props.data.stock);
+    const [price, setPrice] = useState(props.data.price);
+    const [pictureUrl, setPictureUrl] = useState(props.data.pictureUrl);
+    const [img, setImg] = useState(
+        "data:/image/*;base64," + props.pictureUrl
+    )
     const [dataLama, setDataLama] = useState(props.data)
 
     const onSubmit = () => {
         const formData = new FormData();
         const json = JSON.stringify({
             "id": props.data.id,
-            "productName": productName,
+            "productName": productName == null ? props.data.productName : productName,
             "idCategory": idCategory == null ? props.data.idCategory : idCategory,
             "stock": stock == null ? props.data.stock : stock,
             "price": price == null ? props.data.price : price
@@ -38,21 +41,28 @@ const Edit = (props) => {
         });
 
         // formData.append('idCategory', this.state.idCategory)
-        formData.append("pictureUrl", pictureUrl ==null ? props.pictureUrl : pictureUrl)
+        formData.append("pictureUrl", pictureUrl == null ? props.data.pictureUrl : pictureUrl)
         formData.append('data', blobDoc)
         const config = {
             headers: {
                 'content-type': 'multipart/mixed'
             }
         }
+        console.log("ini adalah "+ price)
         axios.post("http://localhost:2222/api/product/save", formData, config)
             .then(()=>{tampil()})
 
         props.onChangeToggle(false)
+        setImg("");
+    }
+
+    const imagePreview = (e)=>{
+        const url=URL.createObjectURL(e.target.files[0]);
+        setImg(url);
+        setPictureUrl(e.target.files[0])
     }
 
     const tampil = () =>{props.tampil()}
-
 
     const getOptions = () => {
         axios.get('http://localhost:2222/api/productcategory', {
@@ -88,19 +98,19 @@ const Edit = (props) => {
                                         <CardTitle>Input Product Data</CardTitle>
                                         <Form>
                                 <FormGroup>
-                                    <Label for="name">Product Name {props.data.productName}</Label>
-                                    <Input type="text" name="name" id="name"
+                                    <Label for="productName">Product Name </Label>
+                                    <Input type="text" name="productName" id="productName"
                                            placeholder={props.data.productName}
-                                           // value={productName == null ? props.data.productName : productName}
-
+                                        // value={productName == null ?  props.data.productName : productName}
                                            onChange={(e) => {
-                                        setProductName(e.target.value)
-                                    }}/>
+                                               setProductName(e.target.value)
+                                           }}/>
                                 </FormGroup>
                                 <FormGroup>
-                                    <Label for="category">Category Product</Label>
+                                    <Label for="idCategory">Category Product</Label>
                                     <Select name="idCategory" id="idCategory"
                                             options={selectOptions}
+                                            placeholder={props.data.categoryName}
                                         // onChange={handleChangeSelect.bind(this)}
                                             onChange={(e) => {
                                                 setIdCategory(e.value)
@@ -110,14 +120,14 @@ const Edit = (props) => {
                                 <FormGroup>
                                     <Label for="stock">Stock</Label>
                                     <Input type="number" name="stock" id="stock"
-                                           placeholder="Input Stock of Product" onChange={(e) => {
+                                           placeholder={props.data.stock} onChange={(e) => {
                                         setStock(e.target.value)
                                     }}/>
                                 </FormGroup>
                                 <FormGroup>
                                     <Label for="price">Price</Label>
                                     <Input type="text" name="price" id="price"
-                                           placeholder="Input Price of Product" onChange={(e) => {
+                                           placeholder={props.data.price} onChange={(e) => {
                                         setPrice(e.target.value)
                                     }}/>
                                 </FormGroup>
@@ -126,9 +136,11 @@ const Edit = (props) => {
                                     <Input type="file" name="pictureUrl" id="pictureUrl"
                                            placeholder="Input Picture of Product"
                                            onChange={(e) => {
-                                               setPictureUrl(e.target.files[0])
+                                               imagePreview(e)
                                            }}
                                     />
+                                    <div style={{display:"flex", justifyContent:"center", marginTop:"20px"}}>
+                                     <img src={img} style={{width:"100%"}}/></div>
                                 </FormGroup>
                                         </Form>
                                     </CardBody>

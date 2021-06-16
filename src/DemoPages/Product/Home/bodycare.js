@@ -12,7 +12,7 @@ const BodyCare = () => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2222/api/product/category/2").then(res => {
+        axios.get("http://localhost:2222/api/product/category/3").then(res => {
             setDataCard(res.data)
 
             console.log(imageArrayPath)
@@ -39,8 +39,6 @@ const BodyCare = () => {
                 transitionAppearTimeout={0}
                 transitionEnter={false}
                 transitionLeave={false}>
-
-                <AppHeader/>
 
                 <Row>
                     {dataCard.map((card, index) => (

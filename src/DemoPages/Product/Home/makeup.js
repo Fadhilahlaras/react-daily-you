@@ -12,7 +12,7 @@ const MakeUp = () => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2222/api/product/category/3").then(res => {
+        axios.get("http://localhost:2222/api/product/category/1").then(res => {
             setDataCard(res.data)
 
             console.log(res.data)
@@ -30,9 +30,8 @@ const MakeUp = () => {
                 transitionAppearTimeout={0}
                 transitionEnter={false}
                 transitionLeave={false}>
-                <AppHeader />
 
-            <Row>
+                <Row>
                     {dataCard.map((card, index) => (
                         <ThisCard key={index} id= {card.id} title={card.productName} category={card.categoryName}
                                   stock={card.stock} price={card.price} />

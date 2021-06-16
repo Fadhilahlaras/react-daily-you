@@ -98,9 +98,6 @@ class FormProduct extends React.Component {
                     transitionAppearTimeout={0}
                     transitionEnter={false}
                     transitionLeave={false}>
-
-                    <AppHeader />
-
                     <Container fluid>
                         <Row>
                             <Col md="12">
@@ -133,7 +130,7 @@ class FormProduct extends React.Component {
                                                        onChange={this.handleChange}/>
                                             </FormGroup>
                                             <FormGroup>
-                                                 <Label>Picture of Product</Label>
+                                                <Label>Picture of Product</Label>
                                                 <Input type="file" name="pictureUrl" id="pictureUrl"
                                                        placeholder="Input Picture of Product"
                                                        onChange={this.handleFileChange}/>
