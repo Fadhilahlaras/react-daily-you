@@ -10,7 +10,8 @@ const AddMember = (props) => {
     const [religion, setReligion] = useState(null)
     const [email, setEmail] = useState(null)
     const [note, setNote] = useState(null)
-    const [file, setFile] = useState(null)
+    const [picture, setPicture] = useState();
+    const [img, setImg] = useState()
 
     const onSubmit = (e) => {
         const formData = new FormData();
@@ -27,7 +28,7 @@ const AddMember = (props) => {
             type: 'application/json'
         });
 
-        formData.append("file", file)
+        formData.append('pictureUrl', picture)
         formData.append('data', blobDoc)
         const config = {
             headers: {
@@ -36,7 +37,7 @@ const AddMember = (props) => {
         }
 
         axios.post("http://localhost:1221/team/save", formData, config)
-            .then(props.panggil)
+            .then(props.tampil)
 
         // axios.post("http://localhost:1221/team/save", formData, config)
         //     .then(res => {
@@ -46,6 +47,13 @@ const AddMember = (props) => {
         //     })
 
         props.onChangeToggle(false)
+        props.tampil();
+    }
+
+    const imagePreview = (e)=>{
+        const url=URL.createObjectURL(e.target.files[0]);
+        setImg(url);
+        setPicture(e.target.files[0])
     }
 
     return (
@@ -118,10 +126,17 @@ const AddMember = (props) => {
 
                                                     <FormGroup>
                                                         <Label>Upload Your Photo</Label>
-                                                        <Input type="file" name="file" id="file" onChange={(e) => {
-                                                            setFile(e.target.files[0])
-                                                        }}/>
+                                                        <Input type="file" name="picture" id="picture" accepts="image/*"
+                                                               placeholder="Input Picture of Product"
+                                                               onChange={(e) => {
+                                                                   imagePreview(e)
+                                                               }}
+                                                        />
+                                                        <div style={{display:"flex", justifyContent:"center", marginTop:"20px"}}>
+                                                         <img src={img} style={{width:"100%"}}/></div>
                                                     </FormGroup>
+
+
 
                                         </Form>
                         </ModalBody>

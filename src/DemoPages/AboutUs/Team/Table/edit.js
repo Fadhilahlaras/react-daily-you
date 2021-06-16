@@ -1,28 +1,29 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {
     Button,
-    CustomInput, Form,
+    Form,
     FormGroup,
     Input,
     Label,
     Modal,
     ModalBody,
     ModalFooter,
-    ModalHeader,
-    Table
+    ModalHeader
 } from "reactstrap";
 import axios from "axios";
 
 
 const EditMember = (props) => {
-    const [name, setName] = useState(null)
-    const [address, setAddress] = useState(null)
-    const [pbirth, setPbirth] = useState(null)
-    const [bdate, setBdate] = useState(null)
-    const [religion, setReligion] = useState(null)
-    const [email, setEmail] = useState(null)
-    const [note, setNote] = useState(null)
-    const [file, setFile] = useState(null)
+    const [name, setName] = useState(props.data.name)
+    const [address, setAddress] = useState(props.data.address)
+    const [pbirth, setPbirth] = useState(props.data.pbirth)
+    const [bdate, setBdate] = useState(props.data.bdate)
+    const [religion, setReligion] = useState(props.data.religion)
+    const [email, setEmail] = useState(props.data.email)
+    const [note, setNote] = useState(props.data.note)
+    const [pictureUrl, setPictureUrl] = useState(props.data.pictureUrl)
+    const [img, setImg] = useState()
+
 
     const onSubmit = (e) => {
         const formData = new FormData();
@@ -40,13 +41,16 @@ const EditMember = (props) => {
             type: 'application/json'
         });
 
-        formData.append("file", file)
+        formData.append("pictureUrl", pictureUrl == null ? props.data.pictureUrl : pictureUrl)
         formData.append('data', blobDoc)
         const config = {
             headers: {
                 'content-type': 'multipart/mixed'
             }
         }
+
+        axios.post("http://localhost:1221/team/save", formData, config)
+            .then(()=>{tampil()})
 
         // axios.post("http://localhost:1221/team/save", formData, config)
         //     .then(res => {
@@ -56,13 +60,18 @@ const EditMember = (props) => {
         //     })
 
         props.onChangeToggle(false)
-        console.log(' SAVE >>')
-        console.log(file == null ? props.data : file)
-
-        axios.post("http://localhost:1221/team/save", formData, config)
-            .then(res => console.log(res.data))
+        setImg("");
+        console.log(' SAVE  DATA >>')
 
     }
+
+    const imagePreview = (e)=>{
+        const url=URL.createObjectURL(e.target.files[0]);
+        setImg(url);
+        setPictureUrl(e.target.files[0])
+    }
+
+    const tampil = () =>{props.tampil()}
 
     return (
         <>
@@ -72,39 +81,39 @@ const EditMember = (props) => {
                         <ModalBody>
                             <Form>
                                              <FormGroup>
-                                                        <Label>Name : {props.data.name}</Label>
+                                                        <Label>Name</Label>
                                                         <Input type="text" name="name" id="name"
-                                                               placeholder="Name" value="name" onChange={(e) => {
-                                                                   setName(e.target.value)
+                                                               placeholder={props.data.name} onChange={(e) => {
+                                                                   setName(name == null ? props.data.name : name)
                                                         }}/>
                                                     </FormGroup>
 
                                                     <FormGroup>
-                                                        <Label>Address : {props.data.address}</Label>
+                                                        <Label>Address</Label>
                                                         <Input type="textarea" name="address" id="address"
-                                                               placeholder="Address"  onChange={(e) => {
+                                                               placeholder={props.data.address}  onChange={(e) => {
                                                             setAddress(e.target.value)
                                                         }}/>
                                                     </FormGroup>
 
                                                     <FormGroup>
-                                                        <Label>Place of Birth : {props.data.pbirth}</Label>
+                                                        <Label>Place of Birth</Label>
                                                         <Input type="text" name="pbirth" id="pbirth"
-                                                               placeholder="Place of Birth" onChange={(e) => {
+                                                               placeholder={props.data.pbirth} onChange={(e) => {
                                                             setPbirth(e.target.value)
                                                         }}/>
                                                     </FormGroup>
 
                                                     <FormGroup>
-                                                        <Label>Date of Birth : {props.data.bdate}</Label>
-                                                        <Input type="date" name="bdate" id="bdate" onChange={(e) => {
+                                                        <Label>Date of Birth</Label>
+                                                        <Input type="date" name="bdate" id="bdate" placeholder={props.data.bdate} onChange={(e) => {
                                                             setBdate(e.target.value)
                                                         }}/>
                                                     </FormGroup>
 
 
                                                     <FormGroup>
-                                                        <Label for="religion">Religion: {props.data.religion}</Label>
+                                                        <Label for="religion">Religion</Label>
                                                         <Input type="select" name="religion" id="religion" onChange={(e) => {
                                                             setReligion(e.target.value)
                                                         }}>
@@ -116,38 +125,37 @@ const EditMember = (props) => {
                                                             <option>Hindu</option>
                                                         </Input>
                                                     </FormGroup>
+
                                                     <FormGroup>
-                                                        <Label for="email">Email : {props.data.email}</Label>
+                                                        <Label for="email">Email</Label>
                                                         <Input type="email" name="email" id="email"
-                                                               placeholder="Input your email" onChange={(e) => {
+                                                               placeholder={props.data.email} onChange={(e) => {
                                                             setEmail(e.target.value)
                                                         }}/>
                                                     </FormGroup>
 
 
                                                     <FormGroup>
-                                                        <Label>Note : {props.data.note}</Label>
-                                                        <Input type="textarea" name="note" id="note" onChange={(e) => {
+                                                        <Label>Note</Label>
+                                                        <Input type="textarea" name="note" id="note" placeholder={props.data.note} onChange={(e) => {
                                                             setNote(e.target.value)
                                                         }}/>
                                                     </FormGroup>
                                 
                                                     <FormGroup>
-                                                        <Label>Upload Your Photo : {props.file}</Label>
-                                                        <Input type="file" name="file" id="file" onChange={(e) => {
-                                                            setFile(e.target.files[0])
+                                                        <Label>Upload Your Photo</Label>
+                                                        <Input type="file" name="pictureUrl" id="pictureUrl" onChange={(e) => {
+                                                            imagePreview(e)
                                                         }}/>
-                                                        <img src={"data:image/*;base64," + props.file}/>
+                                                            <div style={{display:"flex", justifyContent:"center", marginTop:"20px"}}>
+                                                            <img src={img} style={{width:"100%"}}/></div>
                                                     </FormGroup>
-
                                         </Form>
-                            {/*<img src={"data:image/*;base64," + props.file} height={250} width={150}/>*/}
                         </ModalBody>
                         <ModalFooter>
-        <Button color="warning" onClick={props.toggle}>Cancel</Button>
+                            <Button color="warning" onClick={props.toggle}>Cancel</Button>
                             <Button color="primary" onClick={() => {
-                                onSubmit()
-                            }}>Save</Button>
+                                onSubmit()}}>Save</Button>
                         </ModalFooter>
                     </Modal>
             </span>

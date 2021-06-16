@@ -60,7 +60,7 @@ class MegaMenu extends React.Component {
                         <DropdownMenu className="dropdown-menu-rounded dropdown-menu-lg rm-pointers">
                             <div className="dropdown-menu-header">
                                 <div className="dropdown-menu-header-inner bg-success">
-                                    <div className="menu-header-image opacity-1"
+                                    <div className="menu-header-image opacity-2"
                                          style={{
                                              backgroundImage: 'url(' + bg3 + ')'
                                          }}
@@ -73,15 +73,15 @@ class MegaMenu extends React.Component {
                             </div>
                             <DropdownItem>
                                 <i className="dropdown-icon pe-7s-check"> </i>
-                                <Link to="/form" style={{textDecoration:"none"}}>Make Up</Link>
+                                <Link to="/product/make-up" style={{textDecoration:"none"}}>Make Up</Link>
                             </DropdownItem>
                             <DropdownItem>
                                 <i className="dropdown-icon pe-7s-check"> </i>
-                                Skin Care
+                                <Link to="/product/skin-care" style={{textDecoration:"none"}}>Skin Care</Link>
                             </DropdownItem>
                             <DropdownItem>
                                 <i className="dropdown-icon pe-7s-check"> </i>
-                                Body Care
+                                <Link to="/product/body-care" style={{textDecoration:"none"}}>Body Care</Link>
                             </DropdownItem>
 
                         </DropdownMenu>
