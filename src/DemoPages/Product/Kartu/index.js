@@ -75,11 +75,12 @@ const ThisCard = (props) => {
                     <CardFooter>
                         <Button style={{margin:"auto"}}color="warning" type="button" onClick={()=>toggleAddToCart()}>Add to Cart</Button>
                     </CardFooter>
+                    <AddToCard toggle={() => {
+                        toggleAddToCart()
+                    }} modal={addToCartModal} onChangeToggle={onChangeToggleAddToCart}/>
                 </Card>
             </Col>
-            <AddToCard toggle={() => {
-                toggleAddToCart()
-            }} modal={addToCartModal} onChangeToggle={onChangeToggleAddToCart}/>
+
         </Fragment>
     )
 }
