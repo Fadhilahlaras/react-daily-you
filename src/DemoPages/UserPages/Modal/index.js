@@ -27,10 +27,12 @@ const ModalHome = (props) => {
                             <div className="col-lg-4">
                                 <div className="card card-body">
                                     <ul>
-                                        <li><b>First Name:</b> {currentUser.firstName}</li>
-                                        <li><b>Last Name:</b> {currentUser.lastName}</li>
+                                        <li><b>NIK:</b> {currentUser.ktp}</li>
+                                        <li><b>Username:</b> {currentUser.userName}</li>
+                                        <li><b>Address:</b> {currentUser.alamat}</li>
+                                        <li><b>Phone Number:</b> {currentUser.noHp}</li>
                                         <li><b>Email:</b> {currentUser.email}</li>
-                                        <li><b>Address:</b> {currentUser.address}</li>
+
                                     </ul>
                                 </div>
                             </div>
