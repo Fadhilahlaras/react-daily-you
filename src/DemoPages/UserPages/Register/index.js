@@ -20,57 +20,85 @@ import {
     Label,
     Row
 } from "reactstrap";
-import {Link} from "react-router-dom";
 
 
 class Register extends React.Component {
     constructor() {
         super();
         this.state = {
+            firstName: '',
+            lastName: '',
+            address: '',
+            email: '',
+            password: '',
+            error: null,
+            users: [],
+            loading: false
         }
-    }
-
-    handleChange = (e) => {
-        this.setState({[e.target.name]: e.target.value})
-    }
-
-    handleFileChange = (e) => {
-        this.setState({[e.target.name]: e.target.files[0]})
     }
 
     componentDidMount() {
-        // axios.get(`http://localhost:1221/input/save`)
-        //     .then(res => {
-        //         const inputList = res.data;
-        //         this.setState({ inputList });
-        //     })
+        try {
+            const json = localStorage.getItem("users")
+            const users = JSON.parse(json);
+            if (users) {
+                this.setState(() => ({ users }))
+            }
+        } catch (e) {
+        }
+    };
+
+    componentDidUpdate(prevState, preProps) {
+        if (preProps.users.length !== this.state.users.length) {
+            const json = JSON.stringify(this.state.users);
+            localStorage.setItem("users", json);
+        }
     }
 
-    onSubmit = (e) => {
-        const formData = new FormData();
-        const json = JSON.stringify({
-            "firstname": this.state.firstname,
-            "lastname": this.state.lastname,
-            "date": this.state.date,
-            "email": this.state.email,
-            "address": this.state.address
-        });
-        const blobDoc = new Blob([json], {
-            type: 'application/json'
-        });
-        formData.append('file', this.state.file)
-        formData.append('data', blobDoc)
-        const config = {
-            headers: {
-                'content-type': 'multipart/mixed'
-            }
+    handleOnchange = e => this.setState({ [e.target.name]: e.target.value });
+
+    handleSignUp = event => {
+        event.preventDefault()
+        this.setState({ loading: true });
+        const { firstName, lastName, address, email, password } = this.state;
+        if (!firstName.length || !lastName.length || !address.length || !email.length || !password.length) {
+            this.setState({ error: "Please Fill Out All The Details !! ", loading: false })
+            return false;
+        } else if (password.length < 8) {
+            this.setState({ error: "Password Should Contain At Least 8 Charecters", loading: false })
+            return false;
+        } else {
+            const regesterData = {
+                firstName: firstName,
+                lastName: lastName,
+                address: address,
+                email: email,
+                password: password
+            };
+
+
+            this.setState({
+                error: "",
+                firstName: "",
+                lastName: "",
+                address: "",
+                email: "",
+                password: "",
+                users: this.state.users.concat(regesterData)
+            });
+            setTimeout(() => {
+                this.props.history.push("/login")
+                this.setState({ loading: false })
+            }, 2000)
         }
-        axios.post("http://localhost:1221/input/save", formData, config)
-            .then(res => console.log(res.data))
-    }
+    };
 
 
     render() {
+
+        const { firstName, lastName, address, email, password, error, loading } = this.state;
+
+
         return (
             <Fragment>
                 <CSSTransitionGroup
@@ -87,64 +115,130 @@ class Register extends React.Component {
                         <div className="app-main__inner">
                             <Container fluid>
                                 <Row>
-                                    <Col md="12">
-                                        <Card className="main-card mb-3">
-                                            <CardBody>
-                                                <Form>
-                                                    <Row>
-                                                        <Col>
+                                    <Col md="12" className="h-100 d-flex bg-white justify-content-center align-items-center">
+                                        <Col lg="9" md="10" sm="12" className="mx-auto app-login-box">
+                                            {/*<div className="app-logo"/>*/}
+                                            <h4 className="mb-0">
+                                                <div>Register</div>
+                                                <span>Please sign up to create your account.</span>
+                                            </h4>
+
+                                            <Row className="divider"/>
+                                            <div>
+                                                <Form onSubmit={this.handleSignUp}>
+                                                    <Row form>
+                                                        <Col lg={12}>
+
                                                             <FormGroup>
-                                                                <Label>First Name</Label>
-                                                                <Input type="text" name="firstname" id="firstname"
-                                                                       placeholder="First Name" onChange={this.handleChange}/>
+                                                                <Label for="firstName">First Name</Label>
+                                                                <input
+                                                                    id="firstName"
+                                                                    type="text"
+                                                                    className="form-control"
+                                                                    placeholder="First Name"
+                                                                    name="firstName"
+                                                                    onChange={this.handleOnchange}
+                                                                    value={firstName}
+                                                                />
                                                             </FormGroup>
-                                                        </Col>
-                                                        <Col>
+
                                                             <FormGroup>
-                                                                <Label>Last Name</Label>
-                                                                <Input type="text" name="lastname" id="lastname"
-                                                                       placeholder="Last Name" onChange={this.handleChange}/>
+                                                                <Label for="lastName">Last Name</Label>
+                                                                <input
+                                                                    id="lastName"
+                                                                    type="text"
+                                                                    className="form-control"
+                                                                    placeholder="Last Name"
+                                                                    name="lastName"
+                                                                    onChange={this.handleOnchange}
+                                                                    value={lastName}
+                                                                />
                                                             </FormGroup>
+
+                                                            <FormGroup>
+                                                                <Label for="address">Address</Label>
+                                                                <input
+                                                                    id="address"
+                                                                    type="text"
+                                                                    className="form-control"
+                                                                    placeholder="Address"
+                                                                    name="address"
+                                                                    onChange={this.handleOnchange}
+                                                                    value={address}
+                                                                />
+                                                            </FormGroup>
+
+
+                                                            <FormGroup>
+                                                                <Label for="email">Email</Label>
+                                                                <input
+                                                                    id="email"
+                                                                    type="email"
+                                                                    className="form-control"
+                                                                    placeholder="Email"
+                                                                    name="email"
+                                                                    onChange={this.handleOnchange}
+                                                                    value={email}
+                                                                />
+                                                            </FormGroup>
+
+                                                            <FormGroup>
+                                                                <Label for="examplePassword">Password</Label>
+                                                                <input
+                                                                    id="password"
+                                                                    type="password"
+                                                                    className="form-control"
+                                                                    placeholder="password"
+                                                                    name="password"
+                                                                    autoComplete=''
+                                                                    onChange={this.handleOnchange}
+                                                                    value={password}
+                                                                />
+                                                            </FormGroup>
+
+
                                                         </Col>
                                                     </Row>
-                                                    <Row>
-                                                        <Col>
-                                                            <FormGroup>
-                                                                <Label>Email</Label>
-                                                                <Input type="email" name="email" id="email"
-                                                                       placeholder="Email" onChange={this.handleChange}/>
-                                                            </FormGroup>
-                                                        </Col>
-                                                        <Col>
-                                                            <FormGroup>
-                                                                <Label>Date</Label>
-                                                                <Input type="date" name="date" id="date" onChange={this.handleChange}/>
-                                                            </FormGroup>
-                                                        </Col>
-                                                    </Row>
+                                                    {/*<FormGroup check>*/}
+                                                    {/*    <Input type="checkbox" name="check" id="exampleCheck"/>*/}
+                                                    {/*    <Label for="exampleCheck" check>Keep me logged in</Label>*/}
+                                                    {/*</FormGroup>*/}
 
-                                                    <FormGroup>
-                                                        <Label>Address</Label>
-                                                        <Input type="textarea" name="address" id="address" onChange={this.handleChange}/>
-                                                    </FormGroup>
-                                                    <FormGroup>
-                                                        <Label>Image</Label>
-                                                        <Input type="file" name="file" id="file"
-                                                               onChange={this.handleFileChange}/>
-                                                    </FormGroup>
+                                                    <Row className="divider"/>
+                                                    {/*<h6 className="mt-3">*/}
+                                                    {/*    No account?{' '}*/}
+
+                                                    {/*    /!*<a href="/login" onClick={(e)=>e.preventDefault()} className="text-primary">Sign up now</a>*!/*/}
+                                                    {/*    /!*<Link to={"/login"} />*!/*/}
+
+                                                    {/*    <Link to="/register" style={{textDecoration:"none"}}>Sign Up Here</Link>*/}
+
+                                                    {/*</h6>*/}
+                                                    {/*<div className="d-flex align-items-center">*/}
+                                                    {/*    <div className="ml-auto">*/}
+                                                    {/*        /!*<a href="https://colorlib.com/" onClick={(e)=>e.preventDefault()} className="btn-lg btn btn-link">Recover*!/*/}
+                                                    {/*        /!*    Password</a>{' '}{' '}*!/*/}
+                                                    {/*        /!*<Button color="primary" size="lg">Login</Button>*!/*/}
+
+                                                    {/*        <Link to="/home" style={{textDecoration: "none"}}>*/}
+                                                    {/*            <Button className="mb-2 mr-2 btn-icon btn-pill" color="primary" size="lg">Login</Button>*/}
+                                                    {/*        </Link>*/}
 
 
-                                                    <Link to="/profile" style={{textDecoration: "none"}}>
-                                                        <Button className="mb-2 mr-2 btn-icon" color="info" onClick={this.onSubmit}>
-                                                            <i className="pe-7s-science btn-icon-wrapper"> </i>
-                                                            Submit
-                                                        </Button>
-                                                    </Link>
 
+
+                                                    {/*    </div>*/}
+                                                    {/*</div>*/}
+
+                                                    <div className="text-center">
+                                                        <button disabled={loading} className="btn btn-primary btn-block" >Sign Up</button>
+                                                    </div>
                                                 </Form>
-                                            </CardBody>
-                                        </Card>
+                                                {error && <p className="text-danger mt-3 mb-2 text-center">{error}</p>}
+                                            </div>
+                                        </Col>
                                     </Col>
+
                                 </Row>
                             </Container>
                         </div>

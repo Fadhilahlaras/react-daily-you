@@ -6,22 +6,13 @@ import Slider from "react-slick";
 import {
     Col,
     Row,
-    Button,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    FormText, ModalHeader, Modal, ModalFooter, ModalBody,
-    DropdownToggle,
-    UncontrolledDropdown, CardImg, CardBody, CardTitle, CardSubtitle, Card
+    FormText,  Card
 } from 'reactstrap';
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import AppHeader from "../../Layout/AppHeader";
 import AppFooter from "../../Layout/AppFooter";
 import {Link} from "react-router-dom";
-import {IoIosCart} from "react-icons/io";
 
-import avatar5 from "../../assets/utils/images/avatars/5.jpg";
 import bg1 from "../../assets/utils/images/dropdown-header/abstract1.jpg";
 import bg2 from "../../assets/utils/images/dropdown-header/abstract2.jpg";
 import bg3 from "../../assets/utils/images/dropdown-header/abstract6.jpg";
@@ -41,24 +32,23 @@ export default class AboutUs extends Component {
         super();
         this.state = {
             modal: false,
-            modal1: false,
-            ini: []
+            modal1: false
         };
         this.toggle = this.toggle.bind(this);
         this.toggle1 = this.toggle1.bind(this);
     }
 
-    toggle(dat) {
+    toggle() {
         this.setState({
             modal: !this.state.modal,
             // ini: dat.id,
         });
     }
 
-    toggle1(dat) {
+    toggle1() {
         this.setState({
             modal1: !this.state.modal1,
-            ini: dat.id,
+
         });
     }
 
@@ -99,21 +89,6 @@ export default class AboutUs extends Component {
                                 <Col lg="4" className="d-none d-lg-block">
                                     <div className="slider-light">
                                         <Slider  {...settings}>
-                                            {/*<div*/}
-                                            {/*    className="h-100 d-flex justify-content-center align-items-center bg-premium-dark">*/}
-                                            {/*    <div className="slide-img-bg"*/}
-                                            {/*         style={{*/}
-                                            {/*             backgroundImage: 'url(' + bg3 + ')'*/}
-                                            {/*         }}/>*/}
-                                            {/*    <div className="slider-content">*/}
-                                            {/*        <h3>Scalable, Modular, Consistent</h3>*/}
-                                            {/*        <p>*/}
-                                            {/*            Easily exclude the components you don't require. Lightweight,*/}
-                                            {/*            consistent*/}
-                                            {/*            Bootstrap based styles across all elements and components*/}
-                                            {/*        </p>*/}
-                                            {/*    </div>*/}
-                                            {/*</div>*/}
                                             <div className="h-100 d-flex justify-content-center align-items-center bg-plum-plate">
                                                 <div className="slide-img-bg"
                                                      style={{

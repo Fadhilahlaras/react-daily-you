@@ -7,11 +7,11 @@ import {
 } from 'react-toastify';
 
 const Home = lazy(()=> import('../../DemoPages/Homepage'));
-
+const Dashboard = lazy(()=> import('../../DemoPages/UserPages/Modal'));
 const About = lazy(()=> import('../../DemoPages/AboutUs'));
 const Activities = lazy(()=> import('../../DemoPages/Activities'));
 const Team = lazy(()=> import('../../DemoPages/AboutUs/Team'));
-const FormMember = lazy(()=> import('../../DemoPages/AboutUs/Team/Form'));
+
 const TableMember = lazy(()=> import('../../DemoPages/AboutUs/Team/Table'));
 const Galeri = lazy(()=> import('../../DemoPages/AboutUs/Galeri'));
 const Login = lazy(()=> import('../../DemoPages/UserPages/Login'));
@@ -102,24 +102,6 @@ const AppMain = () => {
                 <Route path="/team" component={Team}/>
             </Suspense>
 
-            {/* Form Member */}
-
-            <Suspense fallback={
-                <div className="loader-container">
-                    <div className="loader-container-inner">
-                        <div className="text-center">
-                            <Loader type="ball-spin-fade-loader"/>
-                        </div>
-                        <h6 className="mt-5">
-                            Please wait while we load all the Components examples
-                            <small>Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a real live app!</small>
-                        </h6>
-                    </div>
-                </div>
-            }>
-                <Route path="/formMember" component={FormMember}/>
-            </Suspense>
-
             {/* Table Member */}
 
             <Suspense fallback={
@@ -193,23 +175,6 @@ const AppMain = () => {
                 <Route path="/register" component={Register}/>
             </Suspense>
 
-            {/* User Profile */}
-
-            <Suspense fallback={
-                <div className="loader-container">
-                    <div className="loader-container-inner">
-                        <div className="text-center">
-                            <Loader type="ball-spin-fade-loader"/>
-                        </div>
-                        <h6 className="mt-5">
-                            Please wait while we load all the Components examples
-                            <small>Because this is a demonstration we load at once all the Components examples. This wouldn't happen in a real live app!</small>
-                        </h6>
-                    </div>
-                </div>
-            }>
-                <Route path="/profile" component={Profile}/>
-            </Suspense>
 
 
 
@@ -286,6 +251,7 @@ const AppMain = () => {
             </Suspense>
 
 
+            <Route path="/dashboard" component={Dashboard}/>
 
 
 

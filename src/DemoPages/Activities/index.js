@@ -20,17 +20,7 @@ import {
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import AppHeader from "../../Layout/AppHeader";
 import AppFooter from "../../Layout/AppFooter";
-import Galeri from "../AboutUs/Galeri";
-import {Link} from "react-router-dom";
-import {IoIosCart} from "react-icons/io";
-import bg2 from "../../assets/utils/images/dropdown-header/city2.jpg";
-import avatar5 from "../../assets/utils/images/avatars/5.jpg";
-import bg1 from "../../assets/utils/images/dropdown-header/abstract1.jpg";
-import avatar3 from "../../assets/utils/images/avatars/4.jpg";
-import avatar4 from "../../assets/utils/images/avatars/3.jpg";
-import prodemy1 from "../../assets/utils/images/prodemy/prodemy4_1.jpg";
-import prodemy2 from "../../assets/utils/images/prodemy/prodemy4_2.jpg";
-import prodemy3 from "../../assets/utils/images/prodemy/prodemy4_3.jpg";
+
 
 
 class Activities extends Component {

@@ -16,7 +16,7 @@ const CardTeam = (props) => {
 
 
     useEffect(() => {
-            axios.get("http://localhost:1221/team/getImage/" + props.id).then(res => {
+            axios.get("http://localhost:2121/team/getImage/" + props.id).then(res => {
                 setImage(res.data)
                 //console.log(imageArrayPath[index])
             })
@@ -25,11 +25,11 @@ const CardTeam = (props) => {
 
     return (
         <Fragment>
-            <Col md="4">
+            <Col sm="3">
                 <Card className="main-card mb-3">
-                    <CardImg top width="25%"
+                    <CardImg top width="100%"
                              src={"data:image/*;base64," + image}
-                             alt="Card image cap"/>
+                             alt={props.name} style={{backgroundSize: "cover", height: "300px"}} className="mt-3"/>
                     <CardBody>
                         <CardTitle>{props.name}</CardTitle>
                         <CardSubtitle>{props.pbirth},{props.bdate}</CardSubtitle>

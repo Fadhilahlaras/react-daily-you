@@ -15,6 +15,9 @@ import HeaderRightDrawer from "./Components/HeaderRightDrawer";
 import HeaderDots from "./Components/HeaderDots";
 
 class Header extends React.Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         let {
             headerBackgroundColor,
@@ -49,7 +52,7 @@ class Header extends React.Component {
 
                             <SearchBox/>
                             <HeaderDots/>
-                            <UserBox/>
+                            <UserBox muncul={this.props.muncul}/>
                         </div>
                     </div>
                 </CSSTransitionGroup>

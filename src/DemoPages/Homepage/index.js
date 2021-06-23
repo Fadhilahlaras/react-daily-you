@@ -12,20 +12,35 @@ import bg1 from "../../assets/utils/images/originals/city.jpg";
 import axios from "axios";
 import ThisCard from "../../DemoPages/Product/Home/index";
 import Kartu from "../Product/Kartu"
+import ModalHome from "../UserPages/Modal";
+// import AddToCard from "../Product/ModalProducts/AddToCart";
 
 const Homepage = () => {
 
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
+    const [modalHome, setModalHome] = useState("")
+
+
     let imageArrayPath = [];
 
     useEffect(() => {
+        toggleModalHome();
         axios.get("http://localhost:2222/api/product").then(res => {
             setDataCard(res.data)
 
             console.log(res.data)
         })
     }, [])
+
+    const toggleModalHome = () => {
+        setModalHome(!modalHome)
+    }
+
+    const onChangeToggleModalHome = () => {
+        console.log("ini tutup")
+        setModalHome(!modalHome)
+    }
 
     return(
         <Fragment>
@@ -36,7 +51,7 @@ const Homepage = () => {
                 transitionAppearTimeout={0}
                 transitionEnter={false}
                 transitionLeave={false}>
-                <AppHeader/>
+                <AppHeader muncul={toggleModalHome}/>
 
                 <div className="app-main">
                         <div className="app-main__inner">
@@ -83,6 +98,10 @@ const Homepage = () => {
                             </Row>
                                     {/*</Card>*/}
                         </div>
+
+                    <ModalHome toggle={() => {
+                        toggleModalHome()
+                    }} modal={modalHome} onChangeToggle={()=>onChangeToggleModalHome()}/>
 
                     <AppFooter/>
                 </div>
