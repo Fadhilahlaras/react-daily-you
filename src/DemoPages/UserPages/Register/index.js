@@ -20,15 +20,17 @@ import {
     Label,
     Row
 } from "reactstrap";
+import {Link} from "react-router-dom";
 
 
 class Register extends React.Component {
     constructor() {
         super();
         this.state = {
-            firstName: '',
-            lastName: '',
-            address: '',
+            userName: '',
+            noHp: '',
+            alamat: '',
+            ktp:'',
             email: '',
             password: '',
             error: null,
@@ -60,8 +62,8 @@ class Register extends React.Component {
     handleSignUp = event => {
         event.preventDefault()
         this.setState({ loading: true });
-        const { firstName, lastName, address, email, password } = this.state;
-        if (!firstName.length || !lastName.length || !address.length || !email.length || !password.length) {
+        const { userName, noHp, alamat, ktp, email, password } = this.state;
+        if (!userName.length || !noHp.length || !alamat.length || !ktp.length || !email.length || !password.length) {
             this.setState({ error: "Please Fill Out All The Details !! ", loading: false })
             return false;
         } else if (password.length < 8) {
@@ -69,9 +71,10 @@ class Register extends React.Component {
             return false;
         } else {
             const regesterData = {
-                firstName: firstName,
-                lastName: lastName,
-                address: address,
+                userName: userName,
+                noHp: noHp,
+                alamat: alamat,
+                ktp: ktp,
                 email: email,
                 password: password
             };
@@ -79,9 +82,10 @@ class Register extends React.Component {
 
             this.setState({
                 error: "",
-                firstName: "",
-                lastName: "",
-                address: "",
+                userName: "",
+                noHp: "",
+                alamat: "",
+                ktp:"",
                 email: "",
                 password: "",
                 users: this.state.users.concat(regesterData)
@@ -96,7 +100,7 @@ class Register extends React.Component {
 
     render() {
 
-        const { firstName, lastName, address, email, password, error, loading } = this.state;
+        const { userName, noHp, alamat, ktp, email, password, error, loading } = this.state;
 
 
         return (
@@ -130,41 +134,54 @@ class Register extends React.Component {
                                                         <Col lg={12}>
 
                                                             <FormGroup>
-                                                                <Label for="firstName">First Name</Label>
+                                                                <Label for="ktp">NIK</Label>
                                                                 <input
-                                                                    id="firstName"
+                                                                    id="ktp"
                                                                     type="text"
                                                                     className="form-control"
-                                                                    placeholder="First Name"
-                                                                    name="firstName"
+                                                                    placeholder="NIK"
+                                                                    name="ktp"
                                                                     onChange={this.handleOnchange}
-                                                                    value={firstName}
+                                                                    value={ktp}
                                                                 />
                                                             </FormGroup>
 
                                                             <FormGroup>
-                                                                <Label for="lastName">Last Name</Label>
+                                                                <Label for="userName">Username</Label>
                                                                 <input
-                                                                    id="lastName"
+                                                                    id="userName"
                                                                     type="text"
                                                                     className="form-control"
-                                                                    placeholder="Last Name"
-                                                                    name="lastName"
+                                                                    placeholder="Username"
+                                                                    name="userName"
                                                                     onChange={this.handleOnchange}
-                                                                    value={lastName}
+                                                                    value={userName}
                                                                 />
                                                             </FormGroup>
 
                                                             <FormGroup>
-                                                                <Label for="address">Address</Label>
+                                                                <Label for="alamat">Address</Label>
                                                                 <input
-                                                                    id="address"
+                                                                    id="alamat"
                                                                     type="text"
                                                                     className="form-control"
                                                                     placeholder="Address"
-                                                                    name="address"
+                                                                    name="alamat"
                                                                     onChange={this.handleOnchange}
-                                                                    value={address}
+                                                                    value={alamat}
+                                                                />
+                                                            </FormGroup>
+
+                                                            <FormGroup>
+                                                                <Label for="noHp">Phone Number</Label>
+                                                                <input
+                                                                    id="noHp"
+                                                                    type="text"
+                                                                    className="form-control"
+                                                                    placeholder="Number Phone"
+                                                                    name="noHp"
+                                                                    onChange={this.handleOnchange}
+                                                                    value={noHp}
                                                                 />
                                                             </FormGroup>
 
@@ -235,6 +252,16 @@ class Register extends React.Component {
                                                     </div>
                                                 </Form>
                                                 {error && <p className="text-danger mt-3 mb-2 text-center">{error}</p>}
+
+                                                <h6 className="mt-3">
+                                                    Have an account?{' '}
+
+                                                    {/*<a href="/login" onClick={(e)=>e.preventDefault()} className="text-primary">Sign up now</a>*/}
+                                                    {/*<Link to={"/login"} />*/}
+
+                                                    <Link to="/login" style={{textDecoration:"none"}}>Sign In Here</Link>
+
+                                                </h6>
                                             </div>
                                         </Col>
                                     </Col>
