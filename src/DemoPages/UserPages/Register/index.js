@@ -4,22 +4,15 @@ import axios from "axios";
 
 import AppHeader from "../../../Layout/AppHeader";
 
-// Examples
-
 import {
-    Button,
-    Card,
-    CardBody,
-    CardTitle,
     Col,
-    Container, CustomInput,
+    Container,
     Form,
     FormGroup,
-    FormText,
-    Input,
     Label,
     Row
 } from "reactstrap";
+
 import {Link} from "react-router-dom";
 
 
@@ -27,7 +20,7 @@ class Register extends React.Component {
     constructor() {
         super();
         this.state = {
-            userName: '',
+            username: '',
             noHp: '',
             alamat: '',
             ktp:'',
@@ -40,30 +33,30 @@ class Register extends React.Component {
     }
 
     componentDidMount() {
-        try {
-            const json = localStorage.getItem("users")
-            const users = JSON.parse(json);
-            if (users) {
-                this.setState(() => ({ users }))
-            }
-        } catch (e) {
-        }
+        // try {
+        //     const json = localStorage.getItem("users")
+        //     const users = JSON.parse(json);
+        //     if (users) {
+        //         this.setState(() => ({ users }))
+        //     }
+        // } catch (e) {
+        // }
     };
 
-    componentDidUpdate(prevState, preProps) {
-        if (preProps.users.length !== this.state.users.length) {
-            const json = JSON.stringify(this.state.users);
-            localStorage.setItem("users", json);
-        }
-    }
+    // componentDidUpdate(prevState, preProps) {
+    //     if (preProps.users.length !== this.state.users.length) {
+    //         const json = JSON.stringify(this.state.users);
+    //         localStorage.setItem("users", json);
+    //     }
+    // }
 
     handleOnchange = e => this.setState({ [e.target.name]: e.target.value });
 
     handleSignUp = event => {
         event.preventDefault()
         this.setState({ loading: true });
-        const { userName, noHp, alamat, ktp, email, password } = this.state;
-        if (!userName.length || !noHp.length || !alamat.length || !ktp.length || !email.length || !password.length) {
+        const { username, noHp, alamat, ktp, email, password } = this.state;
+        if (!username.length || !noHp.length || !alamat.length || !ktp.length || !email.length || !password.length) {
             this.setState({ error: "Please Fill Out All The Details !! ", loading: false })
             return false;
         } else if (password.length < 8) {
@@ -71,7 +64,7 @@ class Register extends React.Component {
             return false;
         } else {
             const regesterData = {
-                userName: userName,
+                username: username,
                 noHp: noHp,
                 alamat: alamat,
                 ktp: ktp,
@@ -82,7 +75,7 @@ class Register extends React.Component {
 
             this.setState({
                 error: "",
-                userName: "",
+                username: "",
                 noHp: "",
                 alamat: "",
                 ktp:"",
@@ -90,6 +83,24 @@ class Register extends React.Component {
                 password: "",
                 users: this.state.users.concat(regesterData)
             });
+            // setTimeout(() => {
+            //     this.props.history.push("/login")
+            //     this.setState({ loading: false })
+            // }, 2000)
+
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }
+
+            console.log(regesterData)
+
+            axios.post("http://localhost:1717/register/create",regesterData, config)
+                .then(res=>{
+                    console.log(res)
+                })
+
             setTimeout(() => {
                 this.props.history.push("/login")
                 this.setState({ loading: false })
@@ -100,7 +111,7 @@ class Register extends React.Component {
 
     render() {
 
-        const { userName, noHp, alamat, ktp, email, password, error, loading } = this.state;
+        const { username, noHp, alamat, ktp, email, password, error, loading } = this.state;
 
 
         return (
@@ -147,15 +158,15 @@ class Register extends React.Component {
                                                             </FormGroup>
 
                                                             <FormGroup>
-                                                                <Label for="userName">Username</Label>
+                                                                <Label for="username">Username</Label>
                                                                 <input
-                                                                    id="userName"
+                                                                    id="username"
                                                                     type="text"
                                                                     className="form-control"
                                                                     placeholder="Username"
-                                                                    name="userName"
+                                                                    name="username"
                                                                     onChange={this.handleOnchange}
-                                                                    value={userName}
+                                                                    value={username}
                                                                 />
                                                             </FormGroup>
 
@@ -255,9 +266,6 @@ class Register extends React.Component {
 
                                                 <h6 className="mt-3">
                                                     Have an account?{' '}
-
-                                                    {/*<a href="/login" onClick={(e)=>e.preventDefault()} className="text-primary">Sign up now</a>*/}
-                                                    {/*<Link to={"/login"} />*/}
 
                                                     <Link to="/login" style={{textDecoration:"none"}}>Sign In Here</Link>
 
