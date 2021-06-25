@@ -33,8 +33,7 @@ class UserBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: false,
-            name: this.props.muncul.name
+            active: false
         };
 
     }
