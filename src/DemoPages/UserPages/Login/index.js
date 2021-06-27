@@ -1,17 +1,14 @@
 import React, {Fragment, Component, useState, useEffect} from "react";
+import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 
 import axios from "axios";
 
 import Slider from "react-slick";
 
-import bg1 from '../../../assets/utils/images/originals/city.jpg';
-import bg2 from '../../../assets/utils/images/originals/citydark.jpg';
-import bg3 from '../../../assets/utils/images/originals/citynights.jpg';
-
-import {Col, Row, Button, Form, FormGroup, Label, Input, CardFooter, Card} from 'reactstrap';
+import {Col, Row, Form, FormGroup, Label} from 'reactstrap';
 import {Link} from "react-router-dom";
 import AppHeader from "../../../Layout/AppHeader";
-import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
+
 import pro1 from "../../../assets/utils/images/prodemy/prodemy4_1.jpg";
 import pro2 from "../../../assets/utils/images/prodemy/prodemy4_7.jpg";
 import pro3 from "../../../assets/utils/images/prodemy/prodemy4_12.jpg";
@@ -75,8 +72,9 @@ class Login extends Component {
             .then(res=> {
                 localStorage.setItem("access_token", res.data.data.access_token)
                 localStorage.setItem("username", username)
-                this.props.history.push("/dashAdmin");
-                window.location.reload();
+                this.props.history.push("/home/dashboard");
+                // window.location.href = "/";
+                // window.location.reload();
             })
             .catch(err=>{
                 this.setState({
@@ -85,6 +83,18 @@ class Login extends Component {
                 })
             })
     };
+
+    //get email user login
+    // decodeToken() {
+    //     const token = localStorage.getItem("access_token")
+    //     const userData = decode(token)
+    //     this.setState({
+    //         dataForm: {
+    //             email : userData.email
+    //         }
+    //     })
+    //     localStorage.setItem("email", userData.email)
+
 
     handleClear() {
         localStorage.clear()
@@ -176,7 +186,7 @@ class Login extends Component {
                                                 {/*<a href="/login" onClick={(e)=>e.preventDefault()} className="text-primary">Sign up now</a>*/}
                                                 {/*<Link to={"/login"} />*/}
 
-                                                <Link to="/register" style={{textDecoration:"none"}}>Sign Up Here</Link>
+                                                <Link to="/pages/register" style={{textDecoration:"none"}}>Sign Up Here</Link>
 
                                             </h6>
 

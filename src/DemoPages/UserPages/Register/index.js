@@ -102,7 +102,7 @@ class Register extends React.Component {
                 })
 
             setTimeout(() => {
-                this.props.history.push("/login")
+                this.props.history.push("/pages/login")
                 this.setState({ loading: false })
             }, 2000)
         }
@@ -267,7 +267,7 @@ class Register extends React.Component {
                                                 <h6 className="mt-3">
                                                     Have an account?{' '}
 
-                                                    <Link to="/login" style={{textDecoration:"none"}}>Sign In Here</Link>
+                                                    <Link to="/pages/login" style={{textDecoration:"none"}}>Sign In Here</Link>
 
                                                 </h6>
                                             </div>
