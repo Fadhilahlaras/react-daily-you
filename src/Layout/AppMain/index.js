@@ -21,7 +21,6 @@ const Tabel = lazy(()=> import('../../DemoPages/TableData'));
 
 const Product = lazy(() => import('../../DemoPages/Product/Redirect'));
 
-
 const Cart = lazy(()=> import('../../DemoPages/Cart'));
 const Checkout = lazy(()=> import('../../DemoPages/Checkout'));
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import {Button, Card, CardBody, CardTitle, Col, Form, FormGroup, Input, Label, Row, Table} from 'reactstrap';
+import CountUp from "react-countup";
 
 export default class TableHover extends React.Component {
     render() {

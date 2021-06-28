@@ -35,24 +35,26 @@ const ThisCard = (props) => {
     const onSubmit = () => {
         const formData = new FormData();
 
-        const json = JSON.stringify({
-            "idProduct": props.id, //perlu diganti
-            "quantity": 1
-        });
+        const json = {
+            "addToCart": [
+                {
+                    "id": props.id,
+                    "idProduct": props.id,
+                    "productQuantity": 1,
+                    "idUser" : 1
+                }
+            ]
+        };
         console.log(json)
         const blobDoc = new Blob([json], {
             type: 'application/json'
         });
 
-        formData.append('data', blobDoc)
+        formData.append('data', json)
 
-        const config = {
-            headers: {
-                'content-type': 'multipart/mixed'
-            }
-        }
+
         console.log(formData)
-        axios.post("http://localhost:2222/api/cart", formData, config)
+        axios.post("http://localhost:2222/api/cart", json)
             .then(res => console.log(res.data))
 
     }

@@ -7,6 +7,7 @@ import {
 import AppHeader from '../../Layout/AppHeader'
 import Item from './Item'
 import FormDetails from './FormDatails'
+import CountUp from "react-countup";
 
 class Checkout extends React.Component {
     constructor(props) {
@@ -44,6 +45,23 @@ class Checkout extends React.Component {
                                         <Item/>
                                     </Col>
                                     <Col md="6">
+                                        <div className="card mb-3 widget-content">
+                                            <div className="widget-content-wrapper">
+                                                <div className="widget-content-left">
+                                                    <div className="widget-heading">
+                                                        Total Harga
+                                                    </div>
+                                                    <div className="widget-subheading">
+                                                        Last year expenses
+                                                    </div>
+                                                </div>
+                                                <div className="widget-content-right">
+                                                    <div className="widget-numbers text-success">
+                                                        <CountUp end={1896} duration="10"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <FormDetails/>
                                     </Col>
                                 </Row>
