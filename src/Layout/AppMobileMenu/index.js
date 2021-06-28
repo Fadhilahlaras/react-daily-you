@@ -57,17 +57,17 @@ class AppMobileMenu extends React.Component {
         return (
             <Fragment>
 
-                <div className="app-header__mobile-menu">
-                    <div onClick={this.toggleMobileSidebar}>
-                    <Slider 
-                         width={26}
-                         lineHeight={2}
-                         lineSpacing={5}
-                         color='#6c757d'
-                         active={this.state.active}
-                         onClick={() => this.setState({ active: !this.state.active })}/>
-                    </div>
-                </div>
+                {/*<div className="app-header__mobile-menu">*/}
+                {/*    <div onClick={this.toggleMobileSidebar}>*/}
+                {/*    <Slider */}
+                {/*         width={26}*/}
+                {/*         lineHeight={2}*/}
+                {/*         lineSpacing={5}*/}
+                {/*         color='#6c757d'*/}
+                {/*         active={this.state.active}*/}
+                {/*         onClick={() => this.setState({ active: !this.state.active })}/>*/}
+                {/*    </div>*/}
+                {/*</div>*/}
                 <div className="app-header__menu">
                     <span onClick={this.toggleMobileSmall}>
                         <Button size="sm"

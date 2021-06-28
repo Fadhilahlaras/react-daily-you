@@ -39,6 +39,8 @@ import SysErrEx from './TabsContent/SystemExample';
 // import {Link} from "react-router-dom";
 import CartModal from "./CartModal";
 
+import {Link} from "react-router-dom";
+
 const data = [
     {name: 'Page A', uv: 4000, pv: 2400, amt: 2400},
     {name: 'Page B', uv: 3000, pv: 1398, amt: 2210},
@@ -132,10 +134,27 @@ const HeaderDots = () => {
                     <UncontrolledDropdown>
                         {/*<Link to="/cart" style={{textDecoration:"none"}}>*/}
                         <DropdownToggle className="p-0" color="link">
-                            <div className="icon-wrapper icon-wrapper-alt rounded-circle" onClick={() => {setModal(!modal)}}>
-                                <div className="icon-wrapper-bg bg-success"/>
-                                <IoIosCart color="#3ac47d" fontSize="23px" />
-                            </div>
+                            {(() => {
+                                if (localStorage.getItem("roles") === null) {
+                                    return (
+                                        <Link to="/pages/login">
+                                        <div className="icon-wrapper icon-wrapper-alt rounded-circle" >
+                                            <div className="icon-wrapper-bg bg-success"/>
+                                            <IoIosCart color="#3ac47d" fontSize="23px"/>
+                                        </div>
+                                        </Link>
+                                    )
+                                } else {
+                                    return (
+                                        <div className="icon-wrapper icon-wrapper-alt rounded-circle" onClick={() => {
+                                            setModal(!modal)
+                                        }}>
+                                            <div className="icon-wrapper-bg bg-success"/>
+                                            <IoIosCart color="#3ac47d" fontSize="23px"/>
+                                        </div>
+                                    )
+                                }
+                            })()}
                         </DropdownToggle>
                         {/*</Link>*/}
                     </UncontrolledDropdown>
@@ -146,4 +165,4 @@ const HeaderDots = () => {
     // }
 }
 
-export default HeaderDots;
+export default HeaderDots

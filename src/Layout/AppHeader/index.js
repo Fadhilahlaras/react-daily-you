@@ -50,11 +50,12 @@ class Header extends React.Component {
                     )}>
 
 
-                        <div className="app-header-left">
-                            <MegaMenu/>
-                        </div>
+                        {/*<div className="app-header-left">*/}
+                        {/*    <MegaMenu/>*/}
+                        {/*</div>*/}
 
                         <div className="app-header-right">
+                            <MegaMenu/>
 
                             <SearchBox/>
                             <HeaderDots/>
