@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
-const ModalHome = (props) => {
+const UserProfile = (props) => {
 
     const [currentUser, setCurrentUser] = useState(null)
 
@@ -28,7 +28,7 @@ const ModalHome = (props) => {
                                 <div className="card card-body">
                                     <ul>
                                         <li><b>NIK:</b> {currentUser.ktp}</li>
-                                        <li><b>Username:</b> {currentUser.userName}</li>
+                                        <li><b>Username:</b> {currentUser.username}</li>
                                         <li><b>Address:</b> {currentUser.alamat}</li>
                                         <li><b>Phone Number:</b> {currentUser.noHp}</li>
                                         <li><b>Email:</b> {currentUser.email}</li>
@@ -50,4 +50,4 @@ const ModalHome = (props) => {
 
 }
 
-export default ModalHome;
+export default UserProfile;

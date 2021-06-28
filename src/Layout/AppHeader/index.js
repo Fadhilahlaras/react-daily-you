@@ -10,7 +10,6 @@ import HeaderLogo from '../AppLogo';
 import SearchBox from './Components/SearchBox';
 import MegaMenu from './Components/MegaMenu';
 import UserBox from './Components/UserBox';
-import HeaderRightDrawer from "./Components/HeaderRightDrawer";
 
 import HeaderDots from "./Components/HeaderDots";
 
@@ -52,7 +51,7 @@ class Header extends React.Component {
 
                             <SearchBox/>
                             <HeaderDots/>
-                            <UserBox muncul={this.props.muncul}/>
+                            <UserBox/>
                         </div>
                     </div>
                 </CSSTransitionGroup>

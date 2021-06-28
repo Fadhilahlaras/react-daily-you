@@ -30,7 +30,6 @@ const BodyCare = () => {
     //     })
     // })
 
-
     return (
         <Fragment>
             <CSSTransitionGroup

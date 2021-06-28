@@ -56,8 +56,8 @@ class HeaderLogo extends React.Component {
                 {/*    </div>*/}
                 {/*</div>*/}
                 <div>
-                    <Link to={"/home"}>
-                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home"/>
+                    <Link to={"/home/dashboard"}>
+                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home/dashboard"/>
                     </Link>
                 </div>
                 <AppMobileMenu/>

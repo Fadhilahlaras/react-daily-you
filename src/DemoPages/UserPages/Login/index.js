@@ -65,6 +65,9 @@ class Login extends Component {
         const config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
+                // 'Authorization': 'Bearer ${token}'
+
+
             }
         }
         console.log(param)
@@ -72,6 +75,7 @@ class Login extends Component {
             .then(res=> {
                 localStorage.setItem("access_token", res.data.data.access_token)
                 localStorage.setItem("username", username)
+
                 this.props.history.push("/home/dashboard");
                 // window.location.href = "/";
                 // window.location.reload();
