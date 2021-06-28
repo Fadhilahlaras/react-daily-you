@@ -66,6 +66,7 @@ const TableMember = (props) => {
     const toggleEdit = (val) => {
         setModalEdit(!modalEdit)
         console.log('Show modal edit', val)
+
         axios.get('http://localhost:1717/team/' + val).then(res => {
             setDataa(res.data)
         })

@@ -3,6 +3,8 @@ import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 
 import axios from "axios";
 
+import Swal from "sweetalert2";
+
 import Slider from "react-slick";
 
 import {Col, Row, Form, FormGroup, Label} from 'reactstrap';
@@ -15,7 +17,12 @@ import pro3 from "../../../assets/utils/images/prodemy/prodemy4_12.jpg";
 
 // import ModalHome from "../UserProfile";
 
-import AlertKu from "../Alert";
+import AlertKu from "../Alert/index";
+
+import decode from "jwt-decode";
+import withReactContent from "sweetalert2-react-content";
+
+const MySwal = withReactContent(Swal);
 
 class Login extends Component {
     constructor() {
@@ -30,6 +37,8 @@ class Login extends Component {
         };
 
     }
+
+
 
 
     handleOnchange = e => this.setState({ [e.target.name]: e.target.value });
@@ -67,44 +76,40 @@ class Login extends Component {
                 'Content-Type': 'application/x-www-form-urlencoded'
                 // 'Authorization': 'Bearer ${token}'
 
-
             }
         }
         console.log(param)
         axios.post("http://localhost:1717/auth/token",param, config)
             .then(res=> {
                 localStorage.setItem("access_token", res.data.data.access_token)
-                localStorage.setItem("username", username)
+
+                const userData = decode(res.data.data.access_token)
+                localStorage.setItem("username", userData.preferred_username)
+                localStorage.setItem("email", userData.email)
+                localStorage.setItem("roles", userData.resource_access["dailyyou-client"].roles[0])
+
+                MySwal.fire({
+                    icon: "success",
+                    title: "Congrats You Can Access This Page",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
 
                 this.props.history.push("/home/dashboard");
-                // window.location.href = "/";
-                // window.location.reload();
             })
             .catch(err=>{
-                this.setState({
-                    errmessage:err.response.data.message,
-                    isAlert:true
-                })
+                MySwal.fire({
+                    icon: "error",
+                    title: "Username or Password False",
+                    showConfirmButton: false,
+                    timer: 2500,
+                });
             })
     };
-
-    //get email user login
-    // decodeToken() {
-    //     const token = localStorage.getItem("access_token")
-    //     const userData = decode(token)
-    //     this.setState({
-    //         dataForm: {
-    //             email : userData.email
-    //         }
-    //     })
-    //     localStorage.setItem("email", userData.email)
-
 
     handleClear() {
         localStorage.clear()
     }
-
-
 
     render() {
         let settings = {
@@ -123,8 +128,9 @@ class Login extends Component {
 
         const { username, password, error } = this.state;
 
-        return (
 
+
+        return (
             <Fragment>
                 <CSSTransitionGroup
                     component="div"
@@ -194,30 +200,19 @@ class Login extends Component {
 
                                             </h6>
 
-                                            <AlertKu isAlert={this.state.isAlert}
-                                                     alertMessage={this.state.errmessage}
-                                            />
 
-
-                                            {/*<div className="d-flex align-items-center">*/}
-                                            {/*    <div className="ml-auto">*/}
-                                            {/*        /!*<a href="https://colorlib.com/" onClick={(e)=>e.preventDefault()} className="btn-lg btn btn-link">Recover*!/*/}
-                                            {/*        /!*    Password</a>{' '}{' '}*!/*/}
-                                            {/*        /!*<Button color="primary" size="lg">Login</Button>*!/*/}
-                                            {/*        */}
-                                            {/*            <Button className="mb-2 mr-2 btn-icon btn-pill" color="primary" size="lg">Login</Button>*/}
-
-                                            {/*        </div>*/}
-                                            {/*</div>*/}
 
                                             <div className="text-center">
                                                 <button className="btn btn-primary btn-block">Sign In</button>
                                             </div>
+
+                                            <AlertKu isAlert={this.state.isAlert}
+                                                     alertMessage={this.state.errmessage}
+                                            />
+
                                         </Form>
                                         {error && <p className="text-danger mt-3 mb-2 text-center">{error}</p>}
                                     </div>
-
-
                                 </Col>
                             </Col>
                             <Col lg="4" className="d-none d-lg-block">

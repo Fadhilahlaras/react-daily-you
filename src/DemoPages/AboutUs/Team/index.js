@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import axios from "axios";
 
-import AppHeader from "../../../Layout/AppHeader";
+
 import AppFooter from "../../../Layout/AppFooter";
 
 import CardTeam from "./CardData";
@@ -37,7 +37,6 @@ const Team = () => {
                     transitionEnter={false}
                     transitionLeave={false}>
 
-                    <AppHeader/>
 
                     <div className="app-main">
                         <div className="app-main__inner">

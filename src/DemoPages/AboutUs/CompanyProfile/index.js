@@ -201,23 +201,23 @@ export default class CompanyProfile extends Component {
 
                                                 </Col>
                                             </Row>
-                                            <Row>
-                                                <Col md="1" xl="12">
-                                                    <Link to="/galeri" style={{textDecoration: "none"}}>
-                                                        <Card className="mb-3 profile-block">
-                                                            <div className="dropdown-menu-header">
-                                                                <img src={bg4} alt=""
-                                                                     className="profile-blur opacity-10"/>
-                                                                <div className="profile-inner bg-dark opacity-6"/>
-                                                                <div className="menu-header-content">
-                                                                    <h5 className="menu-header-title">Galeri</h5>
-                                                                </div>
-                                                            </div>
-                                                        </Card>
-                                                    </Link>
+                                            {/*<Row>*/}
+                                            {/*    <Col md="1" xl="12">*/}
+                                            {/*        <Link to="/galeri" style={{textDecoration: "none"}}>*/}
+                                            {/*            <Card className="mb-3 profile-block">*/}
+                                            {/*                <div className="dropdown-menu-header">*/}
+                                            {/*                    <img src={bg4} alt=""*/}
+                                            {/*                         className="profile-blur opacity-10"/>*/}
+                                            {/*                    <div className="profile-inner bg-dark opacity-6"/>*/}
+                                            {/*                    <div className="menu-header-content">*/}
+                                            {/*                        <h5 className="menu-header-title">Galeri</h5>*/}
+                                            {/*                    </div>*/}
+                                            {/*                </div>*/}
+                                            {/*            </Card>*/}
+                                            {/*        </Link>*/}
 
-                                                </Col>
-                                            </Row>
+                                            {/*    </Col>*/}
+                                            {/*</Row>*/}
                                         </div>
 
                                     </Col>

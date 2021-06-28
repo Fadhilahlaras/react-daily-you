@@ -16,7 +16,6 @@ const Dashboard = () => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        toggleModalHome();
         axios.get("http://localhost:2222/api/product").then(res => {
             setDataCard(res.data)
 
