@@ -11,8 +11,6 @@ const AppMain = () => {
 
     return (
         <Fragment>
-
-
             {/*Products*/}
             <Suspense fallback={
                 <div className="loader-container">

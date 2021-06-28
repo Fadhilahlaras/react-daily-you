@@ -10,7 +10,6 @@ import HeaderLogo from '../AppLogo';
 import SearchBox from './Components/SearchBox';
 import MegaMenu from './Components/MegaMenu';
 import UserBox from './Components/UserBox';
-import HeaderRightDrawer from "./Components/HeaderRightDrawer";
 
 import HeaderDots from "./Components/HeaderDots";
 
@@ -18,6 +17,13 @@ class Header extends React.Component {
     constructor(props) {
         super(props);
     }
+
+    // const username = localStorage.getItem("username")
+    //
+    // const logout = (e) => {
+    //     localStorage.clear()
+    // }
+
     render() {
         let {
             headerBackgroundColor,
@@ -44,15 +50,16 @@ class Header extends React.Component {
                     )}>
 
 
-                        <div className="app-header-left">
-                            <MegaMenu/>
-                        </div>
+                        {/*<div className="app-header-left">*/}
+                        {/*    <MegaMenu/>*/}
+                        {/*</div>*/}
 
                         <div className="app-header-right">
+                            <MegaMenu/>
 
                             <SearchBox/>
                             <HeaderDots/>
-                            <UserBox muncul={this.props.muncul}/>
+                            <UserBox/>
                         </div>
                     </div>
                 </CSSTransitionGroup>

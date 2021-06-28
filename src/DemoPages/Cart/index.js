@@ -22,6 +22,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import axios from "axios";
 
 export default class DataTableCustomComps extends React.Component {
     constructor() {
@@ -31,8 +32,17 @@ export default class DataTableCustomComps extends React.Component {
         };
     }
 
+    componentDidMount() {
+        axios.get(`http://localhost:1212/api/cart`)
+            .then(res => {
+                    this.setState({dataTable: res.data})
+                    console.log(res)
+                }
+            )
+    }
+
     render() {
-        const {data} = this.state;
+        const {dataTable} = this.state;
 
         return (
             <Fragment>
@@ -51,12 +61,12 @@ export default class DataTableCustomComps extends React.Component {
                                     <Card className="main-card mb-3">
                                         <CardBody>
                                             <ReactTable
-                                                data={data}
+                                                data={dataTable}
                                                 columns={[{
                                                     columns: [
                                                         {
-                                                            Header: 'Name',
-                                                            accessor: 'firstName',
+                                                            Header: 'Product Name',
+                                                            accessor: 'productName',
                                                             Cell: row => (
                                                                 <div className="widget-content p-0">
                                                                     <Input type="checkbox" id="exampleCustomCheckbox12"
@@ -81,7 +91,7 @@ export default class DataTableCustomComps extends React.Component {
                                                         },
                                                         {
                                                             Header: 'Quantity',
-                                                            accessor: 'visits',
+                                                            accessor: 'productQuantity',
                                                             Cell: row => (
                                                                 <div className="d-block w-100 text-center">
                                                                     <NumericInput className="form-control" min={0}
@@ -92,7 +102,7 @@ export default class DataTableCustomComps extends React.Component {
                                                         },
                                                         {
                                                             Header: 'Unit Price',
-                                                            accessor: 'lastName'
+                                                            accessor: 'price'
                                                         },
                                                         {
                                                             Header: 'Sub Total Price',
@@ -105,7 +115,7 @@ export default class DataTableCustomComps extends React.Component {
 
                                                             {
                                                                 Header: 'Actions',
-                                                                accessor: 'actions',
+                                                                // accessor: 'actions',
                                                                 Cell: row => (
                                                                     <div className="d-block w-100 text-center">
                                                                         <FormGroup>
@@ -127,10 +137,10 @@ export default class DataTableCustomComps extends React.Component {
                                         <CardFooter className="text-right d-block">
                                             <Button outline className="mr-2 border-0 btn-transition"
                                                     color="danger">Remove</Button>
-                                            <Link to="/checkout" style={{textDecoration: "none"}}>
+                                            {/*<Link to="/checkout" style={{textDecoration: "none"}}>*/}
                                                 <Button outline className="border-0 btn-transition"
                                                         color="primary">Checkout</Button>
-                                            </Link>
+                                            {/*</Link>*/}
                                         </CardFooter>
                                     </Card>
                                 </Col>

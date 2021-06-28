@@ -1,8 +1,6 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
-import logo from '../../assets/utils/images/daily.jpg';
-
-import { Slider } from 'react-burgers'
+import logo from '../../assets/utils/images/daily-you.png';
 
 import AppMobileMenu from '../AppMobileMenu';
 
@@ -56,8 +54,8 @@ class HeaderLogo extends React.Component {
                 {/*    </div>*/}
                 {/*</div>*/}
                 <div>
-                    <Link to={"/home"}>
-                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home"/>
+                    <Link to={"/home/dashboard"}>
+                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home/dashboard"/>
                     </Link>
                 </div>
                 <AppMobileMenu/>

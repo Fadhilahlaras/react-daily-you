@@ -33,12 +33,12 @@ const TableMember = (props) => {
     useEffect(() => {
 
 
-        // axios.get("http://localhost:2121/team/getImage/" + props.id).then(res => {
+        // axios.get("http://localhost:1717/team/getImage/" + props.id).then(res => {
         //     setImage(res.data)
         //     //console.log(imageArrayPath[index])
         // })
 
-        axios.get("http://localhost:2121/team")
+        axios.get("http://localhost:1717/team")
             .then(res => {
                 setDataTable(res.data)
             }).catch();
@@ -46,7 +46,7 @@ const TableMember = (props) => {
 
 
     const tampil = () =>{
-        axios.get("http://localhost:2121/team")
+        axios.get("http://localhost:1717/team")
             .then(res => {
                 setDataTable(res.data)
             }).catch();
@@ -66,17 +66,18 @@ const TableMember = (props) => {
     const toggleEdit = (val) => {
         setModalEdit(!modalEdit)
         console.log('Show modal edit', val)
-        axios.get('http://localhost:2121/team/' + val).then(res => {
+
+        axios.get('http://localhost:1717/team/' + val).then(res => {
             setDataa(res.data)
         })
-        axios.get("http://localhost:2121/team/getImage/" + val).then(res => {
+        axios.get("http://localhost:1717/team/getImage/" + val).then(res => {
             setPictureUrl(res.data)
         }).catch()
     }
 
     const deleteData = (id) => {
         console.log("hai hapus ya")
-        axios.delete('http://localhost:2121/team/' + id).then(tampil).catch(err => console.log(err))
+        axios.delete('http://localhost:1717/team/' + id).then(tampil).catch(err => console.log(err))
         setDel(id)
         onChangeToggleDelete(false)
     }
@@ -96,7 +97,7 @@ const TableMember = (props) => {
     const getPDF = async () => {
 
         await axios({
-            url: 'http://localhost:2121/getReport',
+            url: 'http://localhost:1717/getReport',
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {
@@ -113,7 +114,7 @@ const TableMember = (props) => {
 
     const getEXCEL = async () => {
         await axios({
-            url: 'http://localhost:2121/getReportExcel',
+            url: 'http://localhost:1717/getReportExcel',
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {

@@ -1,11 +1,12 @@
 {
-  "realm": "gen4",
-  "auth-server-url": "https://siska.prosigmaka.com/auth",
+  "realm": "daily",
+  "auth-server-url": "http://localhost:8080/auth",
   "ssl-required": "external",
-  "resource": "gen4-client",
-  "credential":{
-    "secret": "f4436a12-b9ec-462b-a0e1-00035f47e81e"
+  "resource": "dailyyou-client",
+  "credentials": {
+    "secret": "d1e187a1-10b1-4e03-b312-735d2c2f396e"
   },
+  "confidential-port": 0,
   "use-resource-role-mappings": true,
   "berarer-only": true
 }

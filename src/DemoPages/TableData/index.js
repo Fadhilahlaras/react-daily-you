@@ -28,7 +28,7 @@ class TableData extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:2121/input`)
+        axios.get(`http://localhost:1717/input`)
             .then(res => {
                 this.setState({dataTable: res.data})
                 console.log(res)

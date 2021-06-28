@@ -45,8 +45,7 @@ export default class Item extends React.Component {
                                                     },
                                                     {
                                                         Header: "Quantity",
-                                                        id: "lastName",
-                                                        accessor: d => d.lastName
+                                                        accessor: "lastName"
                                                     },
                                                     {
                                                         Header: "Sub Total Price",

@@ -49,10 +49,10 @@ const EditMember = (props) => {
             }
         }
 
-        axios.post("http://localhost:2121/team/save", formData, config)
+        axios.post("http://localhost:1717/team/save", formData, config)
             .then(()=>{tampil()})
 
-        // axios.post("http://localhost:2121/team/save", formData, config)
+        // axios.post("http://localhost:1717/team/save", formData, config)
         //     .then(res => {
         //         this.getDataKurir().then(response => {
         //             this.setState({ dataTable:response })

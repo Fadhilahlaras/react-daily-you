@@ -2,7 +2,7 @@ import React, {Fragment, useState, useEffect} from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import axios from "axios";
 
-import AppHeader from "../../../Layout/AppHeader";
+
 import AppFooter from "../../../Layout/AppFooter";
 
 import CardTeam from "./CardData";
@@ -22,7 +22,7 @@ const Team = () => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2121/team").then(res => {
+        axios.get("http://localhost:1717/team").then(res => {
             setDataCard(res.data)
         })
     }, [])
@@ -37,7 +37,6 @@ const Team = () => {
                     transitionEnter={false}
                     transitionLeave={false}>
 
-                    <AppHeader/>
 
                     <div className="app-main">
                         <div className="app-main__inner">
