@@ -1,120 +1,212 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import axios from "axios";
+
+import Swal from "sweetalert2";
 
 import AppHeader from "../../../Layout/AppHeader";
 
 import {
+    Button,
     Col,
     Container,
     Form,
-    FormGroup,
+    FormGroup, Input,
     Label,
     Row
 } from "reactstrap";
 
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
+import withReactContent from "sweetalert2-react-content";
 
 
-class Register extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            username: '',
-            noHp: '',
-            alamat: '',
-            ktp:'',
-            email: '',
-            password: '',
-            error: null,
-            users: [],
-            loading: false
+const MySwal = withReactContent(Swal);
+
+// class Register extends React.Component {
+//     constructor() {
+//         super();
+//         this.state = {
+//             username: '',
+//             noHp: '',
+//             alamat: '',
+//             ktp:'',
+//             email: '',
+//             password: '',
+//             error: null,
+//             users: [],
+//             loading: false
+//         }
+//     }
+//
+//     componentDidMount() {
+//         localStorage.clear();
+//     };
+//
+//     // componentDidUpdate(prevState, preProps) {
+//     //     if (preProps.users.length !== this.state.users.length) {
+//     //         const json = JSON.stringify(this.state.users);
+//     //         localStorage.setItem("users", json);
+//     //     }
+//     // }
+//
+//     handleOnchange = e => this.setState({ [e.target.name]: e.target.value });
+//
+//     handleSignUp = event => {
+//         event.preventDefault()
+//         this.setState({ loading: true });
+//         const { username, noHp, alamat, ktp, email, password, repassword } = this.state;
+//
+//         if (!username.length || !noHp.length || !alamat.length || !ktp.length || !email.length || !password.length) {
+//             this.setState({ error: "Please Fill Out All The Details !! ", loading: false })
+//             return false;
+//         } else if (password.length < 8) {
+//             this.setState({ error: "Password Should Contain At Least 8 Charecters", loading: false })
+//             return false;
+//         } else {
+//             const regesterData = {
+//                 username: username,
+//                 noHp: noHp,
+//                 alamat: alamat,
+//                 ktp: ktp,
+//                 email: email,
+//                 password: password
+//             };
+//
+//
+//             this.setState({
+//                 error: "",
+//                 username: "",
+//                 noHp: "",
+//                 alamat: "",
+//                 ktp:"",
+//                 email: "",
+//                 password: "",
+//                 users: this.state.users.concat(regesterData)
+//             });
+//             // setTimeout(() => {
+//             //     this.props.history.push("/login")
+//             //     this.setState({ loading: false })
+//             // }, 2000)
+//
+//             const config = {
+//                 headers: {
+//                     'Content-Type': 'application/json'
+//                 }
+//             }
+//
+//             console.log(regesterData)
+//
+//             // axios.post("http://localhost:1717/register/create",regesterData, config)
+//             //     .then(res=>{
+//             //         console.log(res)
+//             //     })
+//
+//             if(password === repassword){
+//                 axios.post("http://localhost:1717/register/create", regesterData, config)
+//                     .then((response) => {
+//                         if(response.status === 200){
+//                             MySwal.fire({
+//                                 icon: "success",
+//                                 title: "Success Create Account",
+//                                 showConfirmButton: false,
+//                                 timer: 2500,
+//                             });
+//                             this.props.history.push("/pages/login")
+//                         }else{
+//                             MySwal.fire({
+//                                 icon: "warning",
+//                                 title: "Create Account Failed",
+//                                 showConfirmButton: false,
+//                                 timer: 2500,
+//                             });
+//                         }
+//
+//                     })
+//             }else{
+//                 MySwal.fire({
+//                     icon: "error",
+//                     title: "username or password false",
+//                     showConfirmButton: false,
+//                     timer: 2500,
+//                 });
+//             }
+//
+//             // setTimeout(() => {
+//             //     this.props.history.push("/pages/login")
+//             //     this.setState({ loading: false })
+//             // }, 2000)
+//         }
+//     };
+
+const Register = () => {
+    const history = useHistory();
+
+    const [username, setUsername] = useState("");
+    const [noHp, setNoHp] = useState("")
+    const [alamat, setAlamat] = useState("")
+    const [ktp, setKtp] = useState("")
+    const [password, setPassword] = useState("");
+    const [email, setEmail] = useState("");
+    const [repassword, setRepassword] = useState("");
+
+    const validation = async () => {
+        const variables={
+            username,noHp, alamat, ktp,email,password
         }
-    }
 
-    componentDidMount() {
-        // try {
-        //     const json = localStorage.getItem("users")
-        //     const users = JSON.parse(json);
-        //     if (users) {
-        //         this.setState(() => ({ users }))
-        //     }
-        // } catch (e) {
-        // }
-    };
-
-    // componentDidUpdate(prevState, preProps) {
-    //     if (preProps.users.length !== this.state.users.length) {
-    //         const json = JSON.stringify(this.state.users);
-    //         localStorage.setItem("users", json);
-    //     }
-    // }
-
-    handleOnchange = e => this.setState({ [e.target.name]: e.target.value });
-
-    handleSignUp = event => {
-        event.preventDefault()
-        this.setState({ loading: true });
-        const { username, noHp, alamat, ktp, email, password } = this.state;
-        if (!username.length || !noHp.length || !alamat.length || !ktp.length || !email.length || !password.length) {
-            this.setState({ error: "Please Fill Out All The Details !! ", loading: false })
-            return false;
-        } else if (password.length < 8) {
-            this.setState({ error: "Password Should Contain At Least 8 Charecters", loading: false })
-            return false;
-        } else {
-            const regesterData = {
-                username: username,
-                noHp: noHp,
-                alamat: alamat,
-                ktp: ktp,
-                email: email,
-                password: password
-            };
-
-
-            this.setState({
-                error: "",
-                username: "",
-                noHp: "",
-                alamat: "",
-                ktp:"",
-                email: "",
-                password: "",
-                users: this.state.users.concat(regesterData)
+        if (!username.length || !noHp.length || !alamat.length || !ktp.length || !email.length || !password.length || !repassword.length){
+            MySwal.fire({
+                icon: "error",
+                title: "Please Fill All The Data",
+                showConfirmButton: false,
+                timer: 1500,
             });
-            // setTimeout(() => {
-            //     this.props.history.push("/login")
-            //     this.setState({ loading: false })
-            // }, 2000)
+        } else if(password === repassword) {
+             axios.post("http://localhost:1717/register/create", variables)
+                 .then((response) => {
+                     if (response.status === 200) {
+                         MySwal.fire({
+                             icon: "success",
+                             title: "Success Create Account",
+                             showConfirmButton: false,
+                             timer: 500,
+                         });
+                         setUsername("");
+                         setNoHp("");
+                         setAlamat("");
+                         setKtp("");
+                         setPassword("");
+                         setRepassword("")
+                         setEmail("")
+                         history.push('/pages/login')
+                     } else {
+                         MySwal.fire({
+                             icon: "warning",
+                             title: "Create Account Failed",
+                             showConfirmButton: false,
+                             timer: 1500,
+                         });
+                     }
 
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-
-            console.log(regesterData)
-
-            axios.post("http://localhost:1717/register/create",regesterData, config)
-                .then(res=>{
-                    console.log(res)
-                })
-
-            setTimeout(() => {
-                this.props.history.push("/pages/login")
-                this.setState({ loading: false })
-            }, 2000)
+                 })
+        } else if (password.length < 8) {
+            MySwal.fire({
+                icon: "error",
+                title: "Password Should Contain At Least 8 Charecters",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+        } else {
+            MySwal.fire({
+                icon: "error",
+                title: "Username or Password is False",
+                showConfirmButton: false,
+                timer: 1500,
+            });
         }
     };
 
-
-    render() {
-
-        const { username, noHp, alamat, ktp, email, password, error, loading } = this.state;
-
-
-        return (
+    return (
             <Fragment>
                 <CSSTransitionGroup
                     component="div"
@@ -140,7 +232,7 @@ class Register extends React.Component {
 
                                             <Row className="divider"/>
                                             <div>
-                                                <Form onSubmit={this.handleSignUp}>
+                                                <Form>
                                                     <Row form>
                                                         <Col lg={12}>
 
@@ -152,8 +244,10 @@ class Register extends React.Component {
                                                                     className="form-control"
                                                                     placeholder="NIK"
                                                                     name="ktp"
-                                                                    onChange={this.handleOnchange}
                                                                     value={ktp}
+                                                                    onChange={(event) => {
+                                                                        setKtp(event.target.value);
+                                                                    }}
                                                                 />
                                                             </FormGroup>
 
@@ -165,8 +259,10 @@ class Register extends React.Component {
                                                                     className="form-control"
                                                                     placeholder="Username"
                                                                     name="username"
-                                                                    onChange={this.handleOnchange}
                                                                     value={username}
+                                                                    onChange={(event) => {
+                                                                        setUsername(event.target.value);
+                                                                    }}
                                                                 />
                                                             </FormGroup>
 
@@ -178,8 +274,10 @@ class Register extends React.Component {
                                                                     className="form-control"
                                                                     placeholder="Address"
                                                                     name="alamat"
-                                                                    onChange={this.handleOnchange}
                                                                     value={alamat}
+                                                                    onChange={(event) => {
+                                                                        setAlamat(event.target.value);
+                                                                    }}
                                                                 />
                                                             </FormGroup>
 
@@ -191,8 +289,10 @@ class Register extends React.Component {
                                                                     className="form-control"
                                                                     placeholder="Number Phone"
                                                                     name="noHp"
-                                                                    onChange={this.handleOnchange}
                                                                     value={noHp}
+                                                                    onChange={(event) => {
+                                                                        setNoHp(event.target.value);
+                                                                    }}
                                                                 />
                                                             </FormGroup>
 
@@ -205,8 +305,10 @@ class Register extends React.Component {
                                                                     className="form-control"
                                                                     placeholder="Email"
                                                                     name="email"
-                                                                    onChange={this.handleOnchange}
                                                                     value={email}
+                                                                    onChange={(event) => {
+                                                                        setEmail(event.target.value);
+                                                                    }}
                                                                 />
                                                             </FormGroup>
 
@@ -216,11 +318,26 @@ class Register extends React.Component {
                                                                     id="password"
                                                                     type="password"
                                                                     className="form-control"
-                                                                    placeholder="password"
+                                                                    placeholder="Password"
                                                                     name="password"
                                                                     autoComplete=''
-                                                                    onChange={this.handleOnchange}
                                                                     value={password}
+                                                                    onChange={(event) => {
+                                                                        setPassword(event.target.value);
+                                                                    }}
+                                                                />
+                                                            </FormGroup>
+
+                                                            <FormGroup>
+                                                                <Input
+                                                                    type="password"
+                                                                    name="passwordrep"
+                                                                    id="examplePasswordRep"
+                                                                    placeholder="Repeat Password here..."
+                                                                    value={repassword}
+                                                                    onChange={(event) => {
+                                                                        setRepassword(event.target.value);
+                                                                    }}
                                                                 />
                                                             </FormGroup>
 
@@ -258,11 +375,22 @@ class Register extends React.Component {
                                                     {/*    </div>*/}
                                                     {/*</div>*/}
 
+                                                    {/*<div className="text-center">*/}
+                                                    {/*    <button disabled={loading} className="btn btn-primary btn-block" >Sign Up</button>*/}
+                                                    {/*</div>*/}
+
                                                     <div className="text-center">
-                                                        <button disabled={loading} className="btn btn-primary btn-block" >Sign Up</button>
+                                                        <Button
+                                                            color="primary"
+                                                            className="btn-wide btn-pill btn-shadow btn-hover-shine"
+                                                            size="lg"
+                                                            onClick={()=>validation()}
+                                                        >
+                                                            Create Account
+                                                        </Button>
                                                     </div>
                                                 </Form>
-                                                {error && <p className="text-danger mt-3 mb-2 text-center">{error}</p>}
+                                                {/*{error && <p className="text-danger mt-3 mb-2 text-center">{error}</p>}*/}
 
                                                 <h6 className="mt-3">
                                                     Have an account?{' '}
@@ -280,7 +408,6 @@ class Register extends React.Component {
                     </div>
                 </CSSTransitionGroup>
             </Fragment>);
-    }
 }
 
 export default Register
