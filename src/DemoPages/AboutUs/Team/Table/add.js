@@ -36,10 +36,10 @@ const AddMember = (props) => {
             }
         }
 
-        axios.post("http://localhost:1221/team/save", formData, config)
-            .then(props.tampil)
+        axios.post("http://localhost:1717/team/save", formData, config)
+            .then(props.tampil).catch()
 
-        // axios.post("http://localhost:1221/team/save", formData, config)
+        // axios.post("http://localhost:1717/team/save", formData, config)
         //     .then(res => {
         //         this.getDataKurir().then(response => {
         //             this.setState({ dataTable:response })
@@ -48,6 +48,7 @@ const AddMember = (props) => {
 
         props.onChangeToggle(false)
         props.tampil();
+        setImg("")
     }
 
     const imagePreview = (e)=>{

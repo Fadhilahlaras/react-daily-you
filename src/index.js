@@ -6,7 +6,7 @@ import * as serviceWorker from './serviceWorker';
 
 import { HashRouter } from 'react-router-dom';
 import './assets/base.scss';
-import Main from './DemoPages/Main';
+import Main from "../src/Layout/AppMain"
 import configureStore from './config/configureStore';
 import { Provider } from 'react-redux';
 
@@ -38,7 +38,7 @@ serviceWorker.unregister();
 
 
 // let initOptions = {
-//     url: 'https://siska.prosigmaka.com/auth', client: 'gen4-client', realm: 'gen4', onLoad: 'login-required'
+//     url: 'https://localhost:8080/auth', client: 'dailyyou-client', realm: 'daily', onLoad: 'login-required'
 // }
 //
 //
@@ -53,7 +53,7 @@ serviceWorker.unregister();
 //     }
 //
 //     //React Render
-//     ReactDOM.render(<Main />, document.getElementById('root'));
+//     ReactDOM.render(<App />, document.getElementById('root'));
 //
 //     localStorage.setItem("react-token", keycloak.token);
 //     localStorage.setItem("react-refresh-token", keycloak.refreshToken);

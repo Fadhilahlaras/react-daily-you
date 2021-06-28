@@ -11,6 +11,7 @@ import {
     setEnableMobileMenu,
     setEnableMobileMenuSmall,
 } from '../../reducers/ThemeOptions';
+import {Link} from "react-router-dom";
 
 class HeaderLogo extends React.Component {
     constructor(props) {
@@ -55,7 +56,9 @@ class HeaderLogo extends React.Component {
                 {/*    </div>*/}
                 {/*</div>*/}
                 <div>
-                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1}/>
+                    <Link to={"/home/dashboard"}>
+                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home/dashboard"/>
+                    </Link>
                 </div>
                 <AppMobileMenu/>
             </Fragment>

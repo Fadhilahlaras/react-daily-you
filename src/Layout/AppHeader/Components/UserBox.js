@@ -33,7 +33,7 @@ class UserBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: false,
+            active: false
         };
 
     }
@@ -78,6 +78,7 @@ class UserBox extends React.Component {
                                 {/*                            <div className="widget-content-left">*/}
                                 {/*                                <div className="widget-heading">*/}
                                 {/*                                    Alina Mcloughlin*/}
+                                {this.state.name}
                                 {/*                                </div>*/}
                                 {/*                                <div className="widget-subheading opacity-8">*/}
                                 {/*                                    A short profile description*/}

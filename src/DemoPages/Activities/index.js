@@ -20,17 +20,8 @@ import {
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import AppHeader from "../../Layout/AppHeader";
 import AppFooter from "../../Layout/AppFooter";
-import Galeri from "../AboutUs/Galeri";
-import {Link} from "react-router-dom";
-import {IoIosCart} from "react-icons/io";
-import bg2 from "../../assets/utils/images/dropdown-header/city2.jpg";
-import avatar5 from "../../assets/utils/images/avatars/5.jpg";
-import bg1 from "../../assets/utils/images/dropdown-header/abstract1.jpg";
-import avatar3 from "../../assets/utils/images/avatars/4.jpg";
-import avatar4 from "../../assets/utils/images/avatars/3.jpg";
-import prodemy1 from "../../assets/utils/images/prodemy/prodemy4_1.jpg";
-import prodemy2 from "../../assets/utils/images/prodemy/prodemy4_2.jpg";
-import prodemy3 from "../../assets/utils/images/prodemy/prodemy4_3.jpg";
+import bg1 from "../../assets/utils/images/originals/city.jpg";
+
 
 
 class Activities extends Component {
@@ -72,7 +63,30 @@ class Activities extends Component {
                     <div className="app-main">
                         <div className="app-main__inner">
                         <Container fluid>
-                            <Card tabs="true" className="mb-3">
+                            <Row>
+                                <Col md="12">
+
+                                    <div
+                                        className="p-5 bg-plum-plate">
+                                        <div className="slide-img-bg"
+                                             style={{
+                                                 fade: true,
+                                                 backgroundImage: 'url(' + bg1 + ')',
+                                                 color: "white", textAlign: "center"
+                                             }}/>
+                                        <div className="slider-content" style={{
+                                            color: "white", textAlign: "center"
+                                        }}>
+                                            <h3>Activities</h3>
+                                        </div>
+                                    </div>
+
+                                </Col>
+
+                            </Row>
+                            <Row>
+                                <Col md="12">
+                                    <Card tabs="true" className="mb-3">
                                 <CardHeader>
                                     <Nav justified>
                                         <NavItem>
@@ -188,6 +202,8 @@ class Activities extends Component {
                             {/*        </Card>*/}
                             {/*    </Col>*/}
                             {/*</Row>*/}
+                                </Col>
+                            </Row>
                         </Container>
 
                         <AppFooter/>

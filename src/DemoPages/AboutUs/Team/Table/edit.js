@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
     Button,
     Form,
@@ -22,7 +22,7 @@ const EditMember = (props) => {
     const [email, setEmail] = useState(props.data.email)
     const [note, setNote] = useState(props.data.note)
     const [pictureUrl, setPictureUrl] = useState(props.data.pictureUrl)
-    const [img, setImg] = useState()
+    const [img, setImg] = useState("data:/image/*'base64," + props.pictureUrl)
 
 
     const onSubmit = (e) => {
@@ -49,10 +49,10 @@ const EditMember = (props) => {
             }
         }
 
-        axios.post("http://localhost:1221/team/save", formData, config)
+        axios.post("http://localhost:1717/team/save", formData, config)
             .then(()=>{tampil()})
 
-        // axios.post("http://localhost:1221/team/save", formData, config)
+        // axios.post("http://localhost:1717/team/save", formData, config)
         //     .then(res => {
         //         this.getDataKurir().then(response => {
         //             this.setState({ dataTable:response })
@@ -73,6 +73,10 @@ const EditMember = (props) => {
 
     const tampil = () =>{props.tampil()}
 
+    useEffect(() => {
+        tampil()
+    }, [])
+
     return (
         <>
             <span className="d-inline-block mb-2 mr-2">
@@ -84,7 +88,7 @@ const EditMember = (props) => {
                                                         <Label>Name</Label>
                                                         <Input type="text" name="name" id="name"
                                                                placeholder={props.data.name} onChange={(e) => {
-                                                                   setName(name == null ? props.data.name : name)
+                                                                   setName(e.target.value)
                                                         }}/>
                                                     </FormGroup>
 
