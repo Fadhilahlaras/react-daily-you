@@ -7,40 +7,26 @@ import { IoIosCalendar } from "react-icons/io";
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import {
-    DropdownToggle, DropdownMenu,
-    Nav, Col, Row, Button, NavItem, NavLink,
-    UncontrolledTooltip, UncontrolledButtonDropdown
+    DropdownToggle, Button, DropdownItem, UncontrolledDropdown, DropdownMenu
 } from 'reactstrap';
 
-import {
-    toast,
-    Bounce
-} from 'react-toastify';
-
-
-import {
-    faAngleDown,
-
-} from '@fortawesome/free-solid-svg-icons';
-
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-
-import city3 from '../../../assets/utils/images/dropdown-header/city3.jpg';
-import avatar1 from '../../../assets/utils/images/avatars/1.jpg';
 import {Link} from "react-router-dom";
+import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class UserBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            active: false
-        };
+            active: false,
+            username: localStorage.getItem("username")
 
+        };
     }
 
-    // const logout = (e) => {
-    //     localStorage.clear()
-    // }
+    logout() {
+        localStorage.clear()
+    }
 
 
     render() {
@@ -51,12 +37,52 @@ class UserBox extends React.Component {
                     <div className="widget-content p-0">
                         <div className="widget-content-wrapper">
                             <div className="widget-content-left">
-                                <Link to="/pages/login" style={{textDecoration: "none"}}>
-                                    <Button className="mb-2 mr-2 btn-icon btn-pill" outline color="primary">
-                                        <i className="pe-7s-add-user btn-icon-wrapper"> </i>
-                                        Login
-                                    </Button>
-                                </Link>
+                                {(() => {
+                                    if (localStorage.getItem("roles") === null) {
+                                        return (
+                                            <Link to="/pages/login" style={{textDecoration: "none"}}>
+                                                <Button className="mb-2 mr-2 btn-icon btn-pill" outline color="primary">
+                                                    <i className="pe-7s-add-user btn-icon-wrapper"> </i>
+                                                    Login
+                                                </Button>
+                                            </Link>
+                                        )
+                                    } else if (localStorage.getItem("roles").includes("ROLE_ADMIN")){
+                                        return (
+                                            <UncontrolledDropdown>
+                                                <DropdownToggle>
+                                                    Welcome, {this.state.username}
+                                                    <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
+                                                </DropdownToggle>
+                                                <DropdownMenu>
+                                                    <Link to="/home/dashboard">
+                                                        <DropdownItem style={{textAlign: 'center'}}>View Profile</DropdownItem>
+                                                    </Link>
+                                                    <Link to="/home/dashboard">
+                                                        <DropdownItem type="submit" style={{textAlign: 'center'}} onClick={this.logout}>Logout</DropdownItem>
+                                                    </Link>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
+                                        )
+                                    } else if (localStorage.getItem("roles").includes("ROLE_USER")){
+                                        return (
+                                            <UncontrolledDropdown>
+                                                <DropdownToggle>
+                                                    Welcome, {this.state.username}
+                                                    <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
+                                                </DropdownToggle>
+                                                <DropdownMenu>
+                                                    <Link to="/pages/profile">
+                                                        <DropdownItem style={{textAlign: 'center'}}>View Profile</DropdownItem>
+                                                    </Link>
+                                                    <Link to="/home/dashboard">
+                                                        <DropdownItem type="submit" style={{textAlign: 'center'}} onClick={this.logout}>Logout</DropdownItem>
+                                                    </Link>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
+                                        )
+                                    }
+                                })()}
                             </div>
                         </div>
                     </div>
