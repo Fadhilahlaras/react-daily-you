@@ -1,8 +1,6 @@
 import React, {Fragment} from 'react';
 import {connect} from 'react-redux';
-import logo from '../../assets/utils/images/daily.jpg';
-
-import { Slider } from 'react-burgers'
+import logo from '../../assets/utils/images/daily-you.png';
 
 import AppMobileMenu from '../AppMobileMenu';
 

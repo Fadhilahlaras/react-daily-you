@@ -5,6 +5,7 @@ import {Route} from 'react-router-dom';
 
 import Login from './Login/';
 import Register from './Register/';
+import Profile from './UserProfile/';
 
 const UserPages = ({match}) => (
     <Fragment>
@@ -14,6 +15,7 @@ const UserPages = ({match}) => (
 
             <Route path={`${match.url}/login`} component={Login}/>
             <Route path={`${match.url}/register`} component={Register}/>
+            <Route path={`${match.url}/profile`} component={Profile}/>
         </div>
     </Fragment>
 );

@@ -1,53 +1,50 @@
-import React, {useEffect, useState} from 'react'
-import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-
-const UserProfile = (props) => {
-
-    const [currentUser, setCurrentUser] = useState(null)
-
-    useEffect( () => {
-
-        const user = localStorage.getItem("currentUser");
-        setCurrentUser(JSON.parse(user));
-    },[])
+import React, {Component, Fragment} from 'react'
+import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
+import AppHeader from "../../../Layout/AppHeader";
+import {Button, Col, Form, FormGroup, Input, Row} from "reactstrap";
 
 
+class UserProfile extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            active: false,
+            username: localStorage.getItem("username"),
+            email: localStorage.getItem("email")
+        };
+    }
 
-    return (
-        <span className="d-inline-block mb-2 mr-2">
-            <Modal isOpen={props.modal} toggle={props.toggle} className={props.className}>
-                <ModalHeader>
-
-                </ModalHeader>
-                <ModalBody>
-                    <h1 className="text-center mt-4">Information User</h1>
-                    {currentUser && (
-                        <div className="row">
-                            <div className="col-lg-4"></div>
-                            <div className="col-lg-4">
-                                <div className="card card-body">
-                                    <ul>
-                                        <li><b>NIK:</b> {currentUser.ktp}</li>
-                                        <li><b>Username:</b> {currentUser.username}</li>
-                                        <li><b>Address:</b> {currentUser.alamat}</li>
-                                        <li><b>Phone Number:</b> {currentUser.noHp}</li>
-                                        <li><b>Email:</b> {currentUser.email}</li>
-
-                                    </ul>
+    render() {
+        const { currentUser } = this.state;
+        return (
+            <Fragment>
+                <CSSTransitionGroup
+                    component="div"
+                    transitionName="TabsAnimation"
+                    transitionAppear={true}
+                    transitionAppearTimeout={0}
+                    transitionEnter={false}
+                    transitionLeave={false}>
+                    <AppHeader/>
+                    <div className="app-main">
+                        <div className="container">
+                            <h1 className="text-center mt-4">User Profile Information</h1>
+                            <div className="modal-dialog w-100 mx-auto">
+                                <div className="modal-content">
+                                    <div className="modal-body">
+                                        <div className="h5 modal-title text-justify">
+                                            <h5> Username : {this.state.username} </h5>
+                                            <h5> Email : {this.state.email} </h5>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    )}
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="link" onClick={()=> {
-                        props.onChangeToggle(false)
-                    }}>Close</Button>
-                </ModalFooter>
-                </Modal>
-        </span>
-    )
-
+                    </div>
+                </CSSTransitionGroup>
+            </Fragment>
+        )
+    }
 }
 
 export default UserProfile;
