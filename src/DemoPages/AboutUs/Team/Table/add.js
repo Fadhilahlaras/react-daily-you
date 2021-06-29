@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import axios from "axios";
+
 import {Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
 const AddMember = (props) => {
@@ -15,6 +16,8 @@ const AddMember = (props) => {
 
     const onSubmit = (e) => {
         const formData = new FormData();
+
+        {/*A method to converts a JavaScript object or value to a JSON string*/}
         const json = JSON.stringify({
             "name": name,
             "address":  address,
@@ -24,6 +27,8 @@ const AddMember = (props) => {
             "email": email,
             "note": note,
         });
+
+
         const blobDoc = new Blob([json], {
             type: 'application/json'
         });
@@ -38,13 +43,6 @@ const AddMember = (props) => {
 
         axios.post("http://localhost:1717/team/save", formData, config)
             .then(props.tampil).catch()
-
-        // axios.post("http://localhost:1717/team/save", formData, config)
-        //     .then(res => {
-        //         this.getDataKurir().then(response => {
-        //             this.setState({ dataTable:response })
-        //         })
-        //     })
 
         props.onChangeToggle(false)
         props.tampil();

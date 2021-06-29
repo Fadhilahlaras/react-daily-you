@@ -1,4 +1,6 @@
 import React, {Fragment, useState, useEffect} from "react";
+import axios from "axios";
+
 import {
     Card,
     CardBody,
@@ -8,7 +10,7 @@ import {
     Col,
     CardFooter
 } from "reactstrap";
-import axios from "axios";
+
 
 const CardTeam = (props) => {
 

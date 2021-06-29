@@ -3,9 +3,11 @@ import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import axios from "axios";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {IoIosAddCircle} from "react-icons/all";
 import {faTrash, faEdit, faFilePdf, faFileExcel} from "@fortawesome/free-solid-svg-icons";
 
-import AppHeader from "../../../../Layout/AppHeader";
+import ReactTable from "react-table";
+
 import AppFooter from "../../../../Layout/AppFooter";
 
 import {
@@ -13,14 +15,14 @@ import {
     Card, CardBody, Button, CardTitle, Container
 } from 'reactstrap';
 
-import ReactTable from "react-table";
 import EditMember from "./edit";
 import AddMember from "./add";
 import Delete from "./delete";
-import bg1 from "../../../../assets/utils/images/originals/city.jpg";
-import {IoIosAddCircle} from "react-icons/all";
 
-const TableMember = (props) => {
+import bg1 from "../../../../assets/utils/images/originals/city.jpg";
+
+const TableMember = () => {
+
     const [dataTable, setDataTable] = useState([])
     const [modalEdit, setModalEdit] = useState(false)
     const [modalAdd, setModalAdd] = useState(false)
@@ -31,19 +33,8 @@ const TableMember = (props) => {
     // const [image, setImage] = useState("")
 
     useEffect(() => {
-
-
-        // axios.get("http://localhost:1717/team/getImage/" + props.id).then(res => {
-        //     setImage(res.data)
-        //     //console.log(imageArrayPath[index])
-        // })
-
-        axios.get("http://localhost:1717/team")
-            .then(res => {
-                setDataTable(res.data)
-            }).catch();
+        tampil()
     }, [del])
-
 
     const tampil = () =>{
         axios.get("http://localhost:1717/team")
@@ -51,7 +42,6 @@ const TableMember = (props) => {
                 setDataTable(res.data)
             }).catch();
     }
-
 
     const toggleAdd = () => {
         setModalAdd(!modalAdd)
@@ -110,7 +100,7 @@ const TableMember = (props) => {
             document.body.appendChild(link);
             link.click();
         });
-    };
+    }
 
     const getEXCEL = async () => {
         await axios({
@@ -126,7 +116,7 @@ const TableMember = (props) => {
             console.log(document.body.appendChild(link))
             link.click();
         });
-    };
+    }
 
     return (
         <Fragment>
@@ -137,7 +127,7 @@ const TableMember = (props) => {
                 transitionAppearTimeout={0}
                 transitionEnter={false}
                 transitionLeave={false}>
-                <AppHeader/>
+
 
                 <div className="app-main">
                     <div className="app-main__inner">
@@ -160,21 +150,20 @@ const TableMember = (props) => {
                                                     <h3>Team Member</h3>
                                                 </div>
                                             </div>
-
-
                                         </CardBody>
                                     </Card>
-
                                 </Col>
-
                             </Row>
+
                             <Row>
                                 <Col md="12">
                                     <Card className="main-card mb-3">
                                         <CardBody>
+
                                             <Button outline className="mb-2 mr-2 btn-pill" color="primary" onClick={(e) => {
                                                 toggleAdd()
                                             }}><IoIosAddCircle size={17}/>Add New Member</Button>
+
                                             <ReactTable
                                                 data={dataTable}
                                                 filterable
@@ -271,6 +260,7 @@ const TableMember = (props) => {
                                     }} tampil={()=> {
                                         tampil()
                                     }} modal={modalEdit} data={dataa} pictureUrl={pictureUrl} onChangeToggle={onChangeToggleEdit} />
+
                                     <AddMember toggle={() => {
                                         toggleAdd()
                                     }} modal={modalAdd} onChangeToggle={onChangeToggleAdd} tampil = {()=>{tampil()}}/>
@@ -291,4 +281,4 @@ const TableMember = (props) => {
     )
 }
 
-export default TableMember;
+export default TableMember

@@ -1,38 +1,18 @@
-import React, {useEffect, useState} from "react";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTrashAlt, faCheck, faEllipsisH} from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+
 import {
     Button,
-    Card,
-    CardBody,
-    CardTitle,
-    Col,
-    Form,
-    FormGroup,
-    FormText,
-    Input,
-    Label,
     ListGroup,
     ListGroupItem,
-    CustomInput,
-    Dropdown,
-    DropdownItem,
-    DropdownMenu,
-    DropdownToggle,
     Modal,
     ModalBody,
     ModalFooter,
     ModalHeader,
-    Row
 } from "reactstrap";
+
 import bg2 from "../../../assets/utils/images/dropdown-header/abstract2.jpg";
 
-
 const ModalAja1 = (props) => {
-
-    // useEffect(() => {
-    //     getOptions()
-    // })
 
     return (
         <span className="d-inline-block mb-2 mr-2">
@@ -113,6 +93,7 @@ const ModalAja1 = (props) => {
                 <ModalFooter>
                     <Button color="link" onClick={props.toggle}>Close</Button>
                 </ModalFooter>
+
                 </Modal>
         </span>
     )

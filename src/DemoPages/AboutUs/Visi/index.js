@@ -1,25 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
+
 import {
     Button,
-    Card,
-    CardBody,
-    CardTitle, Col,
-    Form,
-    FormGroup, FormText, Input, Label,
     Modal,
     ModalBody,
     ModalFooter,
-    ModalHeader, Row
+    ModalHeader
 } from "reactstrap";
 
 import bg4 from "../../../assets/utils/images/dropdown-header/abstract4.jpg";
 
 
 const ModalAja = (props) => {
-
-    // useEffect(() => {
-    //     getOptions()
-    // })
 
     return (
         <span className="d-inline-block mb-2 mr-2">

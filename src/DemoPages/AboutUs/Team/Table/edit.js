@@ -1,4 +1,6 @@
 import React, {useState, useEffect} from "react";
+import axios from "axios";
+
 import {
     Button,
     Form,
@@ -10,8 +12,6 @@ import {
     ModalFooter,
     ModalHeader
 } from "reactstrap";
-import axios from "axios";
-
 
 const EditMember = (props) => {
     const [name, setName] = useState(props.data.name)
@@ -51,13 +51,6 @@ const EditMember = (props) => {
 
         axios.post("http://localhost:1717/team/save", formData, config)
             .then(()=>{tampil()})
-
-        // axios.post("http://localhost:1717/team/save", formData, config)
-        //     .then(res => {
-        //         this.getDataKurir().then(response => {
-        //             this.setState({ dataTable:response })
-        //         })
-        //     })
 
         props.onChangeToggle(false)
         setImg("");

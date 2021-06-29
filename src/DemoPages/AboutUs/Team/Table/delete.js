@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import {Button, CardTitle, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
-import {IoIosSettings} from "react-icons/io";
-import Select from "react-select";
+
+import {Button, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
+
 
 const Delete = (props) => {
 

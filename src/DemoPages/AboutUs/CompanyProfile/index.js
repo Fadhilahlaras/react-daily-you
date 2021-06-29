@@ -2,6 +2,7 @@ import React, {Fragment, Component} from "react";
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 
 import Slider from "react-slick";
+import {Link} from "react-router-dom";
 
 import {
     Col,
@@ -10,12 +11,10 @@ import {
 } from 'reactstrap';
 
 import AppFooter from "../../../Layout/AppFooter";
-import {Link} from "react-router-dom";
 
 import bg1 from "../../../assets/utils/images/dropdown-header/abstract1.jpg";
 import bg2 from "../../../assets/utils/images/dropdown-header/abstract2.jpg";
 import bg3 from "../../../assets/utils/images/dropdown-header/abstract6.jpg";
-import bg4 from "../../../assets/utils/images/dropdown-header/abstract5.jpg";
 
 import pro1 from "../../../assets/utils/images/prodemy/prodemy4_1.jpg";
 import pro2 from "../../../assets/utils/images/prodemy/prodemy4_7.jpg";
@@ -29,31 +28,37 @@ export default class CompanyProfile extends Component {
 
     constructor() {
         super();
+
+        {/*Menyimpan data di dalam komponen*/}
         this.state = {
             modal: false,
             modal1: false
         };
+
+        {/* Mendeklarasikan data yang ada di toogle ketika diklik adalah toggle yang dituju */}
         this.toggle = this.toggle.bind(this);
         this.toggle1 = this.toggle1.bind(this);
     }
 
     toggle() {
+        {/* Sebagai event handler */}
+        {/* Mengubah nilai pada state */}
         this.setState({
             modal: !this.state.modal,
-            // ini: dat.id,
         });
     }
 
     toggle1() {
+        {/* Sebagai event handler */}
+        {/* Mengubah nilai pada state */}
         this.setState({
             modal1: !this.state.modal1,
-
         });
     }
 
     render() {
 
-
+        {/* Deklarasi var setting */}
         let settings = {
             dots: true,
             infinite: true,
@@ -65,14 +70,13 @@ export default class CompanyProfile extends Component {
             initialSlide: 0,
             autoplay: true,
             adaptiveHeight: true
-
         };
-
 
         return (
 
-
             <Fragment>
+
+                {/*Efek transisi*/}
                 <CSSTransitionGroup
                     component="div"
                     transitionName="TabsAnimation"
@@ -113,6 +117,7 @@ export default class CompanyProfile extends Component {
                                                     </p>
                                                 </div>
                                             </div>
+
                                             <div
                                                 className="h-100 d-flex justify-content-center align-items-center bg-sunny-morning">
                                                 <div className="slide-img-bg opacity-6"
@@ -128,7 +133,6 @@ export default class CompanyProfile extends Component {
                                             </div>
                                         </Slider>
                                     </div>
-
                                 </Col>
                                 <Col lg="8" md="12"
                                      className="h-100 d-flex bg-white justify-content-center align-items-center">
@@ -139,7 +143,6 @@ export default class CompanyProfile extends Component {
                                         </h4>
 
                                         <div>
-
                                             <FormText style={{
                                                 textAlign: 'justify',
                                                 color: '#1B3D6C',
@@ -158,21 +161,23 @@ export default class CompanyProfile extends Component {
 
                                         <div>
                                             <Row>
-                                                <Col sm="4" md="1" xl="4">
 
+                                                {/*Card Visi*/}
+                                                <Col sm="4" md="1" xl="4">
                                                     <Card className="mb-3 profile-block" onClick={this.toggle}>
                                                         <div className="dropdown-menu-header">
                                                             <img src={bg1} alt=""
                                                                  className="profile-blur opacity-10"/>
                                                             <div className="profile-inner bg-warning opacity-5"/>
                                                             <div className="menu-header-content">
-                                                                {/*<Link to="/cart" style={{textDecoration:"none"}}>Visi</Link>*/}
                                                                 <h5 className="menu-header-title">Visi</h5>
                                                             </div>
                                                         </div>
                                                     </Card>
 
                                                 </Col>
+
+                                                {/*Card Misi*/}
                                                 <Col sm="4" md="1" xl="4">
                                                     <Card className="mb-3 profile-block" onClick={this.toggle1}>
                                                         <div className="dropdown-menu-header">
@@ -185,6 +190,8 @@ export default class CompanyProfile extends Component {
                                                         </div>
                                                     </Card>
                                                 </Col>
+
+                                                {/*Card Team*/}
                                                 <Col sm="4" md="1" xl="4">
                                                     <Link to="/about/team" style={{textDecoration: "none"}}>
                                                         <Card className="mb-3 profile-block">
@@ -198,32 +205,14 @@ export default class CompanyProfile extends Component {
                                                             </div>
                                                         </Card>
                                                     </Link>
-
                                                 </Col>
-                                            </Row>
-                                            {/*<Row>*/}
-                                            {/*    <Col md="1" xl="12">*/}
-                                            {/*        <Link to="/galeri" style={{textDecoration: "none"}}>*/}
-                                            {/*            <Card className="mb-3 profile-block">*/}
-                                            {/*                <div className="dropdown-menu-header">*/}
-                                            {/*                    <img src={bg4} alt=""*/}
-                                            {/*                         className="profile-blur opacity-10"/>*/}
-                                            {/*                    <div className="profile-inner bg-dark opacity-6"/>*/}
-                                            {/*                    <div className="menu-header-content">*/}
-                                            {/*                        <h5 className="menu-header-title">Galeri</h5>*/}
-                                            {/*                    </div>*/}
-                                            {/*                </div>*/}
-                                            {/*            </Card>*/}
-                                            {/*        </Link>*/}
 
-                                            {/*    </Col>*/}
-                                            {/*</Row>*/}
+                                            </Row>
                                         </div>
 
                                     </Col>
                                 </Col>
                             </Row>
-
                         </Row>
 
                         <AppFooter/>
@@ -231,9 +220,10 @@ export default class CompanyProfile extends Component {
                     </div>
 
 
-
+                    {/*Memanggil Modal*/}
                     <ModalAja toggle={this.toggle} modal={this.state.modal} />
                     <ModalAja1 toggle={this.toggle1} modal={this.state.modal1} />
+
                 </CSSTransitionGroup>
             </Fragment>
         );
