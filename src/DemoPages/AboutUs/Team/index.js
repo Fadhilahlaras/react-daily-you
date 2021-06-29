@@ -53,7 +53,7 @@ const Team = () => {
                                         <div className="slider-content" style={{
                                             color: "white", textAlign: "center"
                                         }}>
-                                            <h3>Team Member</h3>
+                                            <h3>Meet The Team</h3>
                                         </div>
                                     </div>
 

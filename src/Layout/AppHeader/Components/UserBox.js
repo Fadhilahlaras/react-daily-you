@@ -56,7 +56,7 @@ class UserBox extends React.Component {
                                                     <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
                                                 </DropdownToggle>
                                                 <DropdownMenu>
-                                                    <Link to="/pages/profile">
+                                                    <Link to="/pages/profileAdmin">
                                                         <DropdownItem style={{textAlign: 'center'}}>View Profile</DropdownItem>
                                                     </Link>
                                                     <Link to="/home/dashboard">
@@ -73,7 +73,7 @@ class UserBox extends React.Component {
                                                     <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
                                                 </DropdownToggle>
                                                 <DropdownMenu>
-                                                    <Link to="/pages/profile">
+                                                    <Link to="/pages/profileUser">
                                                         <DropdownItem style={{textAlign: 'center'}}>View Profile</DropdownItem>
                                                     </Link>
                                                     <Link to="/home/dashboard">

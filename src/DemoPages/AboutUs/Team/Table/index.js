@@ -147,7 +147,7 @@ const TableMember = () => {
                                                 <div className="slider-content" style={{
                                                     color: "white", textAlign: "center"
                                                 }}>
-                                                    <h3>Team Member</h3>
+                                                    <h3>Team Daily You</h3>
                                                 </div>
                                             </div>
                                         </CardBody>

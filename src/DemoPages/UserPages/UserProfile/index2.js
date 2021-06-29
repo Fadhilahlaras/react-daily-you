@@ -1,10 +1,12 @@
-import React, {Fragment} from 'react'
+import React, {Component, Fragment} from 'react'
 import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
-import AppHeader from "../../../Layout/AppHeader";
+import AppHeader2 from "../../../Layout/AppHeader/index3";
+
+import decode from "jwt-decode";
 
 
 
-class UserProfile extends React.Component {
+class UserProfile2 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -24,7 +26,7 @@ class UserProfile extends React.Component {
                     transitionAppearTimeout={0}
                     transitionEnter={false}
                     transitionLeave={false}>
-                    <AppHeader/>
+                    <AppHeader2/>
                     <div className="app-main">
                         <div className="container">
                             <h1 className="text-center mt-4">User Profile Information</h1>
@@ -46,4 +48,4 @@ class UserProfile extends React.Component {
     }
 }
 
-export default UserProfile;
+export default UserProfile2;
