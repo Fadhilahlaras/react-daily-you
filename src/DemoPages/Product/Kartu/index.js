@@ -16,7 +16,7 @@ const ThisCard = (props) => {
 
 
     useEffect(() => {
-            axios.get('http://localhost:2222/api/product/getImage/' + props.id).then(res => {
+            axios.get('http://localhost:1717/api/product/getImage/' + props.id).then(res => {
                 setImg(res.data)
             })
         }, []
@@ -54,7 +54,7 @@ const ThisCard = (props) => {
 
 
         console.log(formData)
-        axios.post("http://localhost:2222/api/cart", json)
+        axios.post("http://localhost:1717/api/cart", json)
             .then(res => console.log(res.data))
 
     }

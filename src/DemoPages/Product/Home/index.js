@@ -12,7 +12,7 @@ const Home = ({match}) => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2222/api/product").then(res => {
+        axios.get("http://localhost:1717/api/product").then(res => {
             setDataCard(res.data)
 
             console.log(imageArrayPath)

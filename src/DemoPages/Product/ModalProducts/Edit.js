@@ -49,7 +49,7 @@ const Edit = (props) => {
             }
         }
         console.log("ini adalah "+ price)
-        axios.post("http://localhost:2222/api/product/save", formData, config)
+        axios.post("http://localhost:1717/api/product/save", formData, config)
             .then(()=>{tampil()})
 
         props.onChangeToggle(false)
@@ -65,7 +65,7 @@ const Edit = (props) => {
     const tampil = () =>{props.tampil()}
 
     const getOptions = () => {
-        axios.get('http://localhost:2222/api/productcategory', {
+        axios.get('http://localhost:1717/api/productcategory', {
             headers: {'Content-Type': 'application/json'}
         }).then(res => {
             const data = res.data;

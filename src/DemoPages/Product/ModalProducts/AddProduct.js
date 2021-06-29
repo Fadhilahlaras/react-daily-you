@@ -33,7 +33,7 @@ const AddProduct = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        axios.post("http://localhost:2222/api/product/save", formData, config)
+        axios.post("http://localhost:1717/api/product/save", formData, config)
             .then(props.tampil).catch()
 
         props.onChangeToggle(false)
@@ -50,7 +50,7 @@ const AddProduct = (props) => {
 
     const getOptions = () => {
         console.log("why im not around")
-        axios.get('http://localhost:2222/api/productcategory', {
+        axios.get('http://localhost:1717/api/productcategory', {
             headers: {'Content-Type': 'application/json'}
         }).then(res => {
             const data = res.data;

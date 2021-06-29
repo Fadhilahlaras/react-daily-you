@@ -1,16 +1,15 @@
 import React, {Fragment, useEffect, useState} from "react";
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
-// import AppHeader from "../../../Layout/AppHeader"
+
 import {Row, CardBody} from "reactstrap";
 import Carousel from "../Carousel/index";
 import bg1 from "../../../assets/utils/images/originals/city.jpg";
 import axios from "axios";
 import Kartu from "../../Product/Kartu"
 
-const Dashboard = () => {
+const DashboardAdm = () => {
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
-    const [modalHome, setModalHome] = useState("")
 
 
     let imageArrayPath = [];
@@ -22,10 +21,6 @@ const Dashboard = () => {
             console.log(res.data)
         })
     }, [])
-
-    const toggleModalHome = () => {
-        setModalHome(!modalHome)
-    }
 
     return(
         <Fragment>
@@ -92,4 +87,4 @@ const Dashboard = () => {
         </Fragment>
     )
 }
-export default Dashboard;
+export default DashboardAdm;

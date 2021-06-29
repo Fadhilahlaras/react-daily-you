@@ -13,7 +13,7 @@ const BodyCare = () => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2222/api/product/category/3").then(res => {
+        axios.get("http://localhost:1717/api/product/category/3").then(res => {
             setDataCard(res.data)
 
             console.log(imageArrayPath)
@@ -22,7 +22,7 @@ const BodyCare = () => {
 
     // useEffect(() => {
     //     dataCard.map((data, index) => {
-    //         axios.get('http://localhost:2222/api/product/getImage/' + data.id).then(res => {
+    //         axios.get('http://localhost:1717/api/product/getImage/' + data.id).then(res => {
     //             imageArrayPath.push(res.data)
     //             console.log(res.data)
     //             console.log("udah ada")

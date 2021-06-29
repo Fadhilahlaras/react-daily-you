@@ -36,7 +36,7 @@ const NewTable = () => {
 
 
     const tampil = () =>{
-        axios.get("http://localhost:2222/api/product")
+        axios.get("http://localhost:1717/api/product")
             .then(res => {
                 setProductData(res.data)
             }).catch();
@@ -54,10 +54,10 @@ const NewTable = () => {
     const toggleEdit = (val) => {
         setModalEdit(!modalEdit)
         console.log('toggle edit oke', val)
-        axios.get('http://localhost:2222/api/product/' + val).then(res => {
+        axios.get('http://localhost:1717/api/product/' + val).then(res => {
             setDataa(res.data)
         })
-        axios.get("http://localhost:2222/api/product/getImage/" + val).then(res => {
+        axios.get("http://localhost:1717/api/product/getImage/" + val).then(res => {
             setPictureUrl(res.data)
             console.log("ini itu picture"+res.data)
         }).catch()
@@ -65,7 +65,7 @@ const NewTable = () => {
 
     const deleteData = (id) => {
         console.log("hai hapus ya")
-        axios.delete('http://localhost:2222/api/product/' + id).then(
+        axios.delete('http://localhost:1717/api/product/' + id).then(
             tampil
         ).catch(err => console.log(err))
         setDel(id)
@@ -86,7 +86,7 @@ const NewTable = () => {
     const getPDF = async () => {
 
         await axios({
-            url: 'http://localhost:2222/getReport',
+            url: 'http://localhost:1717/getReport',
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {
@@ -103,7 +103,7 @@ const NewTable = () => {
 
     const getEXCEL = async () => {
         await axios({
-            url: 'http://localhost:2222/getReportExcel',
+            url: 'http://localhost:1717/getReportExcel',
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {

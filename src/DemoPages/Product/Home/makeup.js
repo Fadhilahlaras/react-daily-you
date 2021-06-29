@@ -13,7 +13,7 @@ const MakeUp = () => {
     let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2222/api/product/category/1").then(res => {
+        axios.get("http://localhost:1717/api/product/category/1").then(res => {
             setDataCard(res.data)
 
             console.log(res.data)

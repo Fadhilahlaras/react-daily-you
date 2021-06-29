@@ -25,7 +25,7 @@ const CartModal = (props) => {
 
 
     const getAllCartData = () => {
-        axios.get('http://localhost:2222/api/cart').then(res => {
+        axios.get('http://localhost:1717/api/cart').then(res => {
             console.log(res.data)
             setCartList(res.data)
             setCheckedState([])
@@ -67,7 +67,7 @@ const CartModal = (props) => {
                 })
         })
 
-        axios.post('http://localhost:2222/api/cart', dataCart)
+        axios.post('http://localhost:1717/api/cart', dataCart)
             .then(
                 getAllCartData
             )
@@ -117,7 +117,7 @@ const CartModal = (props) => {
 
         console.log("checked to delete >> ", checkedState)
         checkedState.map((id) => {
-            axios.delete('http://localhost:2222/api/cart/' + id).then(
+            axios.delete('http://localhost:1717/api/cart/' + id).then(
                 getAllCartData
             ).catch()
         })

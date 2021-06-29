@@ -29,8 +29,7 @@ const Home = ({match}) => {
                         {/*Form Product*/}
                         <Route path={`${match.url}/add-product`} component={AddProduct}/>
 
-                        {/*Table Product*/}
-                        <Route path={`${match.url}/table`} component={NewTable}/>
+
 
                         {/*Home Product*/}
                         <Route path={`${match.url}/home`} component={HomePage}/>

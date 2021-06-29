@@ -9,6 +9,8 @@ import {
 
 const Homepage = lazy(()=> import('../../DemoPages/Homepage'));
 
+const HomepageAdm = lazy(()=> import('../../DemoPages/HomepageAdmin'));
+
 const UserPages = lazy(()=> import('../../DemoPages/UserPages'));
 
 const About = lazy(()=> import('../../DemoPages/AboutUs'));
@@ -57,6 +59,25 @@ const AppMain = () => {
                     </div>
                 }>
                     <Route path="/home" component={Homepage}/>
+                </Suspense>
+
+                {/* Homepage Admin*/}
+
+                <Suspense fallback={
+                    <div className="loader-container">
+                        <div className="loader-container-inner">
+                            <div className="text-center">
+                                <Loader type="ball-spin-fade-loader"/>
+                            </div>
+                            <h6 className="mt-5">
+                                Please wait while we load all the Components examples
+                                <small>Because this is a demonstration we load at once all the Components examples. This
+                                    wouldn't happen in a real live app!</small>
+                            </h6>
+                        </div>
+                    </div>
+                }>
+                    <Route path="/homeAdmin" component={HomepageAdm}/>
                 </Suspense>
 
                 {/* User Pages */}

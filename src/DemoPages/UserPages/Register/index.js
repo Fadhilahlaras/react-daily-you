@@ -22,122 +22,6 @@ import withReactContent from "sweetalert2-react-content";
 
 const MySwal = withReactContent(Swal);
 
-// class Register extends React.Component {
-//     constructor() {
-//         super();
-//         this.state = {
-//             username: '',
-//             noHp: '',
-//             alamat: '',
-//             ktp:'',
-//             email: '',
-//             password: '',
-//             error: null,
-//             users: [],
-//             loading: false
-//         }
-//     }
-//
-//     componentDidMount() {
-//         localStorage.clear();
-//     };
-//
-//     // componentDidUpdate(prevState, preProps) {
-//     //     if (preProps.users.length !== this.state.users.length) {
-//     //         const json = JSON.stringify(this.state.users);
-//     //         localStorage.setItem("users", json);
-//     //     }
-//     // }
-//
-//     handleOnchange = e => this.setState({ [e.target.name]: e.target.value });
-//
-//     handleSignUp = event => {
-//         event.preventDefault()
-//         this.setState({ loading: true });
-//         const { username, noHp, alamat, ktp, email, password, repassword } = this.state;
-//
-//         if (!username.length || !noHp.length || !alamat.length || !ktp.length || !email.length || !password.length) {
-//             this.setState({ error: "Please Fill Out All The Details !! ", loading: false })
-//             return false;
-//         } else if (password.length < 8) {
-//             this.setState({ error: "Password Should Contain At Least 8 Charecters", loading: false })
-//             return false;
-//         } else {
-//             const regesterData = {
-//                 username: username,
-//                 noHp: noHp,
-//                 alamat: alamat,
-//                 ktp: ktp,
-//                 email: email,
-//                 password: password
-//             };
-//
-//
-//             this.setState({
-//                 error: "",
-//                 username: "",
-//                 noHp: "",
-//                 alamat: "",
-//                 ktp:"",
-//                 email: "",
-//                 password: "",
-//                 users: this.state.users.concat(regesterData)
-//             });
-//             // setTimeout(() => {
-//             //     this.props.history.push("/login")
-//             //     this.setState({ loading: false })
-//             // }, 2000)
-//
-//             const config = {
-//                 headers: {
-//                     'Content-Type': 'application/json'
-//                 }
-//             }
-//
-//             console.log(regesterData)
-//
-//             // axios.post("http://localhost:1717/register/create",regesterData, config)
-//             //     .then(res=>{
-//             //         console.log(res)
-//             //     })
-//
-//             if(password === repassword){
-//                 axios.post("http://localhost:1717/register/create", regesterData, config)
-//                     .then((response) => {
-//                         if(response.status === 200){
-//                             MySwal.fire({
-//                                 icon: "success",
-//                                 title: "Success Create Account",
-//                                 showConfirmButton: false,
-//                                 timer: 2500,
-//                             });
-//                             this.props.history.push("/pages/login")
-//                         }else{
-//                             MySwal.fire({
-//                                 icon: "warning",
-//                                 title: "Create Account Failed",
-//                                 showConfirmButton: false,
-//                                 timer: 2500,
-//                             });
-//                         }
-//
-//                     })
-//             }else{
-//                 MySwal.fire({
-//                     icon: "error",
-//                     title: "username or password false",
-//                     showConfirmButton: false,
-//                     timer: 2500,
-//                 });
-//             }
-//
-//             // setTimeout(() => {
-//             //     this.props.history.push("/pages/login")
-//             //     this.setState({ loading: false })
-//             // }, 2000)
-//         }
-//     };
-
 const Register = () => {
     const history = useHistory();
 
@@ -169,7 +53,7 @@ const Register = () => {
                              icon: "success",
                              title: "Success Create Account",
                              showConfirmButton: false,
-                             timer: 500,
+                             timer: 1500,
                          });
                          setUsername("");
                          setNoHp("");

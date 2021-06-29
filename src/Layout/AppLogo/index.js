@@ -54,9 +54,28 @@ class HeaderLogo extends React.Component {
                 {/*    </div>*/}
                 {/*</div>*/}
                 <div>
-                    <Link to={"/home/dashboard"}>
-                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home/dashboard"/>
-                    </Link>
+
+                    {(() => {
+                        if (localStorage.getItem("roles") === null) {
+                            return (
+                                <Link to={"/home/dashboard"}>
+                                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home/dashboard"/>
+                                </Link>
+                            )
+                        } else if (localStorage.getItem("roles").includes("ROLE_ADMIN")) {
+                            return (
+                                <Link to={"/homeAdmin/dashboardAdm"}>
+                                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home/dashboard"/>
+                                </Link>
+                            )
+                        } else if (localStorage.getItem("roles").includes("ROLE_USER"))  {
+                            return (
+                                <Link to={"/home/dashboard"}>
+                                    <img style={{paddingLeft:"40px"}} src={logo} sizes={1} route="/home/dashboard"/>
+                                </Link>
+                            )
+                        }
+                    })()}
                 </div>
                 <AppMobileMenu/>
             </Fragment>

@@ -59,12 +59,12 @@ class FormProduct extends React.Component {
                 'content-type': 'multipart/mixed'
             }
         }
-        axios.post("http://localhost:2222/api/product/save", formData, config)
+        axios.post("http://localhost:1717/api/product/save", formData, config)
             .then(res => console.log(res.data))
     }
 
     async getOptions() {
-        const res = await axios.get('http://localhost:2222/api/productcategory', {
+        const res = await axios.get('http://localhost:1717/api/productcategory', {
             headers: {'Content-Type': 'application/json'}
         }).then()
         const data = res.data

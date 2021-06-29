@@ -15,7 +15,7 @@ const SkinCare = () => {
     // let imageArrayPath = [];
 
     useEffect(() => {
-        axios.get("http://localhost:2222/api/product/category/2").then(res => {
+        axios.get("http://localhost:1717/api/product/category/2").then(res => {
             setDataCard(res.data)
 
         })
@@ -23,7 +23,7 @@ const SkinCare = () => {
 
     // useEffect(() => {
     //     dataCard.map((data, index) => {
-    //         axios.get('http://localhost:2222/api/product/getImage/' + data.id).then(res => {
+    //         axios.get('http://localhost:1717/api/product/getImage/' + data.id).then(res => {
     //             setimages(res.data)
     //             // console.log(res.data)
     //             console.log("udah ada")
@@ -43,7 +43,7 @@ const SkinCare = () => {
     {/*async function getGambar() {*/}
     {/*    dataCard.map((data, index) => {*/}
     {/*        axios({*/}
-    {/*            url: 'http://localhost:2222/api/product/getImage/' + data.id,*/}
+    {/*            url: 'http://localhost:1717/api/product/getImage/' + data.id,*/}
     {/*            method: 'GET',*/}
     {/*            responseType: 'blob', // important*/}
     //         }).then((response) => {

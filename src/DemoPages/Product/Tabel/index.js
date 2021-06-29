@@ -21,7 +21,7 @@ class Tabel extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`http://localhost:2222/api/product`)
+        axios.get(`http://localhost:1717/api/product`)
             .then(res => {
                 this.setState({dataTabel: res.data})
                 console.log(res)
@@ -29,10 +29,10 @@ class Tabel extends React.Component {
     }
 
     async getPDF() {
-        // await axios.get('http://localhost:2222/getReport', {
+        // await axios.get('http://localhost:1717/getReport', {
         //     headers: {'Content-Type': 'application/PDF'}})
         axios({
-            url: 'http://localhost:2222/getReport',
+            url: 'http://localhost:1717/getReport',
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {
@@ -48,9 +48,9 @@ class Tabel extends React.Component {
     };
 
     async getEXCEL() {
-        // await axios.get('http://localhost:2222/getReportExcel')
+        // await axios.get('http://localhost:1717/getReportExcel')
         axios({
-            url: 'http://localhost:2222/getReportExcel',
+            url: 'http://localhost:1717/getReportExcel',
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {
@@ -72,15 +72,15 @@ class Tabel extends React.Component {
     }
 
     hapus = (id) => {
-        axios.delete(`http://localhost:2222/api/product/${id}`).then((response) => {
-            // this.props.push("http://localhost:2222/api/product");
+        axios.delete(`http://localhost:1717/api/product/${id}`).then((response) => {
+            // this.props.push("http://localhost:1717/api/product");
 
         })
     }
 
 
     // editData(){
-    //     // axios.get(`http://localhost:2222/api/product`)
+    //     // axios.get(`http://localhost:1717/api/product`)
     //     //     .then(res => {
     //     //         this.setState({dataTabel: res.data})
     //     //         console.log(res)

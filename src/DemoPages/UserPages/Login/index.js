@@ -7,7 +7,18 @@ import Swal from "sweetalert2";
 
 import Slider from "react-slick";
 
-import {Col, Row, Form, FormGroup, Label} from 'reactstrap';
+import {
+    Col,
+    Row,
+    Form,
+    FormGroup,
+    Label,
+    Button,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem
+} from 'reactstrap';
 import {Link} from "react-router-dom";
 import AppHeader from "../../../Layout/AppHeader";
 
@@ -21,6 +32,8 @@ import AlertKu from "../Alert/index";
 
 import decode from "jwt-decode";
 import withReactContent from "sweetalert2-react-content";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
 
 const MySwal = withReactContent(Swal);
 
@@ -51,21 +64,6 @@ class Login extends Component {
         })
 
         const { username, password, users } = this.state;
-        // if (!username.length || !password.length) {
-        //     this.setState({ error: "Please Fill Out All The Details in Form !!!" })
-        //     return false;
-        // } else {
-        //     users ? users.filter(user => {
-        //         if (user.username !== username || user.password !== password) {
-        //             this.setState({ error: "Invalid Creadetials" })
-        //         } else {
-        //             const json = JSON.stringify(user);
-        //             localStorage.setItem("currentUser", json);
-        //             this.props.history.push("/home");
-        //             window.location.reload();
-        //         }
-        //     }) : this.setState({ error: "No User Found" })
-        // }
 
         const param = new URLSearchParams()
         param.append("username", username)
@@ -95,7 +93,14 @@ class Login extends Component {
                     timer: 1500,
                 });
 
-                this.props.history.push("/home/dashboard");
+                {(() => {
+                    if (localStorage.getItem("roles").includes("ROLE_ADMIN")){
+                        this.props.history.push("/homeAdmin/dashboardAdm");
+                    } else {
+                        this.props.history.push("/home/dashboard");
+                    }
+                })()}
+
             })
             .catch(err=>{
                 MySwal.fire({

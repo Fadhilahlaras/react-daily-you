@@ -47,12 +47,12 @@ const ModalAja = (props) => {
                 'content-type': 'multipart/mixed'
             }
         }
-        axios.post("http://localhost:2222/api/product/save", formData, config)
+        axios.post("http://localhost:1717/api/product/save", formData, config)
             .then(res => console.log(res.data))
     }
 
     const getOptions = async () => {
-        const res = await axios.get('http://localhost:2222/api/productcategory', {
+        const res = await axios.get('http://localhost:1717/api/productcategory', {
             headers: {'Content-Type': 'application/json'}
         })
         const data = res.data
@@ -76,7 +76,7 @@ const ModalAja = (props) => {
 
 
     useEffect(() => {
-        axios.get('http://localhost:2222/api/product/' + props.idPro).then(res => {
+        axios.get('http://localhost:1717/api/product/' + props.idPro).then(res => {
             setData(res.data)
             console.log(res.data)
         })

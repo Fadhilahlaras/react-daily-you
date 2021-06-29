@@ -34,7 +34,7 @@ const TabelBaru = () => {
 
 
     const getAllData = () => {
-        axios.get(`http://localhost:2222/api/product`)
+        axios.get(`http://localhost:1717/api/product`)
             .then(res => {
                 setDataTabel(res.data)
                 console.log(res)
@@ -42,7 +42,7 @@ const TabelBaru = () => {
     }
 
     const getAllImage = (id) => {
-        axios.get(`http://localhost:2222/api/product/getImage/${id}`)
+        axios.get(`http://localhost:1717/api/product/getImage/${id}`)
             .then(res => {
                 setImage(res.data)
                 console.log("IMAGE " + res.data)
@@ -54,7 +54,7 @@ const TabelBaru = () => {
 
 
     const getOptions = async () => {
-        await axios.get('http://localhost:2222/api/productcategory', {
+        await axios.get('http://localhost:1717/api/productcategory', {
             headers: {'Content-Type': 'application/json'}
         }).then(res => {
             const data = res.data;
@@ -73,17 +73,17 @@ const TabelBaru = () => {
 
     const toggleEdit = (id) => {
         setEditModal(!editModal)
-        axios.get('http://localhost:2222/api/product/' + id).then(res => {
+        axios.get('http://localhost:1717/api/product/' + id).then(res => {
             setSingleData(res.data)
         })
-        axios.get("http://localhost:2222/api/product/getImage/" + id).then(res => {
+        axios.get("http://localhost:1717/api/product/getImage/" + id).then(res => {
             setPicture(res.data)
         }).catch()
     }
 
 
     const delData = (id) => {
-        axios.delete('http://localhost:2222/api/product/' + id).then().catch(err => console.log(err))
+        axios.delete('http://localhost:1717/api/product/' + id).then().catch(err => console.log(err))
         setHapus(id)
     }
 
@@ -101,7 +101,7 @@ const TabelBaru = () => {
     const getPDF = async () => {
 
         await axios({
-            url: 'http://localhost:2222/getReport',
+            url: 'http://localhost:1717/getReport',
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {
@@ -118,7 +118,7 @@ const TabelBaru = () => {
 
     const getEXCEL = async () => {
         await axios({
-            url: 'http://localhost:2222/getReportExcel',
+            url: 'http://localhost:1717/getReportExcel',
             method: 'GET',
             responseType: 'blob', // important
         }).then((response) => {

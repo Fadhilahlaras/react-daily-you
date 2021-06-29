@@ -25,7 +25,8 @@ class UserBox extends React.Component {
     }
 
     logout() {
-        localStorage.clear()
+        localStorage.clear();
+        console.log("Keluar")
     }
 
 
@@ -55,7 +56,7 @@ class UserBox extends React.Component {
                                                     <FontAwesomeIcon className="ml-2 opacity-5" icon={faAngleDown}/>
                                                 </DropdownToggle>
                                                 <DropdownMenu>
-                                                    <Link to="/home/dashboard">
+                                                    <Link to="/pages/profile">
                                                         <DropdownItem style={{textAlign: 'center'}}>View Profile</DropdownItem>
                                                     </Link>
                                                     <Link to="/home/dashboard">

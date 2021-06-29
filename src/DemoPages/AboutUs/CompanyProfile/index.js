@@ -76,6 +76,7 @@ export default class CompanyProfile extends Component {
 
             <Fragment>
 
+
                 {/*Efek transisi*/}
                 <CSSTransitionGroup
                     component="div"
