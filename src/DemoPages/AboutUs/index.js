@@ -20,7 +20,6 @@ const About = ({ match }) => (
                     <>
                         <Route path={`${match.url}/company`} component={CompanyProfile} />
                         <Route path={`${match.url}/team`} component={Team} />
-                        <Route path={`${match.url}/tableMember`} component={TableMember} />
                     </>
 
             </div>

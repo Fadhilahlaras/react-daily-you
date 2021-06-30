@@ -38,11 +38,15 @@ const TableMember = () => {
         tampil()
     }, [del])
 
+
     {/*Mengambil semua data dari BE. Lalu data akan dioleh oleh then dan catch. Jika sukses maka akan diberikan ke var DataTable*/}
     const tampil = () =>{
+
+
         axios.get("http://localhost:1717/team")
             .then(res => {
                 setDataTable(res.data)
+                console.log(dataTable)
             }).catch();
     }
 
@@ -87,39 +91,39 @@ const TableMember = () => {
         setModalDelete(!modalDelete)
     }
 
-    const getPDF = async () => {
-
-        await axios({
-            url: 'http://localhost:1717/getReport',
-            method: 'GET',
-            responseType: 'blob', // important
-        }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            console.log(url);
-            console.log(link);
-            link.href = url;
-            link.setAttribute('download', 'Report.pdf');
-            document.body.appendChild(link);
-            link.click();
-        });
-    }
-
-    const getEXCEL = async () => {
-        await axios({
-            url: 'http://localhost:1717/getReportExcel',
-            method: 'GET',
-            responseType: 'blob', // important
-        }).then((response) => {
-            const url = window.URL.createObjectURL(new Blob([response.data]));
-            const link = document.createElement('a');
-            link.href = url;
-            link.setAttribute('download', 'Report.xlsx');
-            document.body.appendChild(link);
-            console.log(document.body.appendChild(link))
-            link.click();
-        });
-    }
+    // const getPDF = async () => {
+    //
+    //     await axios({
+    //         url: 'http://localhost:1717/getReport',
+    //         method: 'GET',
+    //         responseType: 'blob', // important
+    //     }).then((response) => {
+    //         const url = window.URL.createObjectURL(new Blob([response.data]));
+    //         const link = document.createElement('a');
+    //         console.log(url);
+    //         console.log(link);
+    //         link.href = url;
+    //         link.setAttribute('download', 'Report.pdf');
+    //         document.body.appendChild(link);
+    //         link.click();
+    //     });
+    // }
+    //
+    // const getEXCEL = async () => {
+    //     await axios({
+    //         url: 'http://localhost:1717/getReportExcel',
+    //         method: 'GET',
+    //         responseType: 'blob', // important
+    //     }).then((response) => {
+    //         const url = window.URL.createObjectURL(new Blob([response.data]));
+    //         const link = document.createElement('a');
+    //         link.href = url;
+    //         link.setAttribute('download', 'Report.xlsx');
+    //         document.body.appendChild(link);
+    //         console.log(document.body.appendChild(link))
+    //         link.click();
+    //     });
+    // }
 
     return (
         <Fragment>
@@ -244,15 +248,15 @@ const TableMember = () => {
                                                 className="-striped -highlight"
                                             />
 
-                                            <CardTitle style={{fontSize: "18px"}}><br/>Download data of all member<br/></CardTitle>
-                                            <Button type="button" className="mt-1" color="danger"
-                                                    onClick={getPDF} style={{fontSize: "20px", margin: "5px"}}>
-                                                <FontAwesomeIcon icon={faFilePdf}/> <span style={{fontSize: "15px"}}>PDF</span>
-                                            </Button>
-                                            <Button type="button" className="mt-1" color="success"
-                                                    onClick={getEXCEL} style={{fontSize: "20px", margin: "5px"}}>
-                                                <FontAwesomeIcon icon={faFileExcel}/> <span style={{fontSize: "15px"}}>EXCEL</span>
-                                            </Button>
+                                            {/*<CardTitle style={{fontSize: "18px"}}><br/>Download data of all member<br/></CardTitle>*/}
+                                            {/*<Button type="button" className="mt-1" color="danger"*/}
+                                            {/*        onClick={getPDF} style={{fontSize: "20px", margin: "5px"}}>*/}
+                                            {/*    <FontAwesomeIcon icon={faFilePdf}/> <span style={{fontSize: "15px"}}>PDF</span>*/}
+                                            {/*</Button>*/}
+                                            {/*<Button type="button" className="mt-1" color="success"*/}
+                                            {/*        onClick={getEXCEL} style={{fontSize: "20px", margin: "5px"}}>*/}
+                                            {/*    <FontAwesomeIcon icon={faFileExcel}/> <span style={{fontSize: "15px"}}>EXCEL</span>*/}
+                                            {/*</Button>*/}
 
 
                                         </CardBody>
