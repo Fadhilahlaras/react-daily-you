@@ -58,21 +58,30 @@ const Register = () => {
             axios.post("http://localhost:1717/register/create", variables)
                 .then((response) => {
                     console.log("Sukses isi data")
-
-                    MySwal.fire({
-                        icon: "success",
-                        title: "Success Create Account",
-                        showConfirmButton: false,
-                        timer: 1500,
-                    });
-                    setUsername("");
-                    setNoHp("");
-                    setAlamat("");
-                    setKtp("");
-                    setPassword("");
-                    setRepassword("")
-                    setEmail("")
-                    history.push('/pages/login')
+                    if (response.status === 200) {
+                        MySwal.fire({
+                            icon: "success",
+                            title: "Success Create Account",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                        setUsername("");
+                        setNoHp("");
+                        setAlamat("");
+                        setKtp("");
+                        setPassword("");
+                        setRepassword("")
+                        setEmail("")
+                        history.push('/pages/login')
+                    } else {
+                        console.log("Status Error")
+                        MySwal.fire({
+                            icon: "warning",
+                            title: "Can't Create Account",
+                            showConfirmButton: false,
+                            timer: 1500,
+                        });
+                    }
 
                 })
         } else {
