@@ -18,18 +18,15 @@ const Homepage = ({ match }) => (
             <div className="app-main__inner">
 
 
-                {(() => {
-                    // if (localStorage.getItem('role') === 'ROLE_USER') {
-                    return (<>
+                <>
+                        {/*Dashboard Admin*/}
                         <Route path={`${match.url}/dashboardAdm`} component={DashboardAdm} />
-                        {/*Table Product*/}
+                        {/*ManagedProduct*/}
                         <Route path={`${match.url}/table`} component={NewTable}/>
+                        {/*Managed Team*/}
                         <Route path={`${match.url}/team`} component={Team}/>
-                    </>);
-                    // } else {
-                    //     return <h1>Access denied!!</h1>;
-                    // }
-                })()}
+                    </>
+
             </div>
         </div>
     </Fragment>

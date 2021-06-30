@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect, useState} from "react";
+import React, {Fragment} from "react";
 
 import {Route} from "react-router-dom";
 import Dashboard from "./Dashboard";
@@ -6,7 +6,7 @@ import Dashboard from "./Dashboard";
 import AppHeader from "../../Layout/AppHeader/index";
 
 
-const Homepage = ({ match }) => (
+const Homepage = ({match}) => (
 
     <Fragment>
         <AppHeader/>
@@ -14,17 +14,9 @@ const Homepage = ({ match }) => (
         <div className="app-main">
 
             <div className="app-main__inner">
-
-
-                {(() => {
-                    // if (localStorage.getItem('role') === 'ROLE_USER') {
-                    return (<>
-                        <Route path={`${match.url}/dashboard`} component={Dashboard} />
-                    </>);
-                    // } else {
-                    //     return <h1>Access denied!!</h1>;
-                    // }
-                })()}
+                <>
+                    <Route path={`${match.url}/dashboard`} component={Dashboard}/>
+                </>
             </div>
         </div>
     </Fragment>

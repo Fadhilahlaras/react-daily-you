@@ -7,33 +7,25 @@ import Swal from "sweetalert2";
 
 import Slider from "react-slick";
 
+import decode from "jwt-decode";
+import withReactContent from "sweetalert2-react-content";
+
 import {
     Col,
     Row,
     Form,
     FormGroup,
-    Label,
-    Button,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
+    Label
 } from 'reactstrap';
+
 import {Link} from "react-router-dom";
+
 import AppHeader from "../../../Layout/AppHeader";
 
 import pro1 from "../../../assets/utils/images/prodemy/prodemy4_1.jpg";
 import pro2 from "../../../assets/utils/images/prodemy/prodemy4_7.jpg";
 import pro3 from "../../../assets/utils/images/prodemy/prodemy4_12.jpg";
 
-// import ModalHome from "../UserProfile";
-
-import AlertKu from "../Alert/index";
-
-import decode from "jwt-decode";
-import withReactContent from "sweetalert2-react-content";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faAngleDown} from "@fortawesome/free-solid-svg-icons";
 
 const MySwal = withReactContent(Swal);
 
@@ -72,11 +64,10 @@ class Login extends Component {
         const config = {
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
-                // 'Authorization': 'Bearer ${token}'
-
             }
         }
         console.log(param)
+
         axios.post("http://localhost:1717/auth/token",param, config)
             .then(res=> {
                 localStorage.setItem("access_token", res.data.data.access_token)
@@ -131,9 +122,7 @@ class Login extends Component {
 
         };
 
-        const { username, password, error } = this.state;
-
-
+        const { username, password} = this.state;
 
         return (
             <Fragment>
@@ -211,33 +200,14 @@ class Login extends Component {
                                                 <button className="btn btn-primary btn-block">Sign In</button>
                                             </div>
 
-                                            <AlertKu isAlert={this.state.isAlert}
-                                                     alertMessage={this.state.errmessage}
-                                            />
-
                                         </Form>
-                                        {error && <p className="text-danger mt-3 mb-2 text-center">{error}</p>}
+
                                     </div>
                                 </Col>
                             </Col>
                             <Col lg="4" className="d-none d-lg-block">
                                 <div className="slider-light">
                                     <Slider  {...settings}>
-                                        {/*<div*/}
-                                        {/*    className="h-100 d-flex justify-content-center align-items-center bg-premium-dark">*/}
-                                        {/*    <div className="slide-img-bg"*/}
-                                        {/*         style={{*/}
-                                        {/*             backgroundImage: 'url(' + bg3 + ')'*/}
-                                        {/*         }}/>*/}
-                                        {/*    <div className="slider-content">*/}
-                                        {/*        <h3>Scalable, Modular, Consistent</h3>*/}
-                                        {/*        <p>*/}
-                                        {/*            Easily exclude the components you don't require. Lightweight,*/}
-                                        {/*            consistent*/}
-                                        {/*            Bootstrap based styles across all elements and components*/}
-                                        {/*        </p>*/}
-                                        {/*    </div>*/}
-                                        {/*</div>*/}
                                         <div className="h-100 d-flex justify-content-center align-items-center bg-plum-plate">
                                             <div className="slide-img-bg"
                                                  style={{
@@ -283,8 +253,6 @@ class Login extends Component {
                             </Col>
                         </Row>
                     </div>
-
-                    {/*<ModalHome toggle={this.toggle} modal={this.state.modal} />*/}
                 </CSSTransitionGroup>
             </Fragment>
         );

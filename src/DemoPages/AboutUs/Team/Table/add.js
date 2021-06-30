@@ -15,6 +15,7 @@ const AddMember = (props) => {
     const [img, setImg] = useState()
 
     const onSubmit = (e) => {
+        {/*Create a new object FromData*/}
         const formData = new FormData();
 
         {/*A method to converts a JavaScript object or value to a JSON string*/}
@@ -29,12 +30,14 @@ const AddMember = (props) => {
         });
 
 
+        {/*Sebuah object yang berisi hasil convert JS ke JSON*/}
         const blobDoc = new Blob([json], {
             type: 'application/json'
         });
 
         formData.append('pictureUrl', picture)
         formData.append('data', blobDoc)
+
         const config = {
             headers: {
                 'content-type': 'multipart/mixed'

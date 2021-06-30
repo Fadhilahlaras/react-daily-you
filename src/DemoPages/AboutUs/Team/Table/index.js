@@ -23,6 +23,7 @@ import bg1 from "../../../../assets/utils/images/originals/city.jpg";
 
 const TableMember = () => {
 
+    {/*Deklarasi Awal Variabel*/}
     const [dataTable, setDataTable] = useState([])
     const [modalEdit, setModalEdit] = useState(false)
     const [modalAdd, setModalAdd] = useState(false)
@@ -32,10 +33,12 @@ const TableMember = () => {
     const [pictureUrl, setPictureUrl] = useState("")
     // const [image, setImage] = useState("")
 
+    {/*Untuk memperbarui nilai variaabel berdasarkan state yang diedit atau di delete sebelumnya*/}
     useEffect(() => {
         tampil()
     }, [del])
 
+    {/*Mengambil semua data dari BE. Lalu data akan dioleh oleh then dan catch. Jika sukses maka akan diberikan ke var DataTable*/}
     const tampil = () =>{
         axios.get("http://localhost:1717/team")
             .then(res => {

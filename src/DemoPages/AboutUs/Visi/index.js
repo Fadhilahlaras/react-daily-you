@@ -10,7 +10,7 @@ import {
 
 import bg4 from "../../../assets/utils/images/dropdown-header/abstract4.jpg";
 
-
+{/*Membawa sebuah props yang berupa data dari luar komponen (komponen modal) */}
 const ModalAja = (props) => {
 
     return (

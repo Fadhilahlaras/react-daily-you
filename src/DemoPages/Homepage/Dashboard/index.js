@@ -10,9 +10,6 @@ import Kartu from "../../Product/Kartu"
 const Dashboard = () => {
     console.log("udah ada")
     const [dataCard, setDataCard] = useState([])
-    const [modalHome, setModalHome] = useState("")
-
-
     let imageArrayPath = [];
 
     useEffect(() => {
@@ -22,10 +19,6 @@ const Dashboard = () => {
             console.log(res.data)
         })
     }, [])
-
-    const toggleModalHome = () => {
-        setModalHome(!modalHome)
-    }
 
     return(
         <Fragment>
@@ -82,10 +75,6 @@ const Dashboard = () => {
                         </Row>
                         {/*</Card>*/}
                     </div>
-
-                    {/*<ModalHome toggle={() => {*/}
-                    {/*    toggleModalHome()*/}
-                    {/*}} modal={modalHome} onChangeToggle={()=>onChangeToggleModalHome()}/>*/}
 
                 </div>
             </CSSTransitionGroup>

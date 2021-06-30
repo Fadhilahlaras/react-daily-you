@@ -1,27 +1,19 @@
 import React, {Fragment, Component} from "react";
+import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 
 import classnames from 'classnames';
 
 import {
     Col,
-    Row,
-    Button, TabContent, TabPane, Nav, NavItem, NavLink,
-    CardHeader,
-    Form,
-    FormGroup,
-    Label,
-    Input,
-    FormText, ModalHeader, Modal, ModalFooter, ModalBody,
-    DropdownToggle,
-    UncontrolledDropdown, CardImg, CardBody, CardTitle, CardSubtitle, Card, Container, CardFooter
+    Row, TabContent, TabPane, Nav, NavItem, NavLink,
+    CardHeader, Card, CardBody, Container
 } from 'reactstrap';
 
 
-import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import AppHeader from "../../Layout/AppHeader";
 import AppFooter from "../../Layout/AppFooter";
-import bg1 from "../../assets/utils/images/originals/city.jpg";
 
+import bg1 from "../../assets/utils/images/originals/city.jpg";
 
 
 class Activities extends Component {
@@ -86,7 +78,7 @@ class Activities extends Component {
                             </Row>
                             <Row>
                                 <Col md="12">
-                                    <Card tabs="true" className="mb-3">
+                                    < Card tabs="true" className="mb-3">
                                 <CardHeader>
                                     <Nav justified>
                                         <NavItem>
@@ -165,43 +157,6 @@ class Activities extends Component {
 
                                 </CardBody>
                             </Card>
-                            {/*<Card>*/}
-                            {/*    <Row>*/}
-                            {/*        <Col md="12">*/}
-
-                            {/*            <div*/}
-                            {/*                className="p-5 bg-plum-plate">*/}
-                            {/*                <div className="slide-img-bg"*/}
-                            {/*                     style={{*/}
-                            {/*                         fade: true,*/}
-                            {/*                         backgroundImage: 'url(' + bg1 + ')',*/}
-                            {/*                         color: "white", textAlign: "center"*/}
-                            {/*                     }}/>*/}
-                            {/*                <div className="slider-content" style={{*/}
-                            {/*                    color: "white", textAlign: "center"*/}
-                            {/*                }}>*/}
-                            {/*                    <h3>Galeri</h3>*/}
-                            {/*                </div>*/}
-                            {/*            </div>*/}
-
-                            {/*        </Col>*/}
-
-                            {/*    </Row>*/}
-                            {/*    <Row>*/}
-                            {/*        <Galeri/>*/}
-                            {/*    </Row>*/}
-                            {/*</Card>*/}
-
-                            {/*<Row>*/}
-                            {/*    <Col lg="6">*/}
-                            {/*        <Card className="main-card mb-3">*/}
-                            {/*            <CardBody>*/}
-                            {/*                <CardTitle>Galeri</CardTitle>*/}
-                            {/*                <ColorGradients/>*/}
-                            {/*            </CardBody>*/}
-                            {/*        </Card>*/}
-                            {/*    </Col>*/}
-                            {/*</Row>*/}
                                 </Col>
                             </Row>
                         </Container>

@@ -1,8 +1,10 @@
 import React, {Fragment, useState} from 'react';
 import CSSTransitionGroup from 'react-transition-group/CSSTransitionGroup';
 import axios from "axios";
-
 import Swal from "sweetalert2";
+
+import {Link, useHistory} from "react-router-dom";
+import withReactContent from "sweetalert2-react-content";
 
 import AppHeader from "../../../Layout/AppHeader";
 
@@ -16,13 +18,11 @@ import {
     Row
 } from "reactstrap";
 
-import {Link, useHistory} from "react-router-dom";
-import withReactContent from "sweetalert2-react-content";
-
 
 const MySwal = withReactContent(Swal);
 
 const Register = () => {
+
     const history = useHistory();
 
     const [username, setUsername] = useState("");
@@ -39,49 +39,45 @@ const Register = () => {
         }
 
         if (!username.length || !noHp.length || !alamat.length || !ktp.length || !email.length || !password.length || !repassword.length){
-            MySwal.fire({
+            console.log("Harus diisi")
+            await MySwal.fire({
                 icon: "error",
                 title: "Please Fill All The Data",
                 showConfirmButton: false,
                 timer: 1500,
             });
-        } else if(password === repassword) {
-             axios.post("http://localhost:1717/register/create", variables)
-                 .then((response) => {
-                     if (response.status === 200) {
-                         MySwal.fire({
-                             icon: "success",
-                             title: "Success Create Account",
-                             showConfirmButton: false,
-                             timer: 1500,
-                         });
-                         setUsername("");
-                         setNoHp("");
-                         setAlamat("");
-                         setKtp("");
-                         setPassword("");
-                         setRepassword("")
-                         setEmail("")
-                         history.push('/pages/login')
-                     } else {
-                         MySwal.fire({
-                             icon: "warning",
-                             title: "Create Account Failed",
-                             showConfirmButton: false,
-                             timer: 1500,
-                         });
-                     }
-
-                 })
         } else if (password.length < 8) {
-            MySwal.fire({
+            console.log("password kurang ")
+            await MySwal.fire({
                 icon: "error",
                 title: "Password Should Contain At Least 8 Charecters",
                 showConfirmButton: false,
                 timer: 1500,
             });
+        } else if(password === repassword) {
+            axios.post("http://localhost:1717/register/create", variables)
+                .then((response) => {
+                    console.log("Sukses isi data")
+
+                    MySwal.fire({
+                        icon: "success",
+                        title: "Success Create Account",
+                        showConfirmButton: false,
+                        timer: 1500,
+                    });
+                    setUsername("");
+                    setNoHp("");
+                    setAlamat("");
+                    setKtp("");
+                    setPassword("");
+                    setRepassword("")
+                    setEmail("")
+                    history.push('/pages/login')
+
+                })
         } else {
-            MySwal.fire({
+            console.log("error")
+            await MySwal.fire({
                 icon: "error",
                 title: "Username or Password is False",
                 showConfirmButton: false,
